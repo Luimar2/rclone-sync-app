@@ -1,7 +1,10 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import RemotesList from './components/RemotesList.vue'
 </script>
 
 <template>
-  <HelloWorld />
+  <main>
+    <h1>RcloneSync</h1>
+    <RemotesList />
+  </main>
 </template>
