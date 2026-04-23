@@ -34,3 +34,26 @@ def listar_remotes() -> list[str]:
     if not resultado["sucesso"] or not resultado["saida"]:
         return []
     return [r.strip() for r in resultado["saida"].splitlines()]
+
+
+def criar_remote_gdrive(nome: str) -> dict:
+    resultado = executar_comando([
+        "config", "create", nome, "drive",
+        "scope", "drive",
+        "--auto-confirm"
+    ])
+    return resultado
+
+
+def verificar_remote(nome: str) -> dict:
+    resultado = executar_comando(["about", f"{nome}:"])
+    return {
+        "sucesso": resultado["sucesso"],
+        "info": resultado["saida"],
+        "erro": resultado["erro"]
+    }
+
+
+def deletar_remote(nome: str) -> dict:
+    resultado = executar_comando(["config", "delete", nome])
+    return resultado
