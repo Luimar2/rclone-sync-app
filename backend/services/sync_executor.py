@@ -8,7 +8,8 @@ WORKDIR = Path.home() / ".local/share/rclone/bisync"
 LOG_DIR = Path.home() / ".local/state/rclone-bisync"
 
 
-def executar_bisync(local_path: str, remote_path: str) -> dict:
+def executar_bisync(local_path: str, remote_path: str,
+                    filtros_extras: list[str] = []) -> dict:
     WORKDIR.mkdir(parents=True, exist_ok=True)
     LOG_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -48,12 +49,8 @@ def executar_bisync(local_path: str, remote_path: str) -> dict:
     return {"sucesso": False, "log": str(log_file), "tentativas": max_tentativas}
 
 
-def _rodar_bisync(
-    local_path: str,
-    remote_path: str,
-    log_file: Path,
-    resync: bool = False
-) -> dict:
+def _rodar_bisync(local_path, remote_path, log_file,
+                  resync=False, filtros_extras=[]) -> dict:
     args = [
         "rclone", "bisync",
         local_path, remote_path,
@@ -63,11 +60,10 @@ def _rodar_bisync(
         "--recover",
         "--resilient",
         "--workdir", str(WORKDIR),
-    ]
+    ] + filtros_extras
 
     if resync:
         args.append("--resync")
 
     resultado = subprocess.run(args, capture_output=True, text=True, timeout=300)
-
     return {"sucesso": resultado.returncode == 0}
