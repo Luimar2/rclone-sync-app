@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.config import router as config_router
+from routes.sync import router as sync_router
 
 app = FastAPI(
     title="RcloneSync",
@@ -16,6 +17,7 @@ app.add_middleware(
 )
 
 app.include_router(config_router)
+app.include_router(sync_router)
 
 @app.get("/")
 async def root():
