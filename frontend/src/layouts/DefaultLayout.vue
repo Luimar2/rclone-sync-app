@@ -72,10 +72,11 @@ const navItems = [
 <style scoped>
 .app-layout {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
   background: #f4f6f9;
   color: #1a1a2e;
-  font-family: 'Inter', sans-serif;
 }
 
 .dark-mode .app-layout,
@@ -156,5 +157,6 @@ const navItems = [
   flex: 1;
   padding: 2rem;
   overflow-y: auto;
+  height: 100vh;
 }
 </style>
