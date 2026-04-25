@@ -20,3 +20,22 @@ body.dark-mode {
   background: #0f0f1a;
   color: #e2e8f0;
 }
+
+/* Integração PrimeVue com nosso tema */
+:root {
+  --p-primary-color: #6366f1;
+  --p-primary-contrast-color: #ffffff;
+  --p-surface-card: #ffffff;
+  --p-surface-ground: #f4f6f9;
+  --p-text-color: #1a1a2e;
+  --p-text-muted-color: #94a3b8;
+  --p-border-color: #e2e8f0;
+}
+
+.dark-mode {
+  --p-surface-card: #1a1a2e;
+  --p-surface-ground: #0f0f1a;
+  --p-text-color: #e2e8f0;
+  --p-text-muted-color: #64748b;
+  --p-border-color: #2d2d44;
+}

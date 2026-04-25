@@ -8,20 +8,21 @@ const route = useRoute()
 const temaEscuro = ref(false)
 
 onMounted(() => {
-  // Detecta preferência do sistema
   const prefereEscuro = window.matchMedia('(prefers-color-scheme: dark)').matches
   temaEscuro.value = prefereEscuro
+  document.documentElement.classList.toggle('dark-mode', prefereEscuro)
   document.body.classList.toggle('dark-mode', prefereEscuro)
 
-  // Fica escutando mudanças em tempo real
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
     temaEscuro.value = e.matches
+    document.documentElement.classList.toggle('dark-mode', e.matches)
     document.body.classList.toggle('dark-mode', e.matches)
   })
 })
 
 function toggleTema() {
   temaEscuro.value = !temaEscuro.value
+  document.documentElement.classList.toggle('dark-mode', temaEscuro.value)
   document.body.classList.toggle('dark-mode', temaEscuro.value)
 }
 
