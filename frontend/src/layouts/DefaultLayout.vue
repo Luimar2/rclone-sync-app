@@ -1,11 +1,24 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import Button from 'primevue/button'
 
 const router = useRouter()
 const route = useRoute()
+
 const temaEscuro = ref(false)
+
+onMounted(() => {
+  // Detecta preferência do sistema
+  const prefereEscuro = window.matchMedia('(prefers-color-scheme: dark)').matches
+  temaEscuro.value = prefereEscuro
+  document.body.classList.toggle('dark-mode', prefereEscuro)
+
+  // Fica escutando mudanças em tempo real
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    temaEscuro.value = e.matches
+    document.body.classList.toggle('dark-mode', e.matches)
+  })
+})
 
 function toggleTema() {
   temaEscuro.value = !temaEscuro.value
@@ -13,9 +26,9 @@ function toggleTema() {
 }
 
 const navItems = [
-  { label: 'Painel',        icon: 'pi pi-home',     path: '/dashboard' },
-  { label: 'Configuração',  icon: 'pi pi-cog',      path: '/onboarding/1' },
-  { label: 'Logs',          icon: 'pi pi-list',     path: '/logs' },
+  { label: 'Painel',       icon: 'pi pi-home',  path: '/dashboard' },
+  { label: 'Configuração', icon: 'pi pi-cog',   path: '/onboarding/1' },
+  { label: 'Logs',         icon: 'pi pi-list',  path: '/logs' },
 ]
 </script>
 
