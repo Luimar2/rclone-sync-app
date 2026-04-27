@@ -2,11 +2,6 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import api from '../services/api'
-import Card from 'primevue/card'
-import Button from 'primevue/button'
-import Tag from 'primevue/tag'
-import Divider from 'primevue/divider'
-import ProgressSpinner from 'primevue/progressspinner'
 
 const router = useRouter()
 const pares = ref([])
@@ -45,29 +40,24 @@ async function sincronizarAgora() {
     <h2 class="page-title">Painel</h2>
 
     <div v-if="carregando" class="loading">
-      <ProgressSpinner />
+      <span class="pi pi-spin pi-spinner loading-icon" />
     </div>
 
     <div v-else class="grid">
 
-      <!-- Card de pares -->
-      <Card class="card">
-        <template #title>
+      <!-- Pares de sincronização -->
+      <div class="card">
+        <div class="card-header">
           <span class="pi pi-sync card-icon" />
-          Pares de sincronização
-        </template>
-        <template #content>
+          <span>Pares de sincronização</span>
+        </div>
+        <div class="card-body">
           <div v-if="pares.length === 0" class="empty">
-            Nenhum par configurado.
-            <Button
-              label="Configurar agora"
-              icon="pi pi-plus"
-              size="small"
-              class="mt"
-              @click="router.push('/onboarding/1')"
-            />
+            <span>Nenhum par configurado.</span>
+            <button class="btn-primary" @click="router.push('/onboarding/3')">
+              <span class="pi pi-plus" /> Configurar agora
+            </button>
           </div>
-
           <ul v-else class="pares-list">
             <li v-for="par in pares" :key="par.id" class="par-item">
               <div class="par-info">
@@ -77,70 +67,67 @@ async function sincronizarAgora() {
                   <p class="par-remote">{{ par.remote_name }}:{{ par.remote_path }}</p>
                 </div>
               </div>
-              <Tag
-                :value="par.ativo ? 'Ativo' : 'Pausado'"
-                :severity="par.ativo ? 'success' : 'warning'"
-              />
+              <span class="badge" :class="par.ativo ? 'badge-success' : 'badge-warning'">
+                {{ par.ativo ? 'Ativo' : 'Pausado' }}
+              </span>
             </li>
           </ul>
-        </template>
-      </Card>
+        </div>
+      </div>
 
-      <!-- Card de agendamento -->
-      <div v-if="agendamento">
-    <div class="agend-status">
-      <span>Status</span>
-      <Tag
-        :value="agendamento.ativo ? 'Ativo' : 'Inativo'"
-        :severity="agendamento.ativo ? 'success' : 'danger'"
-      />
-    </div>
-    <Divider />
-    <div class="agend-info">
-      <span class="pi pi-calendar" />
-      <span>Sincronização agendada via systemd</span>
-    </div>
-    <Button
-      label="Gerenciar agendamento"
-      icon="pi pi-cog"
-      severity="secondary"
-      size="small"
-      class="mt"
-      @click="router.push('/onboarding/5')"
-    />
-  </div>
+      <!-- Agendamento -->
+      <div class="card">
+        <div class="card-header">
+          <span class="pi pi-clock card-icon" />
+          <span>Agendamento</span>
+        </div>
+        <div class="card-body">
+          <div class="agend-row">
+            <span class="label">Status</span>
+            <span class="badge" :class="agendamento?.ativo ? 'badge-success' : 'badge-danger'">
+              {{ agendamento?.ativo ? 'Ativo' : 'Inativo' }}
+            </span>
+          </div>
+          <div class="agend-row">
+            <span class="pi pi-calendar label-icon" />
+            <span class="label">Sincronização agendada via systemd</span>
+          </div>
+          <button class="btn-secondary" @click="router.push('/onboarding/5')">
+            <span class="pi pi-cog" /> Gerenciar agendamento
+          </button>
+        </div>
+      </div>
 
-      <!-- Card de ação -->
-      <Card class="card card-full">
-        <template #title>
+      <!-- Sincronização manual -->
+      <div class="card card-full">
+        <div class="card-header">
           <span class="pi pi-play card-icon" />
-          Sincronização manual
-        </template>
-        <template #content>
-          <Button
-            label="Sincronizar agora"
-            icon="pi pi-refresh"
-            :loading="sincronizando"
-            :disabled="pares.length === 0"
+          <span>Sincronização manual</span>
+        </div>
+        <div class="card-body">
+          <button
+            class="btn-primary"
+            :disabled="sincronizando || pares.length === 0"
             @click="sincronizarAgora"
-          />
+          >
+            <span :class="sincronizando ? 'pi pi-spin pi-spinner' : 'pi pi-refresh'" />
+            {{ sincronizando ? 'Sincronizando...' : 'Sincronizar agora' }}
+          </button>
 
           <div v-if="resultado" class="resultado">
-            <Divider />
             <div
               v-for="r in resultado.resultados"
               :key="r.par"
               class="resultado-item"
             >
-              <Tag
-                :value="r.sucesso ? 'Sucesso' : 'Falhou'"
-                :severity="r.sucesso ? 'success' : 'danger'"
-              />
+              <span class="badge" :class="r.sucesso ? 'badge-success' : 'badge-danger'">
+                {{ r.sucesso ? 'Sucesso' : 'Falhou' }}
+              </span>
               <span class="resultado-par">{{ r.par }}</span>
             </div>
           </div>
-        </template>
-      </Card>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -154,8 +141,9 @@ async function sincronizarAgora() {
 }
 
 .page-title {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 700;
+  color: #e2e8f0;
 }
 
 .loading {
@@ -164,10 +152,15 @@ async function sincronizarAgora() {
   padding: 3rem;
 }
 
+.loading-icon {
+  font-size: 2rem;
+  color: #6366f1;
+}
+
+/* Grid */
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
   gap: 1.5rem;
 }
 
@@ -175,36 +168,62 @@ async function sincronizarAgora() {
   grid-column: 1 / -1;
 }
 
+/* Card */
+.card {
+  background: #1a1a2e;
+  border: 1px solid #2d2d44;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #2d2d44;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
 .card-icon {
-  margin-right: 0.5rem;
   color: #6366f1;
 }
 
+.card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Pares */
 .empty {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  color: #94a3b8;
-}
-
-.mt {
-  margin-top: 1rem;
-  width: fit-content;
+  gap: 0.75rem;
+  color: #64748b;
+  font-size: 0.9rem;
 }
 
 .pares-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .par-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #e2e8f0;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #2d2d44;
+}
+
+.par-item:last-child {
+  border-bottom: none;
 }
 
 .par-info {
@@ -215,48 +234,113 @@ async function sincronizarAgora() {
 
 .par-icon {
   color: #6366f1;
-  font-size: 1.2rem;
 }
 
 .par-local {
+  font-size: 0.88rem;
   font-weight: 500;
-  font-size: 0.9rem;
+  color: #e2e8f0;
 }
 
 .par-remote {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+/* Agendamento */
+.agend-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
   color: #94a3b8;
 }
 
-.agend-status {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
-}
-
-.agend-info {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+.label {
   color: #94a3b8;
-  font-size: 0.85rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.88rem;
 }
 
+.label-icon {
+  color: #6366f1;
+  font-size: 0.9rem;
+}
+
+/* Resultado */
 .resultado {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #2d2d44;
 }
 
 .resultado-item {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.5rem 0;
 }
 
 .resultado-par {
   font-size: 0.85rem;
   color: #64748b;
+}
+
+/* Badges */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+}
+
+.badge-success { background: #14532d; color: #86efac; }
+.badge-warning { background: #78350f; color: #fcd34d; }
+.badge-danger  { background: #7f1d1d; color: #fca5a5; }
+
+/* Botões */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: fit-content;
+}
+
+.btn-primary:hover { background: #4f46e5; }
+.btn-primary:disabled {
+  background: #2d2d44;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid #2d2d44;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: fit-content;
+}
+
+.btn-secondary:hover {
+  background: #2d2d44;
+  color: #e2e8f0;
 }
 </style>
