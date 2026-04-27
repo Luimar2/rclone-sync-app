@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes.config import router as config_router
 from routes.sync import router as sync_router
 from routes.agendamento import router as agendamento_router
+from routes.logs import router as logs_router
+
 
 app = FastAPI(
     title="RcloneSync",
@@ -24,3 +26,6 @@ app.include_router(agendamento_router)
 @app.get("/")
 async def root():
     return {"status": "ok", "message": "RcloneSync API rodando"}
+
+
+app.include_router(logs_router)

@@ -1,7 +1,7 @@
 <script setup>
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import api from '../services/api'
-import { ref, onMounted } from 'vue'
 
 const router = useRouter()
 const temPares = ref(false)
@@ -20,19 +20,278 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main>
-    <h1>RcloneSync</h1>
-    <p>Gerencie seus backups com Google Drive de forma simples.</p>
+  <div class="home">
+    <div class="home-content">
 
-    <div v-if="carregando">Verificando configuração...</div>
+      <!-- Logo e título -->
+      <div class="hero">
+        <div class="hero-icon">
+          <span class="pi pi-refresh" />
+        </div>
+        <h1 class="hero-title">RcloneSync</h1>
+        <p class="hero-sub">
+          Gerencie seus backups com Google Drive de forma simples,
+          segura e automatizada no Linux.
+        </p>
+      </div>
 
-    <div v-else>
-      <button v-if="temPares" @click="router.push('/dashboard')">
-        Abrir painel
-      </button>
-      <button v-else @click="router.push('/onboarding/1')">
-        Configurar agora
-      </button>
+      <!-- Features -->
+      <div class="features">
+        <div class="feature-item">
+          <span class="pi pi-shield feature-icon" />
+          <div>
+            <p class="feature-label">Seguro</p>
+            <p class="feature-desc">Snapshot local antes de cada sync</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="pi pi-clock feature-icon" />
+          <div>
+            <p class="feature-label">Automatizado</p>
+            <p class="feature-desc">Agendamento via systemd --user</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="pi pi-sliders-h feature-icon" />
+          <div>
+            <p class="feature-label">Flexível</p>
+            <p class="feature-desc">Múltiplos pares e filtros de exclusão</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ação principal -->
+      <div class="actions">
+        <div v-if="carregando" class="loading">
+          <span class="pi pi-spin pi-spinner loading-icon" />
+        </div>
+
+        <div v-else class="action-buttons">
+          <button
+            v-if="temPares"
+            class="btn-primary"
+            @click="router.push('/dashboard')"
+          >
+            <span class="pi pi-home" />
+            Abrir painel
+          </button>
+
+          <button
+            v-else
+            class="btn-primary"
+            @click="router.push('/onboarding/1')"
+          >
+            <span class="pi pi-play" />
+            Começar configuração
+          </button>
+
+          <button
+            v-if="temPares"
+            class="btn-secondary"
+            @click="router.push('/onboarding/1')"
+          >
+            <span class="pi pi-cog" />
+            Reconfigurar
+          </button>
+        </div>
+      </div>
+
+      <!-- Rodapé -->
+      <div class="home-footer">
+        
+        <a href="https://github.com/SEU_USUARIO/rclone-sync-app"
+          target="_blank"
+          class="footer-link"
+        >
+          <span class="pi pi-github">GitHub</span>
+        </a>
+        <span class="footer-sep">·</span>
+        <span class="footer-version">v0.1.0</span>
+      </div>
+
     </div>
-  </main>
+  </div>
 </template>
+
+<style scoped>
+.home {
+  min-height: 100vh;
+  background: #0f0f1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-icon {
+  width: 72px;
+  height: 72px;
+  background: #1a1a2e;
+  border: 1px solid #2d2d44;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-icon .pi {
+  font-size: 2rem;
+  color: #6366f1;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #e2e8f0;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.hero-sub {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Features */
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #1a1a2e;
+  border: 1px solid #2d2d44;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  text-align: left;
+}
+
+.feature-icon {
+  color: #6366f1;
+  font-size: 1.2rem;
+  width: 1.5rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.feature-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.feature-desc {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* Actions */
+.actions {
+  width: 100%;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
+.loading-icon {
+  font-size: 1.5rem;
+  color: #6366f1;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.5rem;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.btn-primary:hover { background: #4f46e5; }
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.5rem;
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid #2d2d44;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.btn-secondary:hover {
+  background: #1a1a2e;
+  color: #e2e8f0;
+}
+
+/* Footer */
+.home-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover { color: #e2e8f0; }
+
+.footer-sep { color: #2d2d44; }
+</style>

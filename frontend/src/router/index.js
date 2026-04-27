@@ -7,6 +7,8 @@ import Step3Pares from '../views/onboarding/Step3Pares.vue'
 import Step4Filtros from '../views/onboarding/Step4Filtros.vue'
 import Step5Agendamento from '../views/onboarding/Step5Agendamento.vue'
 import Step6Confirmacao from '../views/onboarding/Step6Confirmacao.vue'
+import LogsView from '../views/LogsView.vue'
+
 
 const routes = [
   { path: '/', component: HomeView },
@@ -17,6 +19,7 @@ const routes = [
   { path: '/onboarding/4', component: Step4Filtros },
   { path: '/onboarding/5', component: Step5Agendamento },
   { path: '/onboarding/6', component: Step6Confirmacao },
+  { path: '/logs', component: LogsView },
 ]
 
 export default createRouter({
