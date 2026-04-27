@@ -6,6 +6,7 @@ import 'primeicons/primeicons.css'
 import './assets/base.css'
 import App from './App.vue'
 import router from './router'
+import './assets/steps.css'
 
 const app = createApp(App)
 
