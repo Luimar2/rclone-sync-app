@@ -65,7 +65,7 @@ e conclua o fluxo de autenticação OAuth.
 
 ```bash
 # Clone o repositório
-git clone https://github.com/SEU_USUARIO/rclone-sync-app.git
+git clone https://github.com/Luimar2/rclone-sync-app.git
 cd rclone-sync-app
 
 # Execute o instalador

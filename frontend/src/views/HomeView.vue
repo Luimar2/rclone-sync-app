@@ -99,7 +99,7 @@ onMounted(async () => {
       <!-- Rodapé -->
       <div class="home-footer">
         
-        <a href="https://github.com/SEU_USUARIO/rclone-sync-app"
+        <a href="https://github.com/Luimar2/rclone-sync-app#"
           target="_blank"
           class="footer-link"
         >
