@@ -9,6 +9,29 @@ LOG_DIR = Path.home() / ".local/state/rclone-bisync"
 RESYNC_FLAG_DIR = Path.home() / ".local/share/rclone-sync-app/resync-flags"
 
 
+def flags_suportadas() -> list[str]:
+    """Detecta a versão do rclone e retorna flags compatíveis."""
+    resultado = subprocess.run(
+        ["rclone", "--version"],
+        capture_output=True, text=True
+    )
+    primeira_linha = resultado.stdout.splitlines()[0]
+    import re
+    match = re.search(r'v(\d+)\.(\d+)', primeira_linha)
+    if not match:
+        return []
+
+    major = int(match.group(1))
+    minor = int(match.group(2))
+
+    flags = []
+    # --recover e --resilient foram introduzidos no v1.64
+    if (major, minor) >= (1, 64):
+        flags += ["--recover", "--resilient"]
+
+    return flags
+
+
 def precisa_resync(local_path: str) -> bool:
     flag = RESYNC_FLAG_DIR / (local_path.replace("/", "_") + ".initialized")
     return not flag.exists()
@@ -93,7 +116,6 @@ def _rodar_bisync(
     resync: bool = False,
     filtros_extras: list[str] = []
 ) -> dict:
-    # Cria o diretório local se não existir
     Path(local_path).mkdir(parents=True, exist_ok=True)
 
     args = [
@@ -102,10 +124,8 @@ def _rodar_bisync(
         "--log-file", str(log_file),
         "--log-level", "INFO",
         "--drive-skip-gdocs",
-        "--recover",
-        "--resilient",
         "--workdir", str(WORKDIR),
-    ] + filtros_extras
+    ] + flags_suportadas() + filtros_extras
 
     if resync:
         args.append("--resync")

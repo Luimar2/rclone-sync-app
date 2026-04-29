@@ -72,9 +72,14 @@ nvm alias default 20
 
 ### Instalando o rclone
 
+**Não instale via `apt`** — a versão dos repositórios Ubuntu é antiga
+e não suporta todas as funcionalidades necessárias.
+
 ```bash
-sudo apt install rclone
+curl -fsSL https://rclone.org/install.sh | sudo bash
 ```
+
+Versão mínima necessária: **1.65**
 
 ### Configurando um remote Google Drive
 

@@ -22,10 +22,9 @@ info "Verificando dependências do sistema..."
 
 PKGS_NEEDED=()
 
-command -v curl   >/dev/null 2>&1 || PKGS_NEEDED+=("curl")
-command -v git    >/dev/null 2>&1 || PKGS_NEEDED+=("git")
-command -v rsync  >/dev/null 2>&1 || PKGS_NEEDED+=("rsync")
-command -v rclone >/dev/null 2>&1 || PKGS_NEEDED+=("rclone")
+command -v curl  >/dev/null 2>&1 || PKGS_NEEDED+=("curl")
+command -v git   >/dev/null 2>&1 || PKGS_NEEDED+=("git")
+command -v rsync >/dev/null 2>&1 || PKGS_NEEDED+=("rsync")
 
 if ! python3 -m venv --help >/dev/null 2>&1; then
   PY_VER=$(python3 -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')
@@ -46,6 +45,33 @@ command -v python3 >/dev/null 2>&1 || erro "Python3 não encontrado."
 PYTHON_MINOR=$(python3 -c 'import sys; print(sys.version_info.minor)')
 if [ "$PYTHON_MINOR" -lt 10 ]; then
   erro "Python 3.10+ necessário. Versão encontrada: 3.${PYTHON_MINOR}"
+fi
+
+# --- Verifica e instala rclone ---
+
+RCLONE_MIN_VERSION="1.65"
+
+instalar_rclone() {
+  info "Instalando rclone via script oficial..."
+  curl -fsSL https://rclone.org/install.sh | sudo bash
+  ok "rclone instalado."
+}
+
+versao_maior_igual() {
+  local atual="$1"
+  local minima="$2"
+  printf '%s\n%s\n' "$minima" "$atual" | sort -V -C
+}
+
+if ! command -v rclone >/dev/null 2>&1; then
+  instalar_rclone
+else
+  RCLONE_VERSION=$(rclone --version | head -1 | grep -oP '\d+\.\d+')
+  if ! versao_maior_igual "$RCLONE_VERSION" "$RCLONE_MIN_VERSION"; then
+    echo ""
+    echo -e "${AMARELO}⚠️  rclone $RCLONE_VERSION encontrado mas versão mínima necessária é $RCLONE_MIN_VERSION${RESET}"
+    instalar_rclone
+  fi
 fi
 
 # --- Verifica e instala Node via nvm ---
@@ -72,7 +98,6 @@ else
   fi
 fi
 
-# Garante que npm está disponível
 command -v npm >/dev/null 2>&1 || erro "npm não encontrado após instalação do Node."
 
 ok "Dependências verificadas."
