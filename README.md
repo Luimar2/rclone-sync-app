@@ -41,8 +41,58 @@ de backups acessível para usuários Linux sem necessidade de usar o terminal no
 
 - Linux (testado no Ubuntu/Pop!_OS)
 - Python 3.10 ou superior
-- Node.js 18 ou superior
+- Node.js 18 ou superior — **instale via nvm, não via apt**
 - rclone instalado e configurado
+
+### Instalando o Python venv
+
+Em sistemas Debian/Ubuntu o pacote `python3-venv` pode não vir instalado:
+
+```bash
+sudo apt install python3-venv
+```
+
+### Instalando o Node.js via nvm
+
+**Não instale o Node via `apt`** — a versão dos repositórios Ubuntu é antiga
+e instala centenas de pacotes desnecessários.
+
+```bash
+# Instala o nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# Recarrega o terminal
+source ~/.bashrc
+
+# Instala o Node 20 LTS
+nvm install 20
+nvm use 20
+nvm alias default 20
+```
+
+### Instalando o rclone
+
+```bash
+sudo apt install rclone
+```
+
+### Configurando um remote Google Drive
+
+```bash
+rclone config
+```
+
+Siga o assistente:
+1. Escolha **n** para novo remote
+2. Dê um nome — ex: `GoogleDrive`
+3. Escolha o número correspondente ao **Google Drive**
+4. Deixe `client_id` e `client_secret` em branco
+5. Escolha escopo **1** (acesso completo)
+6. Deixe `service_account_file` em branco
+7. Não edite configurações avançadas
+8. Use auto config — o browser abrirá para autenticação
+9. Não configure como Shared Drive
+10. Confirme e saia
 
 ### Instalando o rclone
 

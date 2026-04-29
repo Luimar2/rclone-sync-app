@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-###################################
-# RcloneSync — Script de instalação
-###################################
-
 VERDE='\033[0;32m'
 AMARELO='\033[1;33m'
 VERMELHO='\033[0;31m'
@@ -24,19 +20,31 @@ echo ""
 
 info "Verificando dependências..."
 
-command -v python3 >/dev/null 2>&1 || erro "Python3 não encontrado. Instale antes de continuar."
-command -v node    >/dev/null 2>&1 || erro "Node.js não encontrado. Instale antes de continuar."
-command -v npm     >/dev/null 2>&1 || erro "npm não encontrado."
+command -v python3 >/dev/null 2>&1 || erro "Python3 não encontrado."
 command -v rclone  >/dev/null 2>&1 || erro "rclone não encontrado. Instale com: sudo apt install rclone"
 
-PYTHON_VERSION=$(python3 -c 'import sys; print(sys.version_info.minor)')
-if [ "$PYTHON_VERSION" -lt 10 ]; then
-  erro "Python 3.10 ou superior é necessário."
+# Verifica Node via nvm ou sistema
+if ! command -v node >/dev/null 2>&1; then
+  erro "Node.js não encontrado. Instale via nvm: https://github.com/nvm-sh/nvm"
 fi
 
 NODE_VERSION=$(node -e 'console.log(process.versions.node.split(".")[0])')
 if [ "$NODE_VERSION" -lt 18 ]; then
-  erro "Node.js 18 ou superior é necessário."
+  erro "Node.js 18+ necessário. Versão encontrada: $NODE_VERSION. Instale via nvm."
+fi
+
+PYTHON_VERSION=$(python3 -c 'import sys; print(sys.version_info.minor)')
+if [ "$PYTHON_VERSION" -lt 10 ]; then
+  erro "Python 3.10+ necessário."
+fi
+
+# Verifica e instala python3-venv se necessário
+if ! python3 -m venv --help >/dev/null 2>&1; then
+  info "Instalando python3-venv..."
+  PY_MINOR=$(python3 -c 'import sys; print(sys.version_info.minor)')
+  PY_MAJOR=$(python3 -c 'import sys; print(sys.version_info.major)')
+  sudo apt install -y "python${PY_MAJOR}.${PY_MINOR}-venv" || \
+    erro "Não foi possível instalar python3-venv. Execute: sudo apt install python3-venv"
 fi
 
 ok "Dependências verificadas."
@@ -65,7 +73,7 @@ cd ..
 
 ok "Frontend compilado."
 
-# --- Serviço systemd ---
+# --- Instalação ---
 
 info "Instalando serviço systemd..."
 
@@ -98,14 +106,25 @@ systemctl --user enable --now rclone-sync-app-web.service
 
 ok "Serviço web instalado e iniciado."
 
-# --- Finalização ---
+# --- Aguarda o servidor subir ---
+
+info "Aguardando o servidor iniciar..."
+for i in {1..10}; do
+  if curl -s http://localhost:8000 >/dev/null 2>&1; then
+    break
+  fi
+  sleep 1
+done
+
+# --- Abre o browser ---
+
+info "Abrindo no navegador..."
+xdg-open http://localhost:8000 >/dev/null 2>&1 || true
 
 echo ""
 echo "================================"
 ok "Instalação concluída!"
 echo ""
 echo "  Acesse: http://localhost:8000"
-echo "  ou abra o navegador em:"
-echo "  http://localhost:5173 (desenvolvimento)"
 echo "================================"
 echo ""
