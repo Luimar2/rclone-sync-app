@@ -107,6 +107,7 @@ info "Instalando serviço systemd..."
 
 INSTALL_DIR="$HOME/.local/share/rclone-sync-app"
 mkdir -p "$INSTALL_DIR"
+rm -rf "$INSTALL_DIR/backend"
 cp -r backend "$INSTALL_DIR/"
 cp -r frontend/dist "$INSTALL_DIR/frontend"
 
