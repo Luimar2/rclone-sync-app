@@ -94,21 +94,6 @@ Siga o assistente:
 9. Não configure como Shared Drive
 10. Confirme e saia
 
-### Instalando o rclone
-
-```bash
-sudo apt install rclone
-```
-
-### Configurando um remote Google Drive
-
-```bash
-rclone config
-```
-
-Siga o assistente, escolha **New remote**, selecione **Google Drive**
-e conclua o fluxo de autenticação OAuth.
-
 ---
 
 ## Instalação
