@@ -7,10 +7,18 @@ SNAPSHOT_BASE = Path("/var/tmp")
 
 
 def criar_snapshot(local_path: str) -> dict:
-    data = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     origem = Path(local_path)
-    destino = SNAPSHOT_BASE / f"rclone-bisync-snapshot" / data / origem.name
 
+    # Não cria snapshot de diretório vazio ou inexistente
+    if not origem.exists() or not any(origem.iterdir()):
+        return {
+            "sucesso": True,
+            "destino": None,
+            "aviso": "Diretório vazio ou inexistente — snapshot ignorado"
+        }
+
+    data = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    destino = SNAPSHOT_BASE / "rclone-bisync-snapshot" / data / origem.name
     destino.mkdir(parents=True, exist_ok=True)
 
     resultado = subprocess.run(
