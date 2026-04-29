@@ -16,36 +16,64 @@ echo "   RcloneSync — Instalação"
 echo "================================"
 echo ""
 
-# --- Verificações ---
+# --- Dependências básicas do sistema ---
 
-info "Verificando dependências..."
+info "Verificando dependências do sistema..."
+
+PKGS_NEEDED=()
+
+command -v curl   >/dev/null 2>&1 || PKGS_NEEDED+=("curl")
+command -v git    >/dev/null 2>&1 || PKGS_NEEDED+=("git")
+command -v rsync  >/dev/null 2>&1 || PKGS_NEEDED+=("rsync")
+command -v rclone >/dev/null 2>&1 || PKGS_NEEDED+=("rclone")
+
+if ! python3 -m venv --help >/dev/null 2>&1; then
+  PY_VER=$(python3 -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')
+  PKGS_NEEDED+=("python${PY_VER}-venv")
+fi
+
+if [ ${#PKGS_NEEDED[@]} -gt 0 ]; then
+  info "Instalando pacotes necessários: ${PKGS_NEEDED[*]}"
+  sudo apt update -qq
+  sudo apt install -y "${PKGS_NEEDED[@]}"
+  ok "Pacotes instalados."
+fi
+
+# --- Verifica Python ---
 
 command -v python3 >/dev/null 2>&1 || erro "Python3 não encontrado."
-command -v rclone  >/dev/null 2>&1 || erro "rclone não encontrado. Instale com: sudo apt install rclone"
 
-# Verifica Node via nvm ou sistema
+PYTHON_MINOR=$(python3 -c 'import sys; print(sys.version_info.minor)')
+if [ "$PYTHON_MINOR" -lt 10 ]; then
+  erro "Python 3.10+ necessário. Versão encontrada: 3.${PYTHON_MINOR}"
+fi
+
+# --- Verifica e instala Node via nvm ---
+
 if ! command -v node >/dev/null 2>&1; then
-  erro "Node.js não encontrado. Instale via nvm: https://github.com/nvm-sh/nvm"
+  info "Node.js não encontrado. Instalando via nvm..."
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  export NVM_DIR="$HOME/.nvm"
+  source "$NVM_DIR/nvm.sh"
+  nvm install 20
+  nvm use 20
+  nvm alias default 20
+  ok "Node.js instalado via nvm."
+else
+  NODE_VERSION=$(node -e 'console.log(process.versions.node.split(".")[0])')
+  if [ "$NODE_VERSION" -lt 18 ]; then
+    info "Node.js desatualizado (v${NODE_VERSION}). Atualizando via nvm..."
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+    nvm install 20
+    nvm use 20
+    nvm alias default 20
+    ok "Node.js atualizado."
+  fi
 fi
 
-NODE_VERSION=$(node -e 'console.log(process.versions.node.split(".")[0])')
-if [ "$NODE_VERSION" -lt 18 ]; then
-  erro "Node.js 18+ necessário. Versão encontrada: $NODE_VERSION. Instale via nvm."
-fi
-
-PYTHON_VERSION=$(python3 -c 'import sys; print(sys.version_info.minor)')
-if [ "$PYTHON_VERSION" -lt 10 ]; then
-  erro "Python 3.10+ necessário."
-fi
-
-# Verifica e instala python3-venv se necessário
-if ! python3 -m venv --help >/dev/null 2>&1; then
-  info "Instalando python3-venv..."
-  PY_MINOR=$(python3 -c 'import sys; print(sys.version_info.minor)')
-  PY_MAJOR=$(python3 -c 'import sys; print(sys.version_info.major)')
-  sudo apt install -y "python${PY_MAJOR}.${PY_MINOR}-venv" || \
-    erro "Não foi possível instalar python3-venv. Execute: sudo apt install python3-venv"
-fi
+# Garante que npm está disponível
+command -v npm >/dev/null 2>&1 || erro "npm não encontrado após instalação do Node."
 
 ok "Dependências verificadas."
 
@@ -109,7 +137,7 @@ ok "Serviço web instalado e iniciado."
 # --- Aguarda o servidor subir ---
 
 info "Aguardando o servidor iniciar..."
-for i in {1..10}; do
+for i in {1..15}; do
   if curl -s http://localhost:8000 >/dev/null 2>&1; then
     break
   fi
@@ -118,7 +146,6 @@ done
 
 # --- Abre o browser ---
 
-info "Abrindo no navegador..."
 xdg-open http://localhost:8000 >/dev/null 2>&1 || true
 
 echo ""
