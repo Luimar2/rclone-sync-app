@@ -43,6 +43,20 @@ def marcar_inicializado(local_path: str):
     flag.touch()
 
 
+def limpar_lock_rclone(local_path: str, remote_path: str):
+    """Remove lockfile órfão do rclone bisync se existir."""
+    import re
+    session = re.sub(r'[/\\]', '_', local_path).strip('_')
+    remote_clean = re.sub(r'[:/]', '_', remote_path).strip('_')
+    lock_file = WORKDIR / f"{session}..{remote_clean}.lck"
+
+    if lock_file.exists():
+        subprocess.run(
+            ["rclone", "deletefile", str(lock_file)],
+            capture_output=True, text=True
+        )
+
+
 def executar_bisync(local_path: str, remote_path: str,
                     filtros_extras: list[str] = []) -> dict:
     WORKDIR.mkdir(parents=True, exist_ok=True)
@@ -117,6 +131,7 @@ def _rodar_bisync(
     filtros_extras: list[str] = []
 ) -> dict:
     Path(local_path).mkdir(parents=True, exist_ok=True)
+    limpar_lock_rclone(local_path, remote_path)
 
     args = [
         "rclone", "bisync",
