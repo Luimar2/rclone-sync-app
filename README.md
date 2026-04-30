@@ -3,9 +3,14 @@
 Interface gráfica para gerenciar backups com Google Drive no Linux,
 construída com FastAPI e Vue.js.
 
-![versão](https://img.shields.io/badge/versão-0.1.0-6366f1)
+![versão](https://img.shields.io/badge/versão-0.1.0--beta-orange)
 ![plataforma](https://img.shields.io/badge/plataforma-Linux-blue)
 ![licença](https://img.shields.io/badge/licença-MIT-green)
+
+---
+
+> ⚠️ **Beta** — Em fase de testes. Funcional mas pode conter bugs.
+> Feedbacks e contribuições são bem-vindos!
 
 ---
 
