@@ -152,11 +152,11 @@ function confirmarManual() {
 
 .input {
   flex: 1;
-  background: #0f0f1a;
-  border: 1px solid #2d2d44;
+  background: var(--app-surface-input);
+  border: 1px solid var(--app-border);
   border-radius: 8px;
   padding: 0.6rem 0.85rem;
-  color: #e2e8f0;
+  color: var(--app-text);
   font-size: 0.88rem;
   outline: none;
   transition: border 0.2s;
@@ -166,11 +166,11 @@ function confirmarManual() {
 .btn-picker {
   display: flex; align-items: center; justify-content: center;
   width: 38px; height: 38px; flex-shrink: 0;
-  background: #1a1a2e; color: #6366f1;
-  border: 1px solid #2d2d44; border-radius: 8px;
+  background: var(--app-surface-card); color: #6366f1;
+  border: 1px solid var(--app-border); border-radius: 8px;
   cursor: pointer; transition: all 0.2s;
 }
-.btn-picker:hover { background: #2d2d44; border-color: #6366f1; }
+.btn-picker:hover { background: var(--app-border); border-color: #6366f1; }
 
 /* Overlay */
 .picker-overlay {
@@ -181,8 +181,8 @@ function confirmarManual() {
 
 /* Modal */
 .picker-modal {
-  background: #1a1a2e;
-  border: 1px solid #2d2d44;
+  background: var(--app-surface-card);
+  border: 1px solid var(--app-border);
   border-radius: 14px;
   width: 440px; max-width: 95vw;
   max-height: 80vh;
@@ -195,29 +195,29 @@ function confirmarManual() {
 .picker-header {
   display: flex; align-items: center; gap: 0.6rem;
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid #2d2d44;
+  border-bottom: 1px solid var(--app-border);
 }
 .picker-header-icon { color: #6366f1; font-size: 1rem; }
-.picker-title { font-size: 0.95rem; font-weight: 600; color: #e2e8f0; flex: 1; }
+.picker-title { font-size: 0.95rem; font-weight: 600; color: var(--app-text); flex: 1; }
 
 .btn-close {
   display: flex; align-items: center; justify-content: center;
   width: 28px; height: 28px;
-  background: transparent; color: #64748b;
+  background: transparent; color: var(--app-text-muted);
   border: none; border-radius: 6px; cursor: pointer;
   transition: all 0.2s;
 }
-.btn-close:hover { background: #2d2d44; color: #e2e8f0; }
+.btn-close:hover { background: var(--app-border); color: var(--app-text); }
 
 /* Path bar */
 .picker-path {
   display: flex; align-items: center; gap: 0.5rem;
   padding: 0.6rem 1.25rem;
-  background: #0f0f1a;
-  border-bottom: 1px solid #2d2d44;
+  background: var(--app-surface-input);
+  border-bottom: 1px solid var(--app-border);
 }
 .path-icon { color: #6366f1; font-size: 0.8rem; }
-.path-text { font-size: 0.78rem; color: #94a3b8; font-family: monospace; word-break: break-all; }
+.path-text { font-size: 0.78rem; color: var(--app-text-muted-2); font-family: monospace; word-break: break-all; }
 
 /* Body */
 .picker-body { flex: 1; overflow-y: auto; padding: 0.5rem 0; }
@@ -241,30 +241,30 @@ function confirmarManual() {
   cursor: pointer;
   transition: background 0.15s;
 }
-.dir-item:hover { background: #12122a; }
+.dir-item:hover { background: var(--app-surface-alt); }
 
-.dir-item-up .dir-icon { color: #94a3b8; }
+.dir-item-up .dir-icon { color: var(--app-text-muted-2); }
 .dir-icon { color: #6366f1; font-size: 0.95rem; flex-shrink: 0; }
 
-.dir-name { flex: 1; font-size: 0.88rem; color: #e2e8f0; }
+.dir-name { flex: 1; font-size: 0.88rem; color: var(--app-text); }
 
-.dir-arrow { color: #2d2d44; font-size: 0.7rem; margin-left: auto; }
+.dir-arrow { color: var(--app-border); font-size: 0.7rem; margin-left: auto; }
 .dir-item:hover .dir-arrow { color: #6366f1; }
 
 .dir-disabled { opacity: 0.4; cursor: not-allowed; }
 .dir-disabled:hover { background: transparent; }
 
-.dir-empty { padding: 1.5rem 1.25rem; font-size: 0.85rem; color: #64748b; text-align: center; }
+.dir-empty { padding: 1.5rem 1.25rem; font-size: 0.85rem; color: var(--app-text-muted); text-align: center; }
 
 /* Footer */
 .picker-footer {
   display: flex; align-items: center; gap: 0.75rem;
   padding: 0.85rem 1.25rem;
-  border-top: 1px solid #2d2d44;
-  background: #0f0f1a;
+  border-top: 1px solid var(--app-border);
+  background: var(--app-surface-input);
 }
 .footer-path {
-  flex: 1; font-size: 0.78rem; color: #64748b;
+  flex: 1; font-size: 0.78rem; color: var(--app-text-muted);
   font-family: monospace; overflow: hidden;
   text-overflow: ellipsis; white-space: nowrap;
 }
@@ -272,7 +272,7 @@ function confirmarManual() {
 .btn-select {
   display: flex; align-items: center; gap: 0.4rem;
   padding: 0.5rem 1rem;
-  background: #6366f1; color: #fff;
+  background: #6366f1; color: var(--app-text-inverse);
   border: none; border-radius: 8px;
   font-size: 0.85rem; font-weight: 500;
   cursor: pointer; transition: background 0.2s;

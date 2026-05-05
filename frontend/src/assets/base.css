@@ -30,6 +30,22 @@ body.dark-mode {
   --p-text-color: #1a1a2e;
   --p-text-muted-color: #94a3b8;
   --p-border-color: #e2e8f0;
+
+  --app-bg: #f4f6f9;
+  --app-surface-card: #ffffff;
+  --app-surface-alt: #f8fafc;
+  --app-surface-input: #ffffff;
+  --app-border: #e2e8f0;
+  --app-text: #0f172a;
+  --app-text-muted: #475569;
+  --app-text-muted-2: #64748b;
+  --app-text-inverse: #ffffff;
+  --app-success-bg: #dcfce7;
+  --app-success-text: #166534;
+  --app-warning-bg: #fef3c7;
+  --app-warning-text: #92400e;
+  --app-danger-bg: #fee2e2;
+  --app-danger-text: #991b1b;
 }
 
 .dark-mode {
@@ -38,4 +54,20 @@ body.dark-mode {
   --p-text-color: #e2e8f0;
   --p-text-muted-color: #64748b;
   --p-border-color: #2d2d44;
+
+  --app-bg: #0f0f1a;
+  --app-surface-card: #1a1a2e;
+  --app-surface-alt: #12122a;
+  --app-surface-input: #0f0f1a;
+  --app-border: #2d2d44;
+  --app-text: #e2e8f0;
+  --app-text-muted: #94a3b8;
+  --app-text-muted-2: #64748b;
+  --app-text-inverse: #ffffff;
+  --app-success-bg: #14532d;
+  --app-success-text: #86efac;
+  --app-warning-bg: #78350f;
+  --app-warning-text: #fcd34d;
+  --app-danger-bg: #7f1d1d;
+  --app-danger-text: #fca5a5;
 }

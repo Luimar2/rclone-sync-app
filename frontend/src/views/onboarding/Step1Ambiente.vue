@@ -94,17 +94,17 @@ onMounted(async () => {
 .step-title {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #e2e8f0;
+  color: var(--app-text);
 }
 
 .step-desc {
   font-size: 0.9rem;
-  color: #64748b;
+  color: var(--app-text-muted);
 }
 
 .card {
-  background: #1a1a2e;
-  border: 1px solid #2d2d44;
+  background: var(--app-surface-card);
+  border: 1px solid var(--app-border);
   border-radius: 12px;
   padding: 1.25rem;
   display: flex;
@@ -129,17 +129,17 @@ onMounted(async () => {
 .check-label {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #e2e8f0;
+  color: var(--app-text);
 }
 
 .check-sub {
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--app-text-muted);
 }
 
 .code-block {
-  background: #0f0f1a;
-  border: 1px solid #2d2d44;
+  background: var(--app-surface-input);
+  border: 1px solid var(--app-border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
   display: flex;
@@ -149,7 +149,7 @@ onMounted(async () => {
 
 .code-label {
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--app-text-muted);
 }
 
 code {
@@ -170,7 +170,7 @@ code {
   gap: 0.5rem;
   padding: 0.6rem 1.1rem;
   background: #6366f1;
-  color: #fff;
+  color: var(--app-text-inverse);
   border: none;
   border-radius: 8px;
   font-size: 0.88rem;
@@ -181,8 +181,8 @@ code {
 
 .btn-primary:hover { background: #4f46e5; }
 .btn-primary:disabled {
-  background: #2d2d44;
-  color: #64748b;
+  background: var(--app-border);
+  color: var(--app-text-muted);
   cursor: not-allowed;
 }
 
@@ -192,8 +192,8 @@ code {
   gap: 0.5rem;
   padding: 0.6rem 1.1rem;
   background: transparent;
-  color: #94a3b8;
-  border: 1px solid #2d2d44;
+  color: var(--app-text-muted-2);
+  border: 1px solid var(--app-border);
   border-radius: 8px;
   font-size: 0.88rem;
   font-weight: 500;
@@ -202,7 +202,7 @@ code {
 }
 
 .btn-secondary:hover {
-  background: #2d2d44;
-  color: #e2e8f0;
+  background: var(--app-border);
+  color: var(--app-text);
 }
 </style>

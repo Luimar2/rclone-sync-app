@@ -143,7 +143,7 @@ async function sincronizarAgora() {
 .page-title {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #e2e8f0;
+  color: var(--app-text);
 }
 
 .loading {
@@ -170,8 +170,8 @@ async function sincronizarAgora() {
 
 /* Card */
 .card {
-  background: #1a1a2e;
-  border: 1px solid #2d2d44;
+  background: var(--app-surface-card);
+  border: 1px solid var(--app-border);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -181,10 +181,10 @@ async function sincronizarAgora() {
   align-items: center;
   gap: 0.6rem;
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid #2d2d44;
+  border-bottom: 1px solid var(--app-border);
   font-size: 0.95rem;
   font-weight: 600;
-  color: #e2e8f0;
+  color: var(--app-text);
 }
 
 .card-icon {
@@ -203,7 +203,7 @@ async function sincronizarAgora() {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  color: #64748b;
+  color: var(--app-text-muted);
   font-size: 0.9rem;
 }
 
@@ -219,7 +219,7 @@ async function sincronizarAgora() {
   justify-content: space-between;
   align-items: center;
   padding: 0.6rem 0;
-  border-bottom: 1px solid #2d2d44;
+  border-bottom: 1px solid var(--app-border);
 }
 
 .par-item:last-child {
@@ -239,12 +239,12 @@ async function sincronizarAgora() {
 .par-local {
   font-size: 0.88rem;
   font-weight: 500;
-  color: #e2e8f0;
+  color: var(--app-text);
 }
 
 .par-remote {
   font-size: 0.78rem;
-  color: #64748b;
+  color: var(--app-text-muted);
 }
 
 /* Agendamento */
@@ -253,11 +253,11 @@ async function sincronizarAgora() {
   align-items: center;
   gap: 0.6rem;
   font-size: 0.88rem;
-  color: #94a3b8;
+  color: var(--app-text-muted-2);
 }
 
 .label {
-  color: #94a3b8;
+  color: var(--app-text-muted-2);
   font-size: 0.88rem;
 }
 
@@ -273,7 +273,7 @@ async function sincronizarAgora() {
   gap: 0.5rem;
   margin-top: 0.5rem;
   padding-top: 0.75rem;
-  border-top: 1px solid #2d2d44;
+  border-top: 1px solid var(--app-border);
 }
 
 .resultado-item {
@@ -284,7 +284,7 @@ async function sincronizarAgora() {
 
 .resultado-par {
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--app-text-muted);
 }
 
 /* Badges */
@@ -306,7 +306,7 @@ async function sincronizarAgora() {
   gap: 0.5rem;
   padding: 0.6rem 1.1rem;
   background: #6366f1;
-  color: #fff;
+  color: var(--app-text-inverse);
   border: none;
   border-radius: 8px;
   font-size: 0.88rem;
@@ -318,8 +318,8 @@ async function sincronizarAgora() {
 
 .btn-primary:hover { background: #4f46e5; }
 .btn-primary:disabled {
-  background: #2d2d44;
-  color: #64748b;
+  background: var(--app-border);
+  color: var(--app-text-muted);
   cursor: not-allowed;
 }
 
@@ -329,8 +329,8 @@ async function sincronizarAgora() {
   gap: 0.5rem;
   padding: 0.6rem 1.1rem;
   background: transparent;
-  color: #94a3b8;
-  border: 1px solid #2d2d44;
+  color: var(--app-text-muted-2);
+  border: 1px solid var(--app-border);
   border-radius: 8px;
   font-size: 0.88rem;
   font-weight: 500;
@@ -340,7 +340,7 @@ async function sincronizarAgora() {
 }
 
 .btn-secondary:hover {
-  background: #2d2d44;
-  color: #e2e8f0;
+  background: var(--app-border);
+  color: var(--app-text);
 }
 </style>

@@ -116,7 +116,7 @@ onMounted(async () => {
 <style scoped>
 .home {
   min-height: 100vh;
-  background: #0f0f1a;
+  background: var(--app-surface-input);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,8 +144,8 @@ onMounted(async () => {
 .hero-icon {
   width: 72px;
   height: 72px;
-  background: #1a1a2e;
-  border: 1px solid #2d2d44;
+  background: var(--app-surface-card);
+  border: 1px solid var(--app-border);
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -160,14 +160,14 @@ onMounted(async () => {
 .hero-title {
   font-size: 2rem;
   font-weight: 800;
-  color: #e2e8f0;
+  color: var(--app-text);
   letter-spacing: -0.02em;
   margin: 0;
 }
 
 .hero-sub {
   font-size: 0.95rem;
-  color: #64748b;
+  color: var(--app-text-muted);
   line-height: 1.6;
   margin: 0;
 }
@@ -184,8 +184,8 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: #1a1a2e;
-  border: 1px solid #2d2d44;
+  background: var(--app-surface-card);
+  border: 1px solid var(--app-border);
   border-radius: 12px;
   padding: 1rem 1.25rem;
   text-align: left;
@@ -202,12 +202,12 @@ onMounted(async () => {
 .feature-label {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #e2e8f0;
+  color: var(--app-text);
 }
 
 .feature-desc {
   font-size: 0.8rem;
-  color: #64748b;
+  color: var(--app-text-muted);
 }
 
 /* Actions */
@@ -239,7 +239,7 @@ onMounted(async () => {
   gap: 0.6rem;
   padding: 0.85rem 1.5rem;
   background: #6366f1;
-  color: #fff;
+  color: var(--app-text-inverse);
   border: none;
   border-radius: 10px;
   font-size: 0.95rem;
@@ -258,8 +258,8 @@ onMounted(async () => {
   gap: 0.6rem;
   padding: 0.85rem 1.5rem;
   background: transparent;
-  color: #94a3b8;
-  border: 1px solid #2d2d44;
+  color: var(--app-text-muted-2);
+  border: 1px solid var(--app-border);
   border-radius: 10px;
   font-size: 0.95rem;
   font-weight: 600;
@@ -269,8 +269,8 @@ onMounted(async () => {
 }
 
 .btn-secondary:hover {
-  background: #1a1a2e;
-  color: #e2e8f0;
+  background: var(--app-surface-card);
+  color: var(--app-text);
 }
 
 /* Footer */
@@ -279,19 +279,19 @@ onMounted(async () => {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.82rem;
-  color: #64748b;
+  color: var(--app-text-muted);
 }
 
 .footer-link {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  color: #64748b;
+  color: var(--app-text-muted);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.footer-link:hover { color: #e2e8f0; }
+.footer-link:hover { color: var(--app-text); }
 
-.footer-sep { color: #2d2d44; }
+.footer-sep { color: var(--app-border); }
 </style>
