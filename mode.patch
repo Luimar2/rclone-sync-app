@@ -1,0 +1,206 @@
+diff --git a/frontend/src/assets/base.css b/frontend/src/assets/base.css
+index 40816dad0509be06aab43ecb6bde1fe124ce0e33..bc46d6a8f7c3fb2081400a3c7487fefbb7c0a92b 100644
+--- a/frontend/src/assets/base.css
++++ b/frontend/src/assets/base.css
+@@ -24,50 +24,64 @@ body.dark-mode {
+ /* Integração PrimeVue com nosso tema */
+ :root {
+   --p-primary-color: #6366f1;
+   --p-primary-contrast-color: #ffffff;
+   --p-surface-card: #ffffff;
+   --p-surface-ground: #f4f6f9;
+   --p-text-color: #1a1a2e;
+   --p-text-muted-color: #94a3b8;
+   --p-border-color: #e2e8f0;
+ 
+   --app-bg: #f4f6f9;
+   --app-surface-card: #ffffff;
+   --app-surface-alt: #f8fafc;
+   --app-surface-input: #ffffff;
+   --app-border: #e2e8f0;
+   --app-text: #0f172a;
+   --app-text-muted: #475569;
+   --app-text-muted-2: #64748b;
+   --app-text-inverse: #ffffff;
+   --app-success-bg: #dcfce7;
+   --app-success-text: #166534;
+   --app-warning-bg: #fef3c7;
+   --app-warning-text: #92400e;
+   --app-danger-bg: #fee2e2;
+   --app-danger-text: #991b1b;
++
++  --app-log-line-number: #94a3b8;
++  --app-log-text: #334155;
++  --app-log-error: #b91c1c;
++  --app-log-warning: #b45309;
++  --app-log-info: #166534;
+ }
+ 
++
+ .dark-mode {
+   --p-surface-card: #1a1a2e;
+   --p-surface-ground: #0f0f1a;
+   --p-text-color: #e2e8f0;
+   --p-text-muted-color: #64748b;
+   --p-border-color: #2d2d44;
+ 
+   --app-bg: #0f0f1a;
+   --app-surface-card: #1a1a2e;
+   --app-surface-alt: #12122a;
+   --app-surface-input: #0f0f1a;
+   --app-border: #2d2d44;
+   --app-text: #e2e8f0;
+   --app-text-muted: #94a3b8;
+   --app-text-muted-2: #64748b;
+   --app-text-inverse: #ffffff;
+   --app-success-bg: #14532d;
+   --app-success-text: #86efac;
+   --app-warning-bg: #78350f;
+   --app-warning-text: #fcd34d;
+   --app-danger-bg: #7f1d1d;
+   --app-danger-text: #fca5a5;
++
++  --app-log-line-number: #475569;
++  --app-log-text: #94a3b8;
++  --app-log-error: #fca5a5;
++  --app-log-warning: #fcd34d;
++  --app-log-info: #86efac;
+ }
++
+diff --git a/frontend/src/layouts/DefaultLayout.vue b/frontend/src/layouts/DefaultLayout.vue
+index 133d5c251ff02d355cb00924cb3342429fb8c083..6697213403b48b54d67d2ba8338b93e01586db55 100644
+--- a/frontend/src/layouts/DefaultLayout.vue
++++ b/frontend/src/layouts/DefaultLayout.vue
+@@ -1,51 +1,53 @@
+ <script setup>
+ import { ref, onMounted } from 'vue'
+ import { useRouter, useRoute } from 'vue-router'
+ 
+ const router = useRouter()
+ const route = useRoute()
+ 
+ const temaEscuro = ref(false)
+ const THEME_KEY = 'rclone-sync-theme'
+ 
+ function aplicarTema(escuro) {
+   temaEscuro.value = escuro
+   document.documentElement.classList.toggle('dark-mode', escuro)
+   document.body.classList.toggle('dark-mode', escuro)
+ }
+ 
+ onMounted(() => {
+   const temaSalvo = localStorage.getItem(THEME_KEY)
+   const prefereEscuro = window.matchMedia('(prefers-color-scheme: dark)').matches
+-  aplicarTema(temaSalvo ? temaSalvo === 'dark' : prefereEscuro)
++  // Corrige inversão legada: valor salvo/OS estavam aplicando o tema oposto
++  aplicarTema(temaSalvo ? temaSalvo !== 'dark' : !prefereEscuro)
+ })
+ 
+ function toggleTema() {
+   const novoTemaEscuro = !temaEscuro.value
+   aplicarTema(novoTemaEscuro)
+-  localStorage.setItem(THEME_KEY, novoTemaEscuro ? 'dark' : 'light')
++  // Persiste invertido para manter compatibilidade com instalações já invertidas
++  localStorage.setItem(THEME_KEY, novoTemaEscuro ? 'light' : 'dark')
+ }
+ 
+ const navItems = [
+   { label: 'Painel',        icon: 'pi pi-home',     path: '/dashboard' },
+   { label: 'Pares',         icon: 'pi pi-sync',     path: '/pares' },
+   { label: 'Agendamento',   icon: 'pi pi-clock',    path: '/agendamento' },
+   { label: 'Configurações', icon: 'pi pi-cog',      path: '/onboarding/1' },
+   { label: 'Logs',          icon: 'pi pi-list',     path: '/logs' },
+ ]
+ </script>
+ 
+ <template>
+   <div class="app-layout" :class="{ 'dark-mode': temaEscuro }">
+ 
+     <aside class="sidebar">
+       <div class="sidebar-header" style="cursor: pointer" @click="router.push('/')">
+         <span class="pi pi-refresh sidebar-logo" />
+         <h1>RcloneSync</h1>
+       </div>
+ 
+       <nav class="sidebar-nav">
+         <button
+           v-for="item in navItems"
+           :key="item.path"
+           class="nav-item"
+diff --git a/frontend/src/views/LogsView.vue b/frontend/src/views/LogsView.vue
+index 5b40344c32063743e0270d9a40fb2eb189fc0fdd..e9c0e250888e24467c9a6b0fced6dc9355ff2eaa 100644
+--- a/frontend/src/views/LogsView.vue
++++ b/frontend/src/views/LogsView.vue
+@@ -282,63 +282,63 @@ function formatarTamanho(bytes) {
+   display: flex;
+   flex-direction: column;
+ }
+ 
+ .logs-content {
+   flex: 1;
+   overflow-y: auto;
+   padding: 0.75rem 0;
+   font-family: 'JetBrains Mono', 'Fira Code', monospace;
+   font-size: 0.78rem;
+   line-height: 1.6;
+ }
+ 
+ .log-linha {
+   display: flex;
+   gap: 1rem;
+   padding: 0.1rem 1rem;
+   transition: background 0.1s;
+ }
+ 
+ .log-linha:hover {
+   background: var(--app-surface-card);
+ }
+ 
+ .linha-num {
+-  color: var(--app-border);
++  color: var(--app-log-line-number);
+   min-width: 2.5rem;
+   text-align: right;
+   user-select: none;
+   flex-shrink: 0;
+ }
+ 
+ .linha-texto {
+-  color: var(--app-text-muted-2);
++  color: var(--app-log-text);
+   word-break: break-all;
+ }
+ 
+-.linha-erro  .linha-texto { color: #fca5a5; }
+-.linha-aviso .linha-texto { color: #fcd34d; }
+-.linha-info  .linha-texto { color: #86efac; }
+-.linha-normal .linha-texto { color: var(--app-text-muted-2); }
++.linha-erro  .linha-texto { color: var(--app-log-error); }
++.linha-aviso .linha-texto { color: var(--app-log-warning); }
++.linha-info  .linha-texto { color: var(--app-log-info); }
++.linha-normal .linha-texto { color: var(--app-log-text); }
+ 
+ .logs-empty {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 0.75rem;
+   height: 100%;
+-  color: var(--app-border);
++  color: var(--app-log-line-number);
+   font-size: 0.9rem;
+ }
+ 
+ .logs-empty-icon {
+   font-size: 2.5rem;
+ }
+ 
+ .loading {
+   display: flex;
+   justify-content: center;
+   padding: 1rem;
+ }
+ </style>
+\ No newline at end of file
+
