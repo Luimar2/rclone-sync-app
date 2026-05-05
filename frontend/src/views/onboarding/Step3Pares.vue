@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useConfigStore } from '../../stores/config'
 import api from '../../services/api'
+import DirPicker from '../../components/DirPicker.vue'
 
 const router = useRouter()
 const store = useConfigStore()
@@ -82,11 +83,7 @@ async function removerPar(id) {
           <label class="input-label">
             <span class="pi pi-folder" /> Pasta local
           </label>
-          <input
-            v-model="localPath"
-            class="input"
-            placeholder="/home/usuario/Documentos"
-          />
+          <DirPicker v-model="localPath" />
         </div>
 
         <div class="input-group">

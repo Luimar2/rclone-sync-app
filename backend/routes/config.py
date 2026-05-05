@@ -142,3 +142,39 @@ async def toggle_par(par_id: str, ativo: bool):
             salvar_config(config)
             return {"mensagem": f"Par {'ativado' if ativo else 'desativado'}"}
     raise HTTPException(status_code=404, detail="Par não encontrado")
+
+# --- Navegação de diretórios (file picker) ---
+
+@router.get("/dirs")
+async def listar_dirs(path: str = "/home"):
+    """
+    Retorna subdiretórios de um caminho para o seletor de pasta local.
+    Apenas diretórios legíveis pelo usuário atual.
+    """
+    import os
+    from pathlib import Path as FSPath
+
+    try:
+        base = FSPath(path).expanduser().resolve()
+        if not base.is_dir():
+            raise HTTPException(status_code=400, detail="Caminho inválido ou não é um diretório.")
+
+        entries = []
+        try:
+            for entry in sorted(base.iterdir()):
+                if entry.is_dir() and not entry.name.startswith('.'):
+                    entries.append({
+                        "name": entry.name,
+                        "path": str(entry),
+                        "readable": os.access(entry, os.R_OK)
+                    })
+        except PermissionError:
+            pass
+
+        return {
+            "current": str(base),
+            "parent": str(base.parent) if base != base.parent else None,
+            "dirs": entries
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))

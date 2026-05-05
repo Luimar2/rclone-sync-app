@@ -11,7 +11,7 @@ from routes.agendamento import router as agendamento_router
 app = FastAPI(
     title="RcloneSync",
     description="Interface gráfica para gerenciar backups com rclone",
-    version="0.1.0"
+    version="0.1.1"
 )
 
 app.add_middleware(

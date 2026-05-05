@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import api from '../services/api'
+import DirPicker from '../components/DirPicker.vue'
 
 const pares = ref([])
 const carregando = ref(true)
@@ -145,7 +146,7 @@ async function toggleAtivo(par) {
           <div class="form-grid">
             <div class="input-group">
               <label class="input-label"><span class="pi pi-folder" /> Pasta local</label>
-              <input v-model="editLocalPath" class="input" placeholder="/home/usuario/Documentos" />
+              <DirPicker v-model="editLocalPath" />
             </div>
             <div class="input-group">
               <label class="input-label"><span class="pi pi-cloud" /> Pasta no Google Drive</label>
