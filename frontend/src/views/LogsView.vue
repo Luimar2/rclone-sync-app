@@ -304,7 +304,7 @@ function formatarTamanho(bytes) {
 }
 
 .linha-num {
-  color: var(--app-border);
+  color: var(--app-log-line-number);
   min-width: 2.5rem;
   text-align: right;
   user-select: none;
@@ -312,14 +312,14 @@ function formatarTamanho(bytes) {
 }
 
 .linha-texto {
-  color: var(--app-text-muted-2);
+  color: var(--app-log-text);
   word-break: break-all;
 }
 
-.linha-erro  .linha-texto { color: #fca5a5; }
-.linha-aviso .linha-texto { color: #fcd34d; }
-.linha-info  .linha-texto { color: #86efac; }
-.linha-normal .linha-texto { color: var(--app-text-muted-2); }
+.linha-erro  .linha-texto { color: var(--app-log-error); }
+.linha-aviso .linha-texto { color: var(--app-log-warning); }
+.linha-info  .linha-texto { color: var(--app-log-info); }
+.linha-normal .linha-texto { color: var(--app-log-text); }
 
 .logs-empty {
   display: flex;
@@ -328,7 +328,7 @@ function formatarTamanho(bytes) {
   justify-content: center;
   gap: 0.75rem;
   height: 100%;
-  color: var(--app-border);
+  color: var(--app-log-line-number);
   font-size: 0.9rem;
 }
 

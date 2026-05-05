@@ -46,7 +46,14 @@ body.dark-mode {
   --app-warning-text: #92400e;
   --app-danger-bg: #fee2e2;
   --app-danger-text: #991b1b;
+
+  --app-log-line-number: #94a3b8;
+  --app-log-text: #334155;
+  --app-log-error: #b91c1c;
+  --app-log-warning: #b45309;
+  --app-log-info: #166534;
 }
+
 
 .dark-mode {
   --p-surface-card: #1a1a2e;
@@ -70,4 +77,11 @@ body.dark-mode {
   --app-warning-text: #fcd34d;
   --app-danger-bg: #7f1d1d;
   --app-danger-text: #fca5a5;
+
+  --app-log-line-number: #475569;
+  --app-log-text: #94a3b8;
+  --app-log-error: #fca5a5;
+  --app-log-warning: #fcd34d;
+  --app-log-info: #86efac;
 }
+

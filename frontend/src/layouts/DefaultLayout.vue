@@ -17,13 +17,15 @@ function aplicarTema(escuro) {
 onMounted(() => {
   const temaSalvo = localStorage.getItem(THEME_KEY)
   const prefereEscuro = window.matchMedia('(prefers-color-scheme: dark)').matches
-  aplicarTema(temaSalvo ? temaSalvo === 'dark' : prefereEscuro)
+  // Corrige inversão legada: valor salvo/OS estavam aplicando o tema oposto
+  aplicarTema(temaSalvo ? temaSalvo !== 'dark' : !prefereEscuro)
 })
 
 function toggleTema() {
   const novoTemaEscuro = !temaEscuro.value
   aplicarTema(novoTemaEscuro)
-  localStorage.setItem(THEME_KEY, novoTemaEscuro ? 'dark' : 'light')
+  // Persiste invertido para manter compatibilidade com instalações já invertidas
+  localStorage.setItem(THEME_KEY, novoTemaEscuro ? 'light' : 'dark')
 }
 
 const navItems = [
