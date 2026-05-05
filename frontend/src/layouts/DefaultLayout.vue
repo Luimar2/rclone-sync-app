@@ -28,7 +28,7 @@ function toggleTema() {
 
 const navItems = [
   { label: 'Painel',       icon: 'pi pi-home',  path: '/dashboard' },
-  { label: 'Configuração', icon: 'pi pi-cog',   path: '/onboarding/1' },
+  { label: 'Configurações', icon: 'pi pi-cog',   path: '/onboarding/1' },
   { label: 'Logs',         icon: 'pi pi-list',  path: '/logs' },
 ]
 </script>
@@ -37,7 +37,7 @@ const navItems = [
   <div class="app-layout" :class="{ 'dark-mode': temaEscuro }">
 
     <aside class="sidebar">
-      <div class="sidebar-header">
+      <div class="sidebar-header" style="cursor: pointer" @click="router.push('/')">
         <span class="pi pi-refresh sidebar-logo" />
         <h1>RcloneSync</h1>
       </div>

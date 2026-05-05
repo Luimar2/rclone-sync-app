@@ -58,9 +58,6 @@ onMounted(async () => {
     </div>
 
     <div class="step-actions">
-      <button class="btn-secondary" @click="router.push('/')">
-        <span class="pi pi-arrow-left" /> Voltar
-      </button>
       <button
         class="btn-primary"
         :disabled="!rcloneOk"
@@ -163,7 +160,7 @@ code {
 
 .step-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 

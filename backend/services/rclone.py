@@ -33,7 +33,17 @@ def listar_remotes() -> list[str]:
     resultado = executar_comando(["listremotes"])
     if not resultado["sucesso"] or not resultado["saida"]:
         return []
-    return [r.strip() for r in resultado["saida"].splitlines()]
+    todos = [r.strip() for r in resultado["saida"].splitlines()]
+
+    # Filtrar apenas remotes do tipo Google Drive (drive)
+    remotes_gdrive = []
+    for remote in todos:
+        nome = remote.rstrip(":")
+        check = executar_comando(["config", "show", nome])
+        if check["sucesso"] and "type = drive" in check["saida"]:
+            remotes_gdrive.append(remote)
+
+    return remotes_gdrive
 
 
 def criar_remote_gdrive(nome: str) -> dict:

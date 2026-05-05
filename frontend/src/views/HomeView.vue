@@ -91,7 +91,7 @@ onMounted(async () => {
             @click="router.push('/onboarding/1')"
           >
             <span class="pi pi-cog" />
-            Reconfigurar
+            Configurações
           </button>
         </div>
       </div>
@@ -106,7 +106,7 @@ onMounted(async () => {
           <span class="pi pi-github">GitHub</span>
         </a>
         <span class="footer-sep">·</span>
-        <span class="footer-version">v0.1.0</span>
+        <span class="footer-version">v0.1.1</span>
       </div>
 
     </div>

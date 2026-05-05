@@ -147,9 +147,6 @@ async function instalarTimer() {
     </p>
 
     <div class="step-actions">
-      <button class="btn-secondary" @click="router.push('/onboarding/4')">
-        <span class="pi pi-arrow-left" /> Voltar
-      </button>
       <button
         class="btn-primary"
         :disabled="instalando"
