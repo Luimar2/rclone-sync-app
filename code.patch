@@ -1,0 +1,2514 @@
+diff --git a/frontend/src/assets/base.css b/frontend/src/assets/base.css
+index 622818b03fa171d6f4ed66f23f6cd163158bfdd5..40816dad0509be06aab43ecb6bde1fe124ce0e33 100644
+--- a/frontend/src/assets/base.css
++++ b/frontend/src/assets/base.css
+@@ -8,34 +8,66 @@ html, body, #app {
+   height: 100%;
+   width: 100%;
+   overflow: hidden;
+ }
+ 
+ body {
+   font-family: 'Inter', sans-serif;
+   background: #f4f6f9;
+   color: #1a1a2e;
+ }
+ 
+ body.dark-mode {
+   background: #0f0f1a;
+   color: #e2e8f0;
+ }
+ 
+ /* Integração PrimeVue com nosso tema */
+ :root {
+   --p-primary-color: #6366f1;
+   --p-primary-contrast-color: #ffffff;
+   --p-surface-card: #ffffff;
+   --p-surface-ground: #f4f6f9;
+   --p-text-color: #1a1a2e;
+   --p-text-muted-color: #94a3b8;
+   --p-border-color: #e2e8f0;
++
++  --app-bg: #f4f6f9;
++  --app-surface-card: #ffffff;
++  --app-surface-alt: #f8fafc;
++  --app-surface-input: #ffffff;
++  --app-border: #e2e8f0;
++  --app-text: #0f172a;
++  --app-text-muted: #475569;
++  --app-text-muted-2: #64748b;
++  --app-text-inverse: #ffffff;
++  --app-success-bg: #dcfce7;
++  --app-success-text: #166534;
++  --app-warning-bg: #fef3c7;
++  --app-warning-text: #92400e;
++  --app-danger-bg: #fee2e2;
++  --app-danger-text: #991b1b;
+ }
+ 
+ .dark-mode {
+   --p-surface-card: #1a1a2e;
+   --p-surface-ground: #0f0f1a;
+   --p-text-color: #e2e8f0;
+   --p-text-muted-color: #64748b;
+   --p-border-color: #2d2d44;
+-}
+\ No newline at end of file
++
++  --app-bg: #0f0f1a;
++  --app-surface-card: #1a1a2e;
++  --app-surface-alt: #12122a;
++  --app-surface-input: #0f0f1a;
++  --app-border: #2d2d44;
++  --app-text: #e2e8f0;
++  --app-text-muted: #94a3b8;
++  --app-text-muted-2: #64748b;
++  --app-text-inverse: #ffffff;
++  --app-success-bg: #14532d;
++  --app-success-text: #86efac;
++  --app-warning-bg: #78350f;
++  --app-warning-text: #fcd34d;
++  --app-danger-bg: #7f1d1d;
++  --app-danger-text: #fca5a5;
++}
+diff --git a/frontend/src/assets/steps.css b/frontend/src/assets/steps.css
+index 22b6521331991866129bd6a47d9d33575ca85459..f04db35e3cf8b480e2d6a1d806d410e086d1bc06 100644
+--- a/frontend/src/assets/steps.css
++++ b/frontend/src/assets/steps.css
+@@ -2,137 +2,137 @@
+ 
+ .step {
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem;
+   max-width: 600px;
+ }
+ 
+ .step-header {
+   display: flex;
+   flex-direction: column;
+   gap: 0.4rem;
+ }
+ 
+ .step-number {
+   font-size: 0.8rem;
+   color: #6366f1;
+   font-weight: 600;
+   text-transform: uppercase;
+   letter-spacing: 0.05em;
+ }
+ 
+ .step-title {
+   font-size: 1.3rem;
+   font-weight: 700;
+-  color: #e2e8f0;
++  color: var(--app-text);
+ }
+ 
+ .step-desc {
+   font-size: 0.9rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+ }
+ 
+ .card {
+-  background: #1a1a2e;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-card);
++  border: 1px solid var(--app-border);
+   border-radius: 12px;
+   padding: 1.25rem;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+ }
+ 
+ .step-actions {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+ 
+ .btn-primary {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0.6rem 1.1rem;
+   background: #6366f1;
+-  color: #fff;
++  color: var(--app-text-inverse);
+   border: none;
+   border-radius: 8px;
+   font-size: 0.88rem;
+   font-weight: 500;
+   cursor: pointer;
+   transition: background 0.2s;
+ }
+ 
+ .btn-primary:hover { background: #4f46e5; }
+ .btn-primary:disabled {
+-  background: #2d2d44;
+-  color: #64748b;
++  background: var(--app-border);
++  color: var(--app-text-muted);
+   cursor: not-allowed;
+ }
+ 
+ .btn-secondary {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0.6rem 1.1rem;
+   background: transparent;
+-  color: #94a3b8;
+-  border: 1px solid #2d2d44;
++  color: var(--app-text-muted-2);
++  border: 1px solid var(--app-border);
+   border-radius: 8px;
+   font-size: 0.88rem;
+   font-weight: 500;
+   cursor: pointer;
+   transition: all 0.2s;
+ }
+ 
+ .btn-secondary:hover {
+-  background: #2d2d44;
+-  color: #e2e8f0;
++  background: var(--app-border);
++  color: var(--app-text);
+ }
+ 
+ .badge {
+   font-size: 0.75rem;
+   font-weight: 600;
+   padding: 0.25rem 0.65rem;
+   border-radius: 999px;
+ }
+ 
+-.badge-success { background: #14532d; color: #86efac; }
+-.badge-warning { background: #78350f; color: #fcd34d; }
+-.badge-danger  { background: #7f1d1d; color: #fca5a5; }
++.badge-success { background: var(--app-success-bg); color: var(--app-success-text); }
++.badge-warning { background: var(--app-warning-bg); color: var(--app-warning-text); }
++.badge-danger  { background: var(--app-danger-bg); color: var(--app-danger-text); }
+ 
+ .input-group {
+   display: flex;
+   flex-direction: column;
+   gap: 0.4rem;
+ }
+ 
+ .input-label {
+   font-size: 0.82rem;
+   font-weight: 500;
+-  color: #94a3b8;
++  color: var(--app-text-muted-2);
+ }
+ 
+ .input {
+-  background: #0f0f1a;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-input);
++  border: 1px solid var(--app-border);
+   border-radius: 8px;
+   padding: 0.6rem 0.9rem;
+-  color: #e2e8f0;
++  color: var(--app-text);
+   font-size: 0.88rem;
+   outline: none;
+   transition: border 0.2s;
+   width: 100%;
+ }
+ 
+ .input:focus {
+   border-color: #6366f1;
+ }
+ 
+ .erro {
+   font-size: 0.82rem;
+   color: #fca5a5;
+   display: flex;
+   align-items: center;
+   gap: 0.4rem;
+ }
+\ No newline at end of file
+diff --git a/frontend/src/components/DirPicker.vue b/frontend/src/components/DirPicker.vue
+index d324642137987b8ac094476273da6b9d8d305654..559243a8ea7177baa13324e49fb9fdd741faeb11 100644
+--- a/frontend/src/components/DirPicker.vue
++++ b/frontend/src/components/DirPicker.vue
+@@ -130,153 +130,153 @@ function confirmarManual() {
+             </li>
+           </ul>
+         </div>
+ 
+         <!-- Rodapé: selecionar pasta atual -->
+         <div class="picker-footer">
+           <span class="footer-path">{{ atual }}</span>
+           <button class="btn-select" @click="selecionar(atual)">
+             <span class="pi pi-check" /> Usar esta pasta
+           </button>
+         </div>
+ 
+       </div>
+     </div>
+   </div>
+ </template>
+ 
+ <style scoped>
+ .dir-picker { position: relative; width: 100%; }
+ 
+ /* Input row */
+ .input-row { display: flex; gap: 0.4rem; }
+ 
+ .input {
+   flex: 1;
+-  background: #0f0f1a;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-input);
++  border: 1px solid var(--app-border);
+   border-radius: 8px;
+   padding: 0.6rem 0.85rem;
+-  color: #e2e8f0;
++  color: var(--app-text);
+   font-size: 0.88rem;
+   outline: none;
+   transition: border 0.2s;
+ }
+ .input:focus { border-color: #6366f1; }
+ 
+ .btn-picker {
+   display: flex; align-items: center; justify-content: center;
+   width: 38px; height: 38px; flex-shrink: 0;
+-  background: #1a1a2e; color: #6366f1;
+-  border: 1px solid #2d2d44; border-radius: 8px;
++  background: var(--app-surface-card); color: #6366f1;
++  border: 1px solid var(--app-border); border-radius: 8px;
+   cursor: pointer; transition: all 0.2s;
+ }
+-.btn-picker:hover { background: #2d2d44; border-color: #6366f1; }
++.btn-picker:hover { background: var(--app-border); border-color: #6366f1; }
+ 
+ /* Overlay */
+ .picker-overlay {
+   position: fixed; inset: 0; z-index: 1000;
+   background: rgba(0, 0, 0, 0.6);
+   display: flex; align-items: center; justify-content: center;
+ }
+ 
+ /* Modal */
+ .picker-modal {
+-  background: #1a1a2e;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-card);
++  border: 1px solid var(--app-border);
+   border-radius: 14px;
+   width: 440px; max-width: 95vw;
+   max-height: 80vh;
+   display: flex; flex-direction: column;
+   overflow: hidden;
+   box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+ }
+ 
+ /* Header */
+ .picker-header {
+   display: flex; align-items: center; gap: 0.6rem;
+   padding: 1rem 1.25rem;
+-  border-bottom: 1px solid #2d2d44;
++  border-bottom: 1px solid var(--app-border);
+ }
+ .picker-header-icon { color: #6366f1; font-size: 1rem; }
+-.picker-title { font-size: 0.95rem; font-weight: 600; color: #e2e8f0; flex: 1; }
++.picker-title { font-size: 0.95rem; font-weight: 600; color: var(--app-text); flex: 1; }
+ 
+ .btn-close {
+   display: flex; align-items: center; justify-content: center;
+   width: 28px; height: 28px;
+-  background: transparent; color: #64748b;
++  background: transparent; color: var(--app-text-muted);
+   border: none; border-radius: 6px; cursor: pointer;
+   transition: all 0.2s;
+ }
+-.btn-close:hover { background: #2d2d44; color: #e2e8f0; }
++.btn-close:hover { background: var(--app-border); color: var(--app-text); }
+ 
+ /* Path bar */
+ .picker-path {
+   display: flex; align-items: center; gap: 0.5rem;
+   padding: 0.6rem 1.25rem;
+-  background: #0f0f1a;
+-  border-bottom: 1px solid #2d2d44;
++  background: var(--app-surface-input);
++  border-bottom: 1px solid var(--app-border);
+ }
+ .path-icon { color: #6366f1; font-size: 0.8rem; }
+-.path-text { font-size: 0.78rem; color: #94a3b8; font-family: monospace; word-break: break-all; }
++.path-text { font-size: 0.78rem; color: var(--app-text-muted-2); font-family: monospace; word-break: break-all; }
+ 
+ /* Body */
+ .picker-body { flex: 1; overflow-y: auto; padding: 0.5rem 0; }
+ 
+ .picker-loading {
+   display: flex; justify-content: center; padding: 2rem;
+   color: #6366f1; font-size: 1.2rem;
+ }
+ .picker-erro {
+   padding: 1rem 1.25rem;
+   font-size: 0.85rem; color: #fca5a5;
+   display: flex; align-items: center; gap: 0.4rem;
+ }
+ 
+ /* Dir list */
+ .dir-list { list-style: none; }
+ 
+ .dir-item {
+   display: flex; align-items: center; gap: 0.75rem;
+   padding: 0.6rem 1.25rem;
+   cursor: pointer;
+   transition: background 0.15s;
+ }
+-.dir-item:hover { background: #12122a; }
++.dir-item:hover { background: var(--app-surface-alt); }
+ 
+-.dir-item-up .dir-icon { color: #94a3b8; }
++.dir-item-up .dir-icon { color: var(--app-text-muted-2); }
+ .dir-icon { color: #6366f1; font-size: 0.95rem; flex-shrink: 0; }
+ 
+-.dir-name { flex: 1; font-size: 0.88rem; color: #e2e8f0; }
++.dir-name { flex: 1; font-size: 0.88rem; color: var(--app-text); }
+ 
+-.dir-arrow { color: #2d2d44; font-size: 0.7rem; margin-left: auto; }
++.dir-arrow { color: var(--app-border); font-size: 0.7rem; margin-left: auto; }
+ .dir-item:hover .dir-arrow { color: #6366f1; }
+ 
+ .dir-disabled { opacity: 0.4; cursor: not-allowed; }
+ .dir-disabled:hover { background: transparent; }
+ 
+-.dir-empty { padding: 1.5rem 1.25rem; font-size: 0.85rem; color: #64748b; text-align: center; }
++.dir-empty { padding: 1.5rem 1.25rem; font-size: 0.85rem; color: var(--app-text-muted); text-align: center; }
+ 
+ /* Footer */
+ .picker-footer {
+   display: flex; align-items: center; gap: 0.75rem;
+   padding: 0.85rem 1.25rem;
+-  border-top: 1px solid #2d2d44;
+-  background: #0f0f1a;
++  border-top: 1px solid var(--app-border);
++  background: var(--app-surface-input);
+ }
+ .footer-path {
+-  flex: 1; font-size: 0.78rem; color: #64748b;
++  flex: 1; font-size: 0.78rem; color: var(--app-text-muted);
+   font-family: monospace; overflow: hidden;
+   text-overflow: ellipsis; white-space: nowrap;
+ }
+ 
+ .btn-select {
+   display: flex; align-items: center; gap: 0.4rem;
+   padding: 0.5rem 1rem;
+-  background: #6366f1; color: #fff;
++  background: #6366f1; color: var(--app-text-inverse);
+   border: none; border-radius: 8px;
+   font-size: 0.85rem; font-weight: 500;
+   cursor: pointer; transition: background 0.2s;
+   white-space: nowrap; flex-shrink: 0;
+ }
+ .btn-select:hover { background: #4f46e5; }
+ </style>
+diff --git a/frontend/src/layouts/DefaultLayout.vue b/frontend/src/layouts/DefaultLayout.vue
+index 5bfdae24f1cd6c122a41a37b0aa4f863942ded90..133d5c251ff02d355cb00924cb3342429fb8c083 100644
+--- a/frontend/src/layouts/DefaultLayout.vue
++++ b/frontend/src/layouts/DefaultLayout.vue
+@@ -1,51 +1,51 @@
+ <script setup>
+ import { ref, onMounted } from 'vue'
+ import { useRouter, useRoute } from 'vue-router'
+ 
+ const router = useRouter()
+ const route = useRoute()
+ 
+ const temaEscuro = ref(false)
++const THEME_KEY = 'rclone-sync-theme'
++
++function aplicarTema(escuro) {
++  temaEscuro.value = escuro
++  document.documentElement.classList.toggle('dark-mode', escuro)
++  document.body.classList.toggle('dark-mode', escuro)
++}
+ 
+ onMounted(() => {
++  const temaSalvo = localStorage.getItem(THEME_KEY)
+   const prefereEscuro = window.matchMedia('(prefers-color-scheme: dark)').matches
+-  temaEscuro.value = prefereEscuro
+-  document.documentElement.classList.toggle('dark-mode', prefereEscuro)
+-  document.body.classList.toggle('dark-mode', prefereEscuro)
+-
+-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+-    temaEscuro.value = e.matches
+-    document.documentElement.classList.toggle('dark-mode', e.matches)
+-    document.body.classList.toggle('dark-mode', e.matches)
+-  })
++  aplicarTema(temaSalvo ? temaSalvo === 'dark' : prefereEscuro)
+ })
+ 
+ function toggleTema() {
+-  temaEscuro.value = !temaEscuro.value
+-  document.documentElement.classList.toggle('dark-mode', temaEscuro.value)
+-  document.body.classList.toggle('dark-mode', temaEscuro.value)
++  const novoTemaEscuro = !temaEscuro.value
++  aplicarTema(novoTemaEscuro)
++  localStorage.setItem(THEME_KEY, novoTemaEscuro ? 'dark' : 'light')
+ }
+ 
+ const navItems = [
+   { label: 'Painel',        icon: 'pi pi-home',     path: '/dashboard' },
+   { label: 'Pares',         icon: 'pi pi-sync',     path: '/pares' },
+   { label: 'Agendamento',   icon: 'pi pi-clock',    path: '/agendamento' },
+   { label: 'Configurações', icon: 'pi pi-cog',      path: '/onboarding/1' },
+   { label: 'Logs',          icon: 'pi pi-list',     path: '/logs' },
+ ]
+ </script>
+ 
+ <template>
+   <div class="app-layout" :class="{ 'dark-mode': temaEscuro }">
+ 
+     <aside class="sidebar">
+       <div class="sidebar-header" style="cursor: pointer" @click="router.push('/')">
+         <span class="pi pi-refresh sidebar-logo" />
+         <h1>RcloneSync</h1>
+       </div>
+ 
+       <nav class="sidebar-nav">
+         <button
+           v-for="item in navItems"
+           :key="item.path"
+           class="nav-item"
+@@ -56,110 +56,122 @@ const navItems = [
+           {{ item.label }}
+         </button>
+       </nav>
+ 
+       <div class="sidebar-footer">
+         <button class="nav-item" @click="toggleTema">
+           <span :class="temaEscuro ? 'pi pi-sun' : 'pi pi-moon'" />
+           {{ temaEscuro ? 'Tema claro' : 'Tema escuro' }}
+         </button>
+       </div>
+     </aside>
+ 
+     <main class="main-content">
+       <slot />
+     </main>
+ 
+   </div>
+ </template>
+ 
+ <style scoped>
+ .app-layout {
+   display: flex;
+   height: 100vh;
+   width: 100vw;
+   overflow: hidden;
+-  background: #f4f6f9;
+-  color: #1a1a2e;
+-}
+-
+-.dark-mode .app-layout,
+-.dark-mode {
+-  background: #0f0f1a;
+-  color: #e2e8f0;
++  background: var(--app-bg);
++  color: var(--app-text);
+ }
+ 
+ .sidebar {
+   width: 220px;
+   min-height: 100vh;
+-  background: #1a1a2e;
+-  color: #e2e8f0;
++  background: var(--app-surface-card);
++  color: var(--app-text);
+   display: flex;
+   flex-direction: column;
+   padding: 1.5rem 1rem;
+   gap: 0.5rem;
++  border-right: 1px solid var(--app-border);
+ }
+ 
+ .sidebar-header {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+   margin-bottom: 2rem;
+ }
+ 
+ .sidebar-logo {
+   font-size: 1.5rem;
+   color: #6366f1;
+ }
+ 
+ .sidebar-header h1 {
+   font-size: 1.1rem;
+   font-weight: 700;
+-  color: #fff;
++  color: var(--app-text);
+   margin: 0;
+ }
+ 
++.dark-mode .sidebar-header h1 {
++  color: var(--app-text-inverse);
++}
++
+ .sidebar-nav {
+   display: flex;
+   flex-direction: column;
+   gap: 0.25rem;
+   flex: 1;
+ }
+ 
+ .nav-item {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+   padding: 0.65rem 1rem;
+   border-radius: 8px;
+   border: none;
+   background: transparent;
+-  color: #94a3b8;
++  color: #475569;
+   font-size: 0.9rem;
+   cursor: pointer;
+   text-align: left;
+   transition: all 0.2s;
+   width: 100%;
+ }
+ 
+ .nav-item:hover {
+-  background: #2d2d44;
+-  color: #fff;
++  background: #eef2ff;
++  color: var(--app-text);
++}
++
++.dark-mode .nav-item {
++  color: var(--app-text-muted-2);
++}
++
++.dark-mode .nav-item:hover {
++  background: var(--app-border);
++  color: var(--app-text-inverse);
+ }
+ 
+ .nav-item.active {
+   background: #6366f1;
+-  color: #fff;
++  color: var(--app-text-inverse);
+ }
+ 
+ .sidebar-footer {
+-  border-top: 1px solid #2d2d44;
++  border-top: 1px solid var(--app-border);
+   padding-top: 1rem;
+ }
+ 
++.dark-mode .sidebar-footer {
++  border-top-color: var(--app-border);
++}
++
+ .main-content {
+   flex: 1;
+   padding: 2rem;
+   overflow-y: auto;
+   height: 100vh;
+ }
+-</style>
+\ No newline at end of file
++</style>
+diff --git a/frontend/src/views/AgendamentoView.vue b/frontend/src/views/AgendamentoView.vue
+index 8818f9dad81c118b321208c6e4891104dfa350dd..525af0da8173c74998def78e07145d588e3fc545 100644
+--- a/frontend/src/views/AgendamentoView.vue
++++ b/frontend/src/views/AgendamentoView.vue
+@@ -153,150 +153,150 @@ async function desativarAgendamento() {
+ 
+         <!-- Ações -->
+         <div class="actions">
+           <button class="btn-primary" :disabled="salvando" @click="salvarAgendamento">
+             <span :class="salvando ? 'pi pi-spin pi-spinner' : 'pi pi-check'" />
+             {{ salvando ? 'Salvando...' : 'Salvar agendamento' }}
+           </button>
+           <button
+             v-if="status?.ativo"
+             class="btn-danger"
+             :disabled="desativando"
+             @click="desativarAgendamento"
+           >
+             <span :class="desativando ? 'pi pi-spin pi-spinner' : 'pi pi-times'" />
+             {{ desativando ? 'Desativando...' : 'Desativar' }}
+           </button>
+         </div>
+       </div>
+     </div>
+   </div>
+ </template>
+ 
+ <style scoped>
+ .page { display: flex; flex-direction: column; gap: 1.5rem; }
+ 
+-.page-title { font-size: 1.3rem; font-weight: 700; color: #e2e8f0; }
+-.page-desc  { font-size: 0.88rem; color: #64748b; margin-top: -1rem; }
++.page-title { font-size: 1.3rem; font-weight: 700; color: var(--app-text); }
++.page-desc  { font-size: 0.88rem; color: var(--app-text-muted); margin-top: -1rem; }
+ 
+ .card {
+-  background: #1a1a2e;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-card);
++  border: 1px solid var(--app-border);
+   border-radius: 12px;
+   overflow: hidden;
+ }
+ 
+ .card-header {
+   display: flex;
+   align-items: center;
+   gap: 0.6rem;
+   padding: 1rem 1.25rem;
+-  border-bottom: 1px solid #2d2d44;
++  border-bottom: 1px solid var(--app-border);
+   font-size: 0.95rem;
+   font-weight: 600;
+-  color: #e2e8f0;
++  color: var(--app-text);
+ }
+ 
+ .card-icon { color: #6366f1; }
+ .ml-auto { margin-left: auto; }
+ 
+ .card-body {
+   padding: 1.25rem;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+ }
+ 
+ .opcoes-list { list-style: none; display: flex; flex-direction: column; gap: 0.25rem; }
+ 
+ .opcao-item {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0.85rem 1rem;
+-  border: 1px solid #2d2d44;
++  border: 1px solid var(--app-border);
+   border-radius: 10px;
+   cursor: pointer;
+   transition: all 0.2s;
+ }
+ 
+-.opcao-item:hover { background: #12122a; border-color: #6366f1; }
+-.opcao-selected   { background: #12122a; border-color: #6366f1; }
++.opcao-item:hover { background: var(--app-surface-alt); border-color: #6366f1; }
++.opcao-selected   { background: var(--app-surface-alt); border-color: #6366f1; }
+ 
+ .opcao-info { display: flex; align-items: center; gap: 0.75rem; }
+ .opcao-icon { color: #6366f1; font-size: 1.1rem; width: 1.2rem; text-align: center; }
+-.opcao-label { font-size: 0.9rem; font-weight: 500; color: #e2e8f0; }
+-.opcao-desc  { font-size: 0.78rem; color: #64748b; line-height: 1.5; }
++.opcao-label { font-size: 0.9rem; font-weight: 500; color: var(--app-text); }
++.opcao-desc  { font-size: 0.78rem; color: var(--app-text-muted); line-height: 1.5; }
+ 
+ .radio {
+   width: 18px; height: 18px;
+-  border: 2px solid #2d2d44;
++  border: 2px solid var(--app-border);
+   border-radius: 999px;
+   display: flex; align-items: center; justify-content: center;
+   flex-shrink: 0;
+ }
+ .opcao-selected .radio { border-color: #6366f1; }
+ .radio-dot { width: 8px; height: 8px; background: #6366f1; border-radius: 999px; }
+ 
+ .custom-block { display: flex; flex-direction: column; gap: 0.75rem; }
+ 
+ .code-block {
+-  background: #0f0f1a;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-input);
++  border: 1px solid var(--app-border);
+   border-radius: 8px;
+   padding: 0.75rem 1rem;
+   line-height: 2;
+ }
+ code { font-size: 0.82rem; color: #86efac; font-family: 'JetBrains Mono', monospace; }
+-.code-comment { font-size: 0.78rem; color: #64748b; margin-left: 0.5rem; font-family: monospace; }
++.code-comment { font-size: 0.78rem; color: var(--app-text-muted); margin-left: 0.5rem; font-family: monospace; }
+ 
+ .input-group { display: flex; flex-direction: column; gap: 0.4rem; }
+-.input-label { font-size: 0.8rem; color: #94a3b8; font-weight: 500; }
++.input-label { font-size: 0.8rem; color: var(--app-text-muted-2); font-weight: 500; }
+ .input {
+-  background: #0f0f1a;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-input);
++  border: 1px solid var(--app-border);
+   border-radius: 8px;
+   padding: 0.6rem 0.85rem;
+-  color: #e2e8f0;
++  color: var(--app-text);
+   font-size: 0.88rem;
+   outline: none;
+   transition: border 0.2s;
+ }
+ .input:focus { border-color: #6366f1; }
+ 
+ .info-card {
+   display: flex; align-items: flex-start; gap: 0.75rem;
+-  background: #12122a; border: 1px solid #3730a3;
++  background: var(--app-surface-alt); border: 1px solid #3730a3;
+   border-radius: 10px; padding: 1rem;
+ }
+ .info-icon { color: #6366f1; font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
+ 
+ .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+ 
+ .btn-primary {
+   display: flex; align-items: center; gap: 0.5rem;
+-  padding: 0.6rem 1.1rem; background: #6366f1; color: #fff;
++  padding: 0.6rem 1.1rem; background: #6366f1; color: var(--app-text-inverse);
+   border: none; border-radius: 8px; font-size: 0.88rem;
+   font-weight: 500; cursor: pointer; transition: background 0.2s;
+ }
+ .btn-primary:hover { background: #4f46e5; }
+-.btn-primary:disabled { background: #2d2d44; color: #64748b; cursor: not-allowed; }
++.btn-primary:disabled { background: var(--app-border); color: var(--app-text-muted); cursor: not-allowed; }
+ 
+ .btn-danger {
+   display: flex; align-items: center; gap: 0.5rem;
+   padding: 0.6rem 1.1rem; background: transparent; color: #fca5a5;
+   border: 1px solid #7f1d1d; border-radius: 8px; font-size: 0.88rem;
+   font-weight: 500; cursor: pointer; transition: all 0.2s;
+ }
+-.btn-danger:hover { background: #7f1d1d; color: #fff; }
++.btn-danger:hover { background: #7f1d1d; color: var(--app-text-inverse); }
+ .btn-danger:disabled { opacity: 0.5; cursor: not-allowed; }
+ 
+ .badge {
+   font-size: 0.75rem; font-weight: 600;
+   padding: 0.25rem 0.65rem; border-radius: 999px;
+ }
+ .badge-success { background: #14532d; color: #86efac; }
+ .badge-danger  { background: #7f1d1d; color: #fca5a5; }
+ 
+ .erro        { font-size: 0.85rem; color: #fca5a5; display: flex; align-items: center; gap: 0.4rem; }
+ .success-msg { font-size: 0.85rem; color: #86efac; display: flex; align-items: center; gap: 0.4rem; }
+ </style>
+diff --git a/frontend/src/views/DashboardView.vue b/frontend/src/views/DashboardView.vue
+index 6acc4ae6d1e540273e214eb48c5a6c9eb59e3a40..fbc4d5753cd8c1573fdcbce30832dc14bd837b54 100644
+--- a/frontend/src/views/DashboardView.vue
++++ b/frontend/src/views/DashboardView.vue
+@@ -121,226 +121,226 @@ async function sincronizarAgora() {
+               class="resultado-item"
+             >
+               <span class="badge" :class="r.sucesso ? 'badge-success' : 'badge-danger'">
+                 {{ r.sucesso ? 'Sucesso' : 'Falhou' }}
+               </span>
+               <span class="resultado-par">{{ r.par }}</span>
+             </div>
+           </div>
+         </div>
+       </div>
+ 
+     </div>
+   </div>
+ </template>
+ 
+ <style scoped>
+ .dashboard {
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem;
+ }
+ 
+ .page-title {
+   font-size: 1.3rem;
+   font-weight: 700;
+-  color: #e2e8f0;
++  color: var(--app-text);
+ }
+ 
+ .loading {
+   display: flex;
+   justify-content: center;
+   padding: 3rem;
+ }
+ 
+ .loading-icon {
+   font-size: 2rem;
+   color: #6366f1;
+ }
+ 
+ /* Grid */
+ .grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 1.5rem;
+ }
+ 
+ .card-full {
+   grid-column: 1 / -1;
+ }
+ 
+ /* Card */
+ .card {
+-  background: #1a1a2e;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-card);
++  border: 1px solid var(--app-border);
+   border-radius: 12px;
+   overflow: hidden;
+ }
+ 
+ .card-header {
+   display: flex;
+   align-items: center;
+   gap: 0.6rem;
+   padding: 1rem 1.25rem;
+-  border-bottom: 1px solid #2d2d44;
++  border-bottom: 1px solid var(--app-border);
+   font-size: 0.95rem;
+   font-weight: 600;
+-  color: #e2e8f0;
++  color: var(--app-text);
+ }
+ 
+ .card-icon {
+   color: #6366f1;
+ }
+ 
+ .card-body {
+   padding: 1.25rem;
+   display: flex;
+   flex-direction: column;
+   gap: 0.75rem;
+ }
+ 
+ /* Pares */
+ .empty {
+   display: flex;
+   flex-direction: column;
+   gap: 0.75rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+   font-size: 0.9rem;
+ }
+ 
+ .pares-list {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+ }
+ 
+ .par-item {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0.6rem 0;
+-  border-bottom: 1px solid #2d2d44;
++  border-bottom: 1px solid var(--app-border);
+ }
+ 
+ .par-item:last-child {
+   border-bottom: none;
+ }
+ 
+ .par-info {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+ }
+ 
+ .par-icon {
+   color: #6366f1;
+ }
+ 
+ .par-local {
+   font-size: 0.88rem;
+   font-weight: 500;
+-  color: #e2e8f0;
++  color: var(--app-text);
+ }
+ 
+ .par-remote {
+   font-size: 0.78rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+ }
+ 
+ /* Agendamento */
+ .agend-row {
+   display: flex;
+   align-items: center;
+   gap: 0.6rem;
+   font-size: 0.88rem;
+-  color: #94a3b8;
++  color: var(--app-text-muted-2);
+ }
+ 
+ .label {
+-  color: #94a3b8;
++  color: var(--app-text-muted-2);
+   font-size: 0.88rem;
+ }
+ 
+ .label-icon {
+   color: #6366f1;
+   font-size: 0.9rem;
+ }
+ 
+ /* Resultado */
+ .resultado {
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+   margin-top: 0.5rem;
+   padding-top: 0.75rem;
+-  border-top: 1px solid #2d2d44;
++  border-top: 1px solid var(--app-border);
+ }
+ 
+ .resultado-item {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+ }
+ 
+ .resultado-par {
+   font-size: 0.85rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+ }
+ 
+ /* Badges */
+ .badge {
+   font-size: 0.75rem;
+   font-weight: 600;
+   padding: 0.25rem 0.65rem;
+   border-radius: 999px;
+ }
+ 
+ .badge-success { background: #14532d; color: #86efac; }
+ .badge-warning { background: #78350f; color: #fcd34d; }
+ .badge-danger  { background: #7f1d1d; color: #fca5a5; }
+ 
+ /* Botões */
+ .btn-primary {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0.6rem 1.1rem;
+   background: #6366f1;
+-  color: #fff;
++  color: var(--app-text-inverse);
+   border: none;
+   border-radius: 8px;
+   font-size: 0.88rem;
+   font-weight: 500;
+   cursor: pointer;
+   transition: background 0.2s;
+   width: fit-content;
+ }
+ 
+ .btn-primary:hover { background: #4f46e5; }
+ .btn-primary:disabled {
+-  background: #2d2d44;
+-  color: #64748b;
++  background: var(--app-border);
++  color: var(--app-text-muted);
+   cursor: not-allowed;
+ }
+ 
+ .btn-secondary {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0.6rem 1.1rem;
+   background: transparent;
+-  color: #94a3b8;
+-  border: 1px solid #2d2d44;
++  color: var(--app-text-muted-2);
++  border: 1px solid var(--app-border);
+   border-radius: 8px;
+   font-size: 0.88rem;
+   font-weight: 500;
+   cursor: pointer;
+   transition: all 0.2s;
+   width: fit-content;
+ }
+ 
+ .btn-secondary:hover {
+-  background: #2d2d44;
+-  color: #e2e8f0;
++  background: var(--app-border);
++  color: var(--app-text);
+ }
+ </style>
+\ No newline at end of file
+diff --git a/frontend/src/views/HomeView.vue b/frontend/src/views/HomeView.vue
+index 292827e75a18b6481f77928876f149f5067302a0..66179ca5c80d7743849868fd5f4064847a417281 100644
+--- a/frontend/src/views/HomeView.vue
++++ b/frontend/src/views/HomeView.vue
+@@ -94,204 +94,204 @@ onMounted(async () => {
+             Configurações
+           </button>
+         </div>
+       </div>
+ 
+       <!-- Rodapé -->
+       <div class="home-footer">
+         
+         <a href="https://github.com/Luimar2/rclone-sync-app#"
+           target="_blank"
+           class="footer-link"
+         >
+           <span class="pi pi-github">GitHub</span>
+         </a>
+         <span class="footer-sep">·</span>
+         <span class="footer-version">v0.1.1</span>
+       </div>
+ 
+     </div>
+   </div>
+ </template>
+ 
+ <style scoped>
+ .home {
+   min-height: 100vh;
+-  background: #0f0f1a;
++  background: var(--app-surface-input);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 2rem;
+ }
+ 
+ .home-content {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 2.5rem;
+   max-width: 480px;
+   width: 100%;
+   text-align: center;
+ }
+ 
+ /* Hero */
+ .hero {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 1rem;
+ }
+ 
+ .hero-icon {
+   width: 72px;
+   height: 72px;
+-  background: #1a1a2e;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-card);
++  border: 1px solid var(--app-border);
+   border-radius: 20px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+ 
+ .hero-icon .pi {
+   font-size: 2rem;
+   color: #6366f1;
+ }
+ 
+ .hero-title {
+   font-size: 2rem;
+   font-weight: 800;
+-  color: #e2e8f0;
++  color: var(--app-text);
+   letter-spacing: -0.02em;
+   margin: 0;
+ }
+ 
+ .hero-sub {
+   font-size: 0.95rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+   line-height: 1.6;
+   margin: 0;
+ }
+ 
+ /* Features */
+ .features {
+   display: flex;
+   flex-direction: column;
+   gap: 0.75rem;
+   width: 100%;
+ }
+ 
+ .feature-item {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+-  background: #1a1a2e;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-card);
++  border: 1px solid var(--app-border);
+   border-radius: 12px;
+   padding: 1rem 1.25rem;
+   text-align: left;
+ }
+ 
+ .feature-icon {
+   color: #6366f1;
+   font-size: 1.2rem;
+   width: 1.5rem;
+   text-align: center;
+   flex-shrink: 0;
+ }
+ 
+ .feature-label {
+   font-size: 0.9rem;
+   font-weight: 600;
+-  color: #e2e8f0;
++  color: var(--app-text);
+ }
+ 
+ .feature-desc {
+   font-size: 0.8rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+ }
+ 
+ /* Actions */
+ .actions {
+   width: 100%;
+ }
+ 
+ .loading {
+   display: flex;
+   justify-content: center;
+ }
+ 
+ .loading-icon {
+   font-size: 1.5rem;
+   color: #6366f1;
+ }
+ 
+ .action-buttons {
+   display: flex;
+   flex-direction: column;
+   gap: 0.75rem;
+   width: 100%;
+ }
+ 
+ .btn-primary {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 0.6rem;
+   padding: 0.85rem 1.5rem;
+   background: #6366f1;
+-  color: #fff;
++  color: var(--app-text-inverse);
+   border: none;
+   border-radius: 10px;
+   font-size: 0.95rem;
+   font-weight: 600;
+   cursor: pointer;
+   transition: background 0.2s;
+   width: 100%;
+ }
+ 
+ .btn-primary:hover { background: #4f46e5; }
+ 
+ .btn-secondary {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 0.6rem;
+   padding: 0.85rem 1.5rem;
+   background: transparent;
+-  color: #94a3b8;
+-  border: 1px solid #2d2d44;
++  color: var(--app-text-muted-2);
++  border: 1px solid var(--app-border);
+   border-radius: 10px;
+   font-size: 0.95rem;
+   font-weight: 600;
+   cursor: pointer;
+   transition: all 0.2s;
+   width: 100%;
+ }
+ 
+ .btn-secondary:hover {
+-  background: #1a1a2e;
+-  color: #e2e8f0;
++  background: var(--app-surface-card);
++  color: var(--app-text);
+ }
+ 
+ /* Footer */
+ .home-footer {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   font-size: 0.82rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+ }
+ 
+ .footer-link {
+   display: flex;
+   align-items: center;
+   gap: 0.35rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+   text-decoration: none;
+   transition: color 0.2s;
+ }
+ 
+-.footer-link:hover { color: #e2e8f0; }
++.footer-link:hover { color: var(--app-text); }
+ 
+-.footer-sep { color: #2d2d44; }
++.footer-sep { color: var(--app-border); }
+ </style>
+\ No newline at end of file
+diff --git a/frontend/src/views/LogsView.vue b/frontend/src/views/LogsView.vue
+index 46fd323da8c71940177afc517e8b6bd36873a265..5b40344c32063743e0270d9a40fb2eb189fc0fdd 100644
+--- a/frontend/src/views/LogsView.vue
++++ b/frontend/src/views/LogsView.vue
+@@ -150,195 +150,195 @@ function formatarTamanho(bytes) {
+ </template>
+ 
+ <style scoped>
+ .logs-page {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   height: 100%;
+ }
+ 
+ .logs-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+ 
+ .logs-title-row {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+ }
+ 
+ .page-title {
+   font-size: 1.3rem;
+   font-weight: 700;
+-  color: #e2e8f0;
++  color: var(--app-text);
+   margin: 0;
+ }
+ 
+ .status-ws {
+   display: flex;
+   align-items: center;
+   gap: 0.4rem;
+   font-size: 0.78rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+ }
+ 
+ .ws-dot {
+   width: 8px;
+   height: 8px;
+   border-radius: 999px;
+   flex-shrink: 0;
+ }
+ 
+ .ws-on  { background: #86efac; box-shadow: 0 0 6px #86efac; }
+ .ws-off { background: #fca5a5; }
+ 
+ .autoscroll-toggle {
+   display: flex;
+   align-items: center;
+   gap: 0.4rem;
+   font-size: 0.82rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+   cursor: pointer;
+ }
+ 
+ /* Layout */
+ .logs-layout {
+   display: grid;
+   grid-template-columns: 260px 1fr;
+   gap: 1rem;
+   flex: 1;
+   min-height: 0;
+   height: calc(100vh - 140px);
+ }
+ 
+ /* Sidebar */
+ .logs-sidebar {
+-  background: #1a1a2e;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-card);
++  border: 1px solid var(--app-border);
+   border-radius: 12px;
+   padding: 1rem;
+   display: flex;
+   flex-direction: column;
+   gap: 0.75rem;
+   overflow-y: auto;
+ }
+ 
+ .logs-sidebar-title {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   font-size: 0.82rem;
+   font-weight: 600;
+-  color: #64748b;
++  color: var(--app-text-muted);
+ }
+ 
+ .accent { color: #6366f1; }
+ 
+ .logs-list {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   gap: 0.25rem;
+ }
+ 
+ .log-item {
+   padding: 0.65rem 0.75rem;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: background 0.15s;
+   border: 1px solid transparent;
+ }
+ 
+ .log-item:hover {
+-  background: #12122a;
++  background: var(--app-surface-alt);
+ }
+ 
+ .log-selected {
+-  background: #12122a;
++  background: var(--app-surface-alt);
+   border-color: #6366f1;
+ }
+ 
+ .log-nome {
+   font-size: 0.78rem;
+-  color: #e2e8f0;
++  color: var(--app-text);
+   word-break: break-all;
+   line-height: 1.4;
+ }
+ 
+ .log-tamanho {
+   font-size: 0.72rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+   margin-top: 0.15rem;
+ }
+ 
+ /* Viewer */
+ .logs-viewer {
+-  background: #0f0f1a;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-input);
++  border: 1px solid var(--app-border);
+   border-radius: 12px;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+ }
+ 
+ .logs-content {
+   flex: 1;
+   overflow-y: auto;
+   padding: 0.75rem 0;
+   font-family: 'JetBrains Mono', 'Fira Code', monospace;
+   font-size: 0.78rem;
+   line-height: 1.6;
+ }
+ 
+ .log-linha {
+   display: flex;
+   gap: 1rem;
+   padding: 0.1rem 1rem;
+   transition: background 0.1s;
+ }
+ 
+ .log-linha:hover {
+-  background: #1a1a2e;
++  background: var(--app-surface-card);
+ }
+ 
+ .linha-num {
+-  color: #2d2d44;
++  color: var(--app-border);
+   min-width: 2.5rem;
+   text-align: right;
+   user-select: none;
+   flex-shrink: 0;
+ }
+ 
+ .linha-texto {
+-  color: #94a3b8;
++  color: var(--app-text-muted-2);
+   word-break: break-all;
+ }
+ 
+ .linha-erro  .linha-texto { color: #fca5a5; }
+ .linha-aviso .linha-texto { color: #fcd34d; }
+ .linha-info  .linha-texto { color: #86efac; }
+-.linha-normal .linha-texto { color: #94a3b8; }
++.linha-normal .linha-texto { color: var(--app-text-muted-2); }
+ 
+ .logs-empty {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 0.75rem;
+   height: 100%;
+-  color: #2d2d44;
++  color: var(--app-border);
+   font-size: 0.9rem;
+ }
+ 
+ .logs-empty-icon {
+   font-size: 2.5rem;
+ }
+ 
+ .loading {
+   display: flex;
+   justify-content: center;
+   padding: 1rem;
+ }
+ </style>
+\ No newline at end of file
+diff --git a/frontend/src/views/ParesSyncView.vue b/frontend/src/views/ParesSyncView.vue
+index ee37c1fa203130376955ffc3be6374c6613767a0..a6275d3e58ad2ee9e75d6b1ebd395bc1d06f1c98 100644
+--- a/frontend/src/views/ParesSyncView.vue
++++ b/frontend/src/views/ParesSyncView.vue
+@@ -167,139 +167,139 @@ async function toggleAtivo(par) {
+         <!-- Ações -->
+         <div v-else class="par-actions">
+           <button class="btn-icon" title="Pausar/Ativar" @click="toggleAtivo(par)">
+             <span :class="par.ativo ? 'pi pi-pause' : 'pi pi-play'" />
+           </button>
+           <button class="btn-icon" title="Editar" @click="abrirEdicao(par)">
+             <span class="pi pi-pencil" />
+           </button>
+           <button
+             class="btn-icon btn-icon-danger"
+             title="Excluir"
+             :disabled="excluindo === par.id"
+             @click="excluirPar(par)"
+           >
+             <span :class="excluindo === par.id ? 'pi pi-spin pi-spinner' : 'pi pi-trash'" />
+           </button>
+         </div>
+       </div>
+     </div>
+   </div>
+ </template>
+ 
+ <style scoped>
+ .page { display: flex; flex-direction: column; gap: 1.25rem; }
+ 
+-.page-title { font-size: 1.3rem; font-weight: 700; color: #e2e8f0; }
+-.page-desc  { font-size: 0.88rem; color: #64748b; margin-top: -0.75rem; }
++.page-title { font-size: 1.3rem; font-weight: 700; color: var(--app-text); }
++.page-desc  { font-size: 0.88rem; color: var(--app-text-muted); margin-top: -0.75rem; }
+ 
+ .loading { display: flex; justify-content: center; padding: 3rem; }
+ .loading-icon { font-size: 2rem; color: #6366f1; }
+ 
+ /* Empty */
+ .empty-card {
+   display: flex; flex-direction: column; align-items: center;
+   gap: 0.5rem; padding: 2.5rem; text-align: center;
+-  background: #1a1a2e; border: 1px solid #2d2d44; border-radius: 12px;
++  background: var(--app-surface-card); border: 1px solid var(--app-border); border-radius: 12px;
+ }
+-.empty-icon  { font-size: 2rem; color: #2d2d44; }
+-.empty-label { font-size: 0.95rem; font-weight: 600; color: #94a3b8; }
+-.empty-desc  { font-size: 0.82rem; color: #64748b; }
++.empty-icon  { font-size: 2rem; color: var(--app-border); }
++.empty-label { font-size: 0.95rem; font-weight: 600; color: var(--app-text-muted-2); }
++.empty-desc  { font-size: 0.82rem; color: var(--app-text-muted); }
+ 
+ /* Par card */
+ .pares-list { display: flex; flex-direction: column; gap: 0.75rem; }
+ 
+ .par-card {
+-  background: #1a1a2e;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-card);
++  border: 1px solid var(--app-border);
+   border-radius: 12px;
+   overflow: hidden;
+   transition: border-color 0.2s;
+ }
+ .par-editando { border-color: #6366f1; }
+ 
+ .par-header {
+   display: flex; align-items: center; gap: 0.75rem;
+   padding: 1rem 1.25rem;
+ }
+ 
+ .par-icon { color: #6366f1; font-size: 1.1rem; flex-shrink: 0; }
+ 
+ .par-paths { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+-.par-local  { font-size: 0.88rem; font-weight: 500; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+-.par-remote { font-size: 0.78rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
++.par-local  { font-size: 0.88rem; font-weight: 500; color: var(--app-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
++.par-remote { font-size: 0.78rem; color: var(--app-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+ 
+ .ml-auto { margin-left: auto; flex-shrink: 0; }
+ 
+ /* Edit form */
+ .edit-form {
+-  border-top: 1px solid #2d2d44;
++  border-top: 1px solid var(--app-border);
+   padding: 1rem 1.25rem;
+   display: flex; flex-direction: column; gap: 0.75rem;
+ }
+ 
+ .form-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 0.75rem;
+ }
+ 
+ .input-group { display: flex; flex-direction: column; gap: 0.35rem; }
+-.input-label { font-size: 0.78rem; color: #94a3b8; font-weight: 500; display: flex; align-items: center; gap: 0.3rem; }
++.input-label { font-size: 0.78rem; color: var(--app-text-muted-2); font-weight: 500; display: flex; align-items: center; gap: 0.3rem; }
+ 
+ .input {
+-  background: #0f0f1a; border: 1px solid #2d2d44;
++  background: var(--app-surface-input); border: 1px solid var(--app-border);
+   border-radius: 8px; padding: 0.55rem 0.85rem;
+-  color: #e2e8f0; font-size: 0.85rem; outline: none;
++  color: var(--app-text); font-size: 0.85rem; outline: none;
+   transition: border 0.2s;
+ }
+ .input:focus { border-color: #6366f1; }
+ 
+ .edit-actions { display: flex; justify-content: flex-end; gap: 0.5rem; }
+ 
+ /* Par actions */
+ .par-actions {
+   display: flex; justify-content: flex-end; gap: 0.4rem;
+   padding: 0.6rem 1rem;
+-  border-top: 1px solid #2d2d44;
++  border-top: 1px solid var(--app-border);
+ }
+ 
+ .btn-icon {
+   display: flex; align-items: center; justify-content: center;
+   width: 32px; height: 32px;
+-  background: transparent; color: #94a3b8;
+-  border: 1px solid #2d2d44; border-radius: 8px;
++  background: transparent; color: var(--app-text-muted-2);
++  border: 1px solid var(--app-border); border-radius: 8px;
+   cursor: pointer; transition: all 0.2s;
+ }
+-.btn-icon:hover { background: #2d2d44; color: #e2e8f0; }
++.btn-icon:hover { background: var(--app-border); color: var(--app-text); }
+ 
+ .btn-icon-danger { color: #fca5a5; border-color: #7f1d1d; }
+-.btn-icon-danger:hover { background: #7f1d1d; color: #fff; }
++.btn-icon-danger:hover { background: #7f1d1d; color: var(--app-text-inverse); }
+ .btn-icon:disabled { opacity: 0.5; cursor: not-allowed; }
+ 
+ /* Buttons */
+ .btn-primary {
+   display: flex; align-items: center; gap: 0.5rem;
+-  padding: 0.55rem 1rem; background: #6366f1; color: #fff;
++  padding: 0.55rem 1rem; background: #6366f1; color: var(--app-text-inverse);
+   border: none; border-radius: 8px; font-size: 0.85rem;
+   font-weight: 500; cursor: pointer; transition: background 0.2s;
+ }
+ .btn-primary:hover { background: #4f46e5; }
+-.btn-primary:disabled { background: #2d2d44; color: #64748b; cursor: not-allowed; }
++.btn-primary:disabled { background: var(--app-border); color: var(--app-text-muted); cursor: not-allowed; }
+ 
+ .btn-secondary {
+   display: flex; align-items: center; gap: 0.5rem;
+-  padding: 0.55rem 1rem; background: transparent; color: #94a3b8;
+-  border: 1px solid #2d2d44; border-radius: 8px; font-size: 0.85rem;
++  padding: 0.55rem 1rem; background: transparent; color: var(--app-text-muted-2);
++  border: 1px solid var(--app-border); border-radius: 8px; font-size: 0.85rem;
+   font-weight: 500; cursor: pointer; transition: all 0.2s;
+ }
+-.btn-secondary:hover { background: #2d2d44; color: #e2e8f0; }
++.btn-secondary:hover { background: var(--app-border); color: var(--app-text); }
+ 
+ /* Badges */
+ .badge { font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 999px; }
+ .badge-success { background: #14532d; color: #86efac; }
+ .badge-warning { background: #78350f; color: #fcd34d; }
+ 
+ /* Feedback */
+ .erro        { font-size: 0.85rem; color: #fca5a5; display: flex; align-items: center; gap: 0.4rem; }
+ .success-msg { font-size: 0.85rem; color: #86efac; display: flex; align-items: center; gap: 0.4rem; }
+ </style>
+diff --git a/frontend/src/views/onboarding/Step1Ambiente.vue b/frontend/src/views/onboarding/Step1Ambiente.vue
+index 4c885e8c5d6f9fb4f02d57bc02791fcb23eeb036..36964e2e77498f4a642471bdbc76454b850b78bc 100644
+--- a/frontend/src/views/onboarding/Step1Ambiente.vue
++++ b/frontend/src/views/onboarding/Step1Ambiente.vue
+@@ -72,137 +72,137 @@ onMounted(async () => {
+ <style scoped>
+ .step {
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem;
+   max-width: 600px;
+ }
+ 
+ .step-header {
+   display: flex;
+   flex-direction: column;
+   gap: 0.4rem;
+ }
+ 
+ .step-number {
+   font-size: 0.8rem;
+   color: #6366f1;
+   font-weight: 600;
+   text-transform: uppercase;
+   letter-spacing: 0.05em;
+ }
+ 
+ .step-title {
+   font-size: 1.3rem;
+   font-weight: 700;
+-  color: #e2e8f0;
++  color: var(--app-text);
+ }
+ 
+ .step-desc {
+   font-size: 0.9rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+ }
+ 
+ .card {
+-  background: #1a1a2e;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-card);
++  border: 1px solid var(--app-border);
+   border-radius: 12px;
+   padding: 1.25rem;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+ }
+ 
+ .check-row {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+ }
+ 
+ .check-icon {
+   font-size: 1.5rem;
+   flex-shrink: 0;
+ }
+ 
+ .success { color: #86efac; }
+ .danger  { color: #fca5a5; }
+ 
+ .check-label {
+   font-size: 0.95rem;
+   font-weight: 600;
+-  color: #e2e8f0;
++  color: var(--app-text);
+ }
+ 
+ .check-sub {
+   font-size: 0.85rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+ }
+ 
+ .code-block {
+-  background: #0f0f1a;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-input);
++  border: 1px solid var(--app-border);
+   border-radius: 8px;
+   padding: 0.75rem 1rem;
+   display: flex;
+   flex-direction: column;
+   gap: 0.25rem;
+ }
+ 
+ .code-label {
+   font-size: 0.75rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+ }
+ 
+ code {
+   font-size: 0.9rem;
+   color: #86efac;
+   font-family: 'JetBrains Mono', 'Fira Code', monospace;
+ }
+ 
+ .step-actions {
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+ }
+ 
+ .btn-primary {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0.6rem 1.1rem;
+   background: #6366f1;
+-  color: #fff;
++  color: var(--app-text-inverse);
+   border: none;
+   border-radius: 8px;
+   font-size: 0.88rem;
+   font-weight: 500;
+   cursor: pointer;
+   transition: background 0.2s;
+ }
+ 
+ .btn-primary:hover { background: #4f46e5; }
+ .btn-primary:disabled {
+-  background: #2d2d44;
+-  color: #64748b;
++  background: var(--app-border);
++  color: var(--app-text-muted);
+   cursor: not-allowed;
+ }
+ 
+ .btn-secondary {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0.6rem 1.1rem;
+   background: transparent;
+-  color: #94a3b8;
+-  border: 1px solid #2d2d44;
++  color: var(--app-text-muted-2);
++  border: 1px solid var(--app-border);
+   border-radius: 8px;
+   font-size: 0.88rem;
+   font-weight: 500;
+   cursor: pointer;
+   transition: all 0.2s;
+ }
+ 
+ .btn-secondary:hover {
+-  background: #2d2d44;
+-  color: #e2e8f0;
++  background: var(--app-border);
++  color: var(--app-text);
+ }
+ </style>
+\ No newline at end of file
+diff --git a/frontend/src/views/onboarding/Step2Remote.vue b/frontend/src/views/onboarding/Step2Remote.vue
+index d9139caf50629aec6a4c8e8ea2b8d3725bff0b72..ca2c9376b37f68bea3b8d096a4a1ac271678ac6c 100644
+--- a/frontend/src/views/onboarding/Step2Remote.vue
++++ b/frontend/src/views/onboarding/Step2Remote.vue
+@@ -97,105 +97,105 @@ async function usarRemote(nome) {
+         </p>
+       </div>
+     </div>
+ 
+     <div class="step-actions">
+       <button class="btn-secondary" @click="router.push('/onboarding/1')">
+         <span class="pi pi-arrow-left" /> Voltar
+       </button>
+     </div>
+   </div>
+ </template>
+ 
+ <style scoped>
+ .check-row {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+ }
+ 
+ .check-icon { font-size: 1.4rem; }
+ .accent { color: #6366f1; }
+ 
+ .check-label {
+   font-size: 0.95rem;
+   font-weight: 600;
+-  color: #e2e8f0;
++  color: var(--app-text);
+ }
+ 
+ .check-sub {
+   font-size: 0.85rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+   line-height: 1.5;
+ }
+ 
+ .empty-state {
+   display: flex;
+   flex-direction: column;
+   gap: 0.75rem;
+   align-items: flex-start;
+ }
+ 
+ .empty-icon {
+   font-size: 2rem;
+-  color: #2d2d44;
++  color: var(--app-border);
+ }
+ 
+ .remotes-list {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+ }
+ 
+ .remote-item {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0.75rem 0;
+-  border-bottom: 1px solid #2d2d44;
++  border-bottom: 1px solid var(--app-border);
+ }
+ 
+ .remote-item:last-child {
+   border-bottom: none;
+ }
+ 
+ .remote-info {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+ }
+ 
+ .remote-icon {
+   color: #6366f1;
+   font-size: 1.1rem;
+ }
+ 
+ .code-block {
+-  background: #0f0f1a;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-input);
++  border: 1px solid var(--app-border);
+   border-radius: 8px;
+   padding: 0.75rem 1rem;
+   width: 100%;
+ }
+ 
+ code {
+   font-size: 0.9rem;
+   color: #86efac;
+   font-family: 'JetBrains Mono', 'Fira Code', monospace;
+ }
+ 
+ .inline-code {
+-  background: #0f0f1a;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-input);
++  border: 1px solid var(--app-border);
+   border-radius: 4px;
+   padding: 0.1rem 0.4rem;
+   font-size: 0.82rem;
+   color: #86efac;
+   font-family: 'JetBrains Mono', 'Fira Code', monospace;
+ }
+ 
+ .info-card {
+-  background: #12122a;
++  background: var(--app-surface-alt);
+   border-color: #3730a3;
+ }
+ </style>
+\ No newline at end of file
+diff --git a/frontend/src/views/onboarding/Step3Pares.vue b/frontend/src/views/onboarding/Step3Pares.vue
+index d76382ea51360d4332cd04ca1d7abd413cd3fc17..be17022b0463ba432b09ac5ff92da89cdcb4ca65 100644
+--- a/frontend/src/views/onboarding/Step3Pares.vue
++++ b/frontend/src/views/onboarding/Step3Pares.vue
+@@ -139,90 +139,90 @@ async function removerPar(id) {
+ 
+     <div class="step-actions">
+       <button class="btn-secondary" @click="router.push('/onboarding/2')">
+         <span class="pi pi-arrow-left" /> Voltar
+       </button>
+       <button
+         class="btn-primary"
+         :disabled="pares.length === 0"
+         @click="router.push('/onboarding/4')"
+       >
+         Próximo <span class="pi pi-arrow-right" />
+       </button>
+     </div>
+   </div>
+ </template>
+ 
+ <style scoped>
+ .accent { color: #6366f1; }
+ 
+ .card-section-title {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   font-size: 0.88rem;
+   font-weight: 600;
+-  color: #94a3b8;
++  color: var(--app-text-muted-2);
+   margin-bottom: 0.25rem;
+ }
+ 
+ .form-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 1rem;
+ }
+ 
+ .pares-list {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+ }
+ 
+ .par-item {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0.75rem 0;
+-  border-bottom: 1px solid #2d2d44;
++  border-bottom: 1px solid var(--app-border);
+ }
+ 
+ .par-item:last-child {
+   border-bottom: none;
+ }
+ 
+ .par-info {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+ }
+ 
+ .par-icon { color: #6366f1; }
+ 
+ .par-local {
+   font-size: 0.88rem;
+   font-weight: 500;
+-  color: #e2e8f0;
++  color: var(--app-text);
+ }
+ 
+ .par-remote {
+   font-size: 0.78rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+ }
+ 
+ .btn-danger {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 0.5rem;
+   background: transparent;
+   color: #fca5a5;
+   border: 1px solid #7f1d1d;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: all 0.2s;
+ }
+ 
+ .btn-danger:hover {
+   background: #7f1d1d;
+-  color: #fff;
++  color: var(--app-text-inverse);
+ }
+ </style>
+\ No newline at end of file
+diff --git a/frontend/src/views/onboarding/Step4Filtros.vue b/frontend/src/views/onboarding/Step4Filtros.vue
+index 1e49f16c69c5647d04ed92e2ccf5ebfeccd5f5b3..ddec87efbcb5fd888fb48911080c853013f64e0e 100644
+--- a/frontend/src/views/onboarding/Step4Filtros.vue
++++ b/frontend/src/views/onboarding/Step4Filtros.vue
+@@ -100,151 +100,151 @@ const filtrosComuns = [
+         placeholder="- *.log&#10;- **/node_modules/**"
+         rows="4"
+       />
+     </div>
+ 
+     <div class="step-actions">
+       <button class="btn-secondary" @click="router.push('/onboarding/3')">
+         <span class="pi pi-arrow-left" /> Voltar
+       </button>
+       <button class="btn-primary" @click="router.push('/onboarding/5')">
+         Próximo <span class="pi pi-arrow-right" />
+       </button>
+     </div>
+   </div>
+ </template>
+ 
+ <style scoped>
+ .accent { color: #6366f1; }
+ 
+ .card-section-title {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   font-size: 0.88rem;
+   font-weight: 600;
+-  color: #94a3b8;
++  color: var(--app-text-muted-2);
+   margin-bottom: 0.25rem;
+ }
+ 
+ .badge-opcional {
+   font-size: 0.7rem;
+   font-weight: 500;
+   padding: 0.15rem 0.5rem;
+   border-radius: 999px;
+-  background: #2d2d44;
+-  color: #64748b;
++  background: var(--app-border);
++  color: var(--app-text-muted);
+   margin-left: 0.25rem;
+ }
+ 
+ .filtros-list {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+ }
+ 
+ .filtro-item {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0.85rem 0;
+-  border-bottom: 1px solid #2d2d44;
++  border-bottom: 1px solid var(--app-border);
+   cursor: pointer;
+   transition: background 0.15s;
+   border-radius: 6px;
+ }
+ 
+ .filtro-item:last-child {
+   border-bottom: none;
+ }
+ 
+ .filtro-item:hover {
+-  background: #12122a;
++  background: var(--app-surface-alt);
+   padding-left: 0.5rem;
+   padding-right: 0.5rem;
+ }
+ 
+ .filtro-info {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+ }
+ 
+ .filtro-icon {
+   color: #6366f1;
+   font-size: 1rem;
+   width: 1.2rem;
+   text-align: center;
+ }
+ 
+ .filtro-label {
+   font-size: 0.9rem;
+   font-weight: 500;
+-  color: #e2e8f0;
++  color: var(--app-text);
+ }
+ 
+ .filtro-desc {
+   font-size: 0.78rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+   font-family: 'JetBrains Mono', 'Fira Code', monospace;
+ }
+ 
+ /* Toggle switch */
+ .toggle {
+   width: 40px;
+   height: 22px;
+-  background: #2d2d44;
++  background: var(--app-border);
+   border-radius: 999px;
+   padding: 2px;
+   transition: background 0.2s;
+   flex-shrink: 0;
+ }
+ 
+ .toggle-on {
+   background: #6366f1;
+ }
+ 
+ .toggle-thumb {
+   width: 18px;
+   height: 18px;
+-  background: #fff;
++  background: var(--app-text-inverse);
+   border-radius: 999px;
+   transition: transform 0.2s;
+ }
+ 
+ .toggle-on .toggle-thumb {
+   transform: translateX(18px);
+ }
+ 
+ .code-block {
+-  background: #0f0f1a;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-input);
++  border: 1px solid var(--app-border);
+   border-radius: 8px;
+   padding: 0.75rem 1rem;
+   margin-bottom: 0.5rem;
+ }
+ 
+ code {
+   font-size: 0.82rem;
+   color: #86efac;
+   font-family: 'JetBrains Mono', 'Fira Code', monospace;
+ }
+ 
+ .textarea {
+-  background: #0f0f1a;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-input);
++  border: 1px solid var(--app-border);
+   border-radius: 8px;
+   padding: 0.75rem 1rem;
+-  color: #e2e8f0;
++  color: var(--app-text);
+   font-size: 0.85rem;
+   font-family: 'JetBrains Mono', 'Fira Code', monospace;
+   outline: none;
+   resize: vertical;
+   width: 100%;
+   transition: border 0.2s;
+   line-height: 1.6;
+ }
+ 
+ .textarea:focus {
+   border-color: #6366f1;
+ }
+ </style>
+\ No newline at end of file
+diff --git a/frontend/src/views/onboarding/Step5Agendamento.vue b/frontend/src/views/onboarding/Step5Agendamento.vue
+index 5855e2e019eb3a162434f6a1d1e8837eaad3d258..a579d32b5d8945ad514535d96775674154e6adc2 100644
+--- a/frontend/src/views/onboarding/Step5Agendamento.vue
++++ b/frontend/src/views/onboarding/Step5Agendamento.vue
+@@ -146,147 +146,147 @@ async function instalarTimer() {
+       <span class="pi pi-exclamation-triangle" /> {{ erro }}
+     </p>
+ 
+     <div class="step-actions">
+       <button
+         class="btn-primary"
+         :disabled="instalando"
+         @click="instalarTimer"
+       >
+         <span :class="instalando ? 'pi pi-spin pi-spinner' : 'pi pi-check'" />
+         {{ instalando ? 'Instalando...' : 'Instalar agendamento' }}
+       </button>
+     </div>
+   </div>
+ </template>
+ 
+ <style scoped>
+ .accent { color: #6366f1; }
+ 
+ .card-section-title {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   font-size: 0.88rem;
+   font-weight: 600;
+-  color: #94a3b8;
++  color: var(--app-text-muted-2);
+   margin-bottom: 0.25rem;
+ }
+ 
+ .opcoes-list {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   gap: 0.25rem;
+ }
+ 
+ .opcao-item {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0.85rem 1rem;
+-  border: 1px solid #2d2d44;
++  border: 1px solid var(--app-border);
+   border-radius: 10px;
+   cursor: pointer;
+   transition: all 0.2s;
+ }
+ 
+ .opcao-item:hover {
+-  background: #12122a;
++  background: var(--app-surface-alt);
+   border-color: #6366f1;
+ }
+ 
+ .opcao-selected {
+-  background: #12122a;
++  background: var(--app-surface-alt);
+   border-color: #6366f1;
+ }
+ 
+ .opcao-info {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+ }
+ 
+ .opcao-icon {
+   color: #6366f1;
+   font-size: 1.1rem;
+   width: 1.2rem;
+   text-align: center;
+ }
+ 
+ .opcao-label {
+   font-size: 0.9rem;
+   font-weight: 500;
+-  color: #e2e8f0;
++  color: var(--app-text);
+ }
+ 
+ .opcao-desc {
+   font-size: 0.78rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+   line-height: 1.5;
+ }
+ 
+ /* Radio button */
+ .radio {
+   width: 18px;
+   height: 18px;
+-  border: 2px solid #2d2d44;
++  border: 2px solid var(--app-border);
+   border-radius: 999px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-shrink: 0;
+   transition: border 0.2s;
+ }
+ 
+ .opcao-selected .radio {
+   border-color: #6366f1;
+ }
+ 
+ .radio-dot {
+   width: 8px;
+   height: 8px;
+   background: #6366f1;
+   border-radius: 999px;
+ }
+ 
+ /* Code block */
+ .code-block {
+-  background: #0f0f1a;
+-  border: 1px solid #2d2d44;
++  background: var(--app-surface-input);
++  border: 1px solid var(--app-border);
+   border-radius: 8px;
+   padding: 0.75rem 1rem;
+   margin-bottom: 0.75rem;
+   line-height: 2;
+ }
+ 
+ code {
+   font-size: 0.82rem;
+   color: #86efac;
+   font-family: 'JetBrains Mono', 'Fira Code', monospace;
+ }
+ 
+ .code-comment {
+   font-size: 0.78rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+   margin-left: 0.75rem;
+   font-family: 'JetBrains Mono', 'Fira Code', monospace;
+ }
+ 
+ /* Info card */
+ .info-card {
+   display: flex;
+   align-items: flex-start;
+   gap: 0.75rem;
+-  background: #12122a;
++  background: var(--app-surface-alt);
+   border: 1px solid #3730a3;
+   border-radius: 10px;
+   padding: 1rem;
+ }
+ 
+ .info-icon {
+   color: #6366f1;
+   font-size: 1rem;
+   flex-shrink: 0;
+   margin-top: 0.1rem;
+ }
+ </style>
+\ No newline at end of file
+diff --git a/frontend/src/views/onboarding/Step6Confirmacao.vue b/frontend/src/views/onboarding/Step6Confirmacao.vue
+index f777318b138fadb6a06df6edfe1aef1f2aed54ca..1c7dd03c0cc617f17012373cab6f9e2b87e8bead 100644
+--- a/frontend/src/views/onboarding/Step6Confirmacao.vue
++++ b/frontend/src/views/onboarding/Step6Confirmacao.vue
+@@ -154,115 +154,115 @@ async function sincronizarAgora() {
+         A sincronização será executada automaticamente conforme o agendamento configurado.
+         Você pode acompanhar o status e executar syncs manuais pelo <strong>Painel</strong>.
+       </p>
+     </div>
+ 
+     <div class="step-actions">
+       <button class="btn-secondary" @click="router.push('/onboarding/5')">
+         <span class="pi pi-arrow-left" /> Voltar
+       </button>
+       <button class="btn-primary" @click="router.push('/dashboard')">
+         <span class="pi pi-home" /> Ir para o painel
+       </button>
+     </div>
+   </div>
+ </template>
+ 
+ <style scoped>
+ .accent { color: #6366f1; }
+ 
+ .card-section-title {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   font-size: 0.88rem;
+   font-weight: 600;
+-  color: #94a3b8;
++  color: var(--app-text-muted-2);
+   margin-bottom: 0.25rem;
+ }
+ 
+ .resumo-list {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+ }
+ 
+ .resumo-item {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0.85rem 0;
+-  border-bottom: 1px solid #2d2d44;
++  border-bottom: 1px solid var(--app-border);
+ }
+ 
+ .resumo-item:last-child {
+   border-bottom: none;
+ }
+ 
+ .resumo-info {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+ }
+ 
+ .resumo-icon {
+   color: #6366f1;
+   font-size: 1rem;
+   width: 1.2rem;
+   text-align: center;
+ }
+ 
+ .resumo-label {
+   font-size: 0.78rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+ }
+ 
+ .resumo-value {
+   font-size: 0.9rem;
+   font-weight: 500;
+-  color: #e2e8f0;
++  color: var(--app-text);
+ }
+ 
+ .opcao-desc {
+   font-size: 0.82rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+   line-height: 1.6;
+   margin-bottom: 0.75rem;
+ }
+ 
+ .resultado {
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+   margin-top: 1rem;
+   padding-top: 0.75rem;
+-  border-top: 1px solid #2d2d44;
++  border-top: 1px solid var(--app-border);
+ }
+ 
+ .resultado-item {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+ }
+ 
+ .resultado-par {
+   font-size: 0.82rem;
+-  color: #64748b;
++  color: var(--app-text-muted);
+ }
+ 
+ .info-card {
+   display: flex;
+   align-items: flex-start;
+   gap: 0.75rem;
+-  background: #12122a;
++  background: var(--app-surface-alt);
+   border: 1px solid #3730a3;
+   border-radius: 10px;
+   padding: 1rem;
+ }
+ 
+ .info-icon {
+   color: #6366f1;
+   font-size: 1rem;
+   flex-shrink: 0;
+   margin-top: 0.1rem;
+ }
+ </style>
+\ No newline at end of file
+
