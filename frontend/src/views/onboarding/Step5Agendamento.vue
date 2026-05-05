@@ -168,7 +168,7 @@ async function instalarTimer() {
   gap: 0.5rem;
   font-size: 0.88rem;
   font-weight: 600;
-  color: #94a3b8;
+  color: var(--app-text-muted-2);
   margin-bottom: 0.25rem;
 }
 
@@ -184,19 +184,19 @@ async function instalarTimer() {
   justify-content: space-between;
   align-items: center;
   padding: 0.85rem 1rem;
-  border: 1px solid #2d2d44;
+  border: 1px solid var(--app-border);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .opcao-item:hover {
-  background: #12122a;
+  background: var(--app-surface-alt);
   border-color: #6366f1;
 }
 
 .opcao-selected {
-  background: #12122a;
+  background: var(--app-surface-alt);
   border-color: #6366f1;
 }
 
@@ -216,12 +216,12 @@ async function instalarTimer() {
 .opcao-label {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #e2e8f0;
+  color: var(--app-text);
 }
 
 .opcao-desc {
   font-size: 0.78rem;
-  color: #64748b;
+  color: var(--app-text-muted);
   line-height: 1.5;
 }
 
@@ -229,7 +229,7 @@ async function instalarTimer() {
 .radio {
   width: 18px;
   height: 18px;
-  border: 2px solid #2d2d44;
+  border: 2px solid var(--app-border);
   border-radius: 999px;
   display: flex;
   align-items: center;
@@ -251,8 +251,8 @@ async function instalarTimer() {
 
 /* Code block */
 .code-block {
-  background: #0f0f1a;
-  border: 1px solid #2d2d44;
+  background: var(--app-surface-input);
+  border: 1px solid var(--app-border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
   margin-bottom: 0.75rem;
@@ -267,7 +267,7 @@ code {
 
 .code-comment {
   font-size: 0.78rem;
-  color: #64748b;
+  color: var(--app-text-muted);
   margin-left: 0.75rem;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
@@ -277,7 +277,7 @@ code {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  background: #12122a;
+  background: var(--app-surface-alt);
   border: 1px solid #3730a3;
   border-radius: 10px;
   padding: 1rem;

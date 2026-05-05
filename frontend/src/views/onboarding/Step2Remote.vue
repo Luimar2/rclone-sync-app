@@ -119,12 +119,12 @@ async function usarRemote(nome) {
 .check-label {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #e2e8f0;
+  color: var(--app-text);
 }
 
 .check-sub {
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--app-text-muted);
   line-height: 1.5;
 }
 
@@ -137,7 +137,7 @@ async function usarRemote(nome) {
 
 .empty-icon {
   font-size: 2rem;
-  color: #2d2d44;
+  color: var(--app-border);
 }
 
 .remotes-list {
@@ -152,7 +152,7 @@ async function usarRemote(nome) {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 0;
-  border-bottom: 1px solid #2d2d44;
+  border-bottom: 1px solid var(--app-border);
 }
 
 .remote-item:last-child {
@@ -171,8 +171,8 @@ async function usarRemote(nome) {
 }
 
 .code-block {
-  background: #0f0f1a;
-  border: 1px solid #2d2d44;
+  background: var(--app-surface-input);
+  border: 1px solid var(--app-border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
   width: 100%;
@@ -185,8 +185,8 @@ code {
 }
 
 .inline-code {
-  background: #0f0f1a;
-  border: 1px solid #2d2d44;
+  background: var(--app-surface-input);
+  border: 1px solid var(--app-border);
   border-radius: 4px;
   padding: 0.1rem 0.4rem;
   font-size: 0.82rem;
@@ -195,7 +195,7 @@ code {
 }
 
 .info-card {
-  background: #12122a;
+  background: var(--app-surface-alt);
   border-color: #3730a3;
 }
 </style>

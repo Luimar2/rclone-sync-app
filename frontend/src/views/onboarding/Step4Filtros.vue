@@ -122,7 +122,7 @@ const filtrosComuns = [
   gap: 0.5rem;
   font-size: 0.88rem;
   font-weight: 600;
-  color: #94a3b8;
+  color: var(--app-text-muted-2);
   margin-bottom: 0.25rem;
 }
 
@@ -131,8 +131,8 @@ const filtrosComuns = [
   font-weight: 500;
   padding: 0.15rem 0.5rem;
   border-radius: 999px;
-  background: #2d2d44;
-  color: #64748b;
+  background: var(--app-border);
+  color: var(--app-text-muted);
   margin-left: 0.25rem;
 }
 
@@ -147,7 +147,7 @@ const filtrosComuns = [
   justify-content: space-between;
   align-items: center;
   padding: 0.85rem 0;
-  border-bottom: 1px solid #2d2d44;
+  border-bottom: 1px solid var(--app-border);
   cursor: pointer;
   transition: background 0.15s;
   border-radius: 6px;
@@ -158,7 +158,7 @@ const filtrosComuns = [
 }
 
 .filtro-item:hover {
-  background: #12122a;
+  background: var(--app-surface-alt);
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
@@ -179,12 +179,12 @@ const filtrosComuns = [
 .filtro-label {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #e2e8f0;
+  color: var(--app-text);
 }
 
 .filtro-desc {
   font-size: 0.78rem;
-  color: #64748b;
+  color: var(--app-text-muted);
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
@@ -192,7 +192,7 @@ const filtrosComuns = [
 .toggle {
   width: 40px;
   height: 22px;
-  background: #2d2d44;
+  background: var(--app-border);
   border-radius: 999px;
   padding: 2px;
   transition: background 0.2s;
@@ -206,7 +206,7 @@ const filtrosComuns = [
 .toggle-thumb {
   width: 18px;
   height: 18px;
-  background: #fff;
+  background: var(--app-text-inverse);
   border-radius: 999px;
   transition: transform 0.2s;
 }
@@ -216,8 +216,8 @@ const filtrosComuns = [
 }
 
 .code-block {
-  background: #0f0f1a;
-  border: 1px solid #2d2d44;
+  background: var(--app-surface-input);
+  border: 1px solid var(--app-border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
   margin-bottom: 0.5rem;
@@ -230,11 +230,11 @@ code {
 }
 
 .textarea {
-  background: #0f0f1a;
-  border: 1px solid #2d2d44;
+  background: var(--app-surface-input);
+  border: 1px solid var(--app-border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
-  color: #e2e8f0;
+  color: var(--app-text);
   font-size: 0.85rem;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
   outline: none;

@@ -6,24 +6,24 @@ const router = useRouter()
 const route = useRoute()
 
 const temaEscuro = ref(false)
+const THEME_KEY = 'rclone-sync-theme'
+
+function aplicarTema(escuro) {
+  temaEscuro.value = escuro
+  document.documentElement.classList.toggle('dark-mode', escuro)
+  document.body.classList.toggle('dark-mode', escuro)
+}
 
 onMounted(() => {
+  const temaSalvo = localStorage.getItem(THEME_KEY)
   const prefereEscuro = window.matchMedia('(prefers-color-scheme: dark)').matches
-  temaEscuro.value = prefereEscuro
-  document.documentElement.classList.toggle('dark-mode', prefereEscuro)
-  document.body.classList.toggle('dark-mode', prefereEscuro)
-
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    temaEscuro.value = e.matches
-    document.documentElement.classList.toggle('dark-mode', e.matches)
-    document.body.classList.toggle('dark-mode', e.matches)
-  })
+  aplicarTema(temaSalvo ? temaSalvo === 'dark' : prefereEscuro)
 })
 
 function toggleTema() {
-  temaEscuro.value = !temaEscuro.value
-  document.documentElement.classList.toggle('dark-mode', temaEscuro.value)
-  document.body.classList.toggle('dark-mode', temaEscuro.value)
+  const novoTemaEscuro = !temaEscuro.value
+  aplicarTema(novoTemaEscuro)
+  localStorage.setItem(THEME_KEY, novoTemaEscuro ? 'dark' : 'light')
 }
 
 const navItems = [
@@ -78,25 +78,20 @@ const navItems = [
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background: #f4f6f9;
-  color: #1a1a2e;
-}
-
-.dark-mode .app-layout,
-.dark-mode {
-  background: #0f0f1a;
-  color: #e2e8f0;
+  background: var(--app-bg);
+  color: var(--app-text);
 }
 
 .sidebar {
   width: 220px;
   min-height: 100vh;
-  background: #1a1a2e;
-  color: #e2e8f0;
+  background: var(--app-surface-card);
+  color: var(--app-text);
   display: flex;
   flex-direction: column;
   padding: 1.5rem 1rem;
   gap: 0.5rem;
+  border-right: 1px solid var(--app-border);
 }
 
 .sidebar-header {
@@ -114,8 +109,12 @@ const navItems = [
 .sidebar-header h1 {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--app-text);
   margin: 0;
+}
+
+.dark-mode .sidebar-header h1 {
+  color: var(--app-text-inverse);
 }
 
 .sidebar-nav {
@@ -133,7 +132,7 @@ const navItems = [
   border-radius: 8px;
   border: none;
   background: transparent;
-  color: #94a3b8;
+  color: #475569;
   font-size: 0.9rem;
   cursor: pointer;
   text-align: left;
@@ -142,18 +141,31 @@ const navItems = [
 }
 
 .nav-item:hover {
-  background: #2d2d44;
-  color: #fff;
+  background: #eef2ff;
+  color: var(--app-text);
+}
+
+.dark-mode .nav-item {
+  color: var(--app-text-muted-2);
+}
+
+.dark-mode .nav-item:hover {
+  background: var(--app-border);
+  color: var(--app-text-inverse);
 }
 
 .nav-item.active {
   background: #6366f1;
-  color: #fff;
+  color: var(--app-text-inverse);
 }
 
 .sidebar-footer {
-  border-top: 1px solid #2d2d44;
+  border-top: 1px solid var(--app-border);
   padding-top: 1rem;
+}
+
+.dark-mode .sidebar-footer {
+  border-top-color: var(--app-border);
 }
 
 .main-content {
