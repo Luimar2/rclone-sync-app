@@ -27,9 +27,11 @@ function toggleTema() {
 }
 
 const navItems = [
-  { label: 'Painel',       icon: 'pi pi-home',  path: '/dashboard' },
-  { label: 'Configurações', icon: 'pi pi-cog',   path: '/onboarding/1' },
-  { label: 'Logs',         icon: 'pi pi-list',  path: '/logs' },
+  { label: 'Painel',        icon: 'pi pi-home',     path: '/dashboard' },
+  { label: 'Pares',         icon: 'pi pi-sync',     path: '/pares' },
+  { label: 'Agendamento',   icon: 'pi pi-clock',    path: '/agendamento' },
+  { label: 'Configurações', icon: 'pi pi-cog',      path: '/onboarding/1' },
+  { label: 'Logs',          icon: 'pi pi-list',     path: '/logs' },
 ]
 </script>
 

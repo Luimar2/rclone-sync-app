@@ -7,6 +7,7 @@ from services.systemd import (
     proxima_execucao
 )
 from services.app_config import carregar_config, salvar_config
+from services.event_logger import log_agendamento_alterado
 
 router = APIRouter(prefix="/agendamento", tags=["Agendamento"])
 
@@ -43,6 +44,7 @@ async def instalar(payload: AgendamentoRequest):
     config.agendamento.horario_customizado = payload.horario_customizado
     config.agendamento.ativo = True
     salvar_config(config)
+    log_agendamento_alterado("instalado", payload.intervalo, payload.horario_customizado)
 
     return resultado
 
@@ -66,5 +68,6 @@ async def desativar():
     config = carregar_config()
     config.agendamento.ativo = False
     salvar_config(config)
+    log_agendamento_alterado("desativado")
 
     return resultado

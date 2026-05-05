@@ -2,6 +2,7 @@ import asyncio
 from pathlib import Path
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from services.app_config import carregar_config
+from services.event_logger import listar_eventos
 
 router = APIRouter(prefix="/logs", tags=["Logs"])
 
@@ -67,3 +68,7 @@ async def websocket_logs(websocket: WebSocket):
 
     except WebSocketDisconnect:
         pass
+
+@router.get("/eventos")
+async def listar_eventos_app(limite: int = 100):
+    return {"eventos": listar_eventos(limite)}

@@ -8,11 +8,15 @@ import Step4Filtros from '../views/onboarding/Step4Filtros.vue'
 import Step5Agendamento from '../views/onboarding/Step5Agendamento.vue'
 import Step6Confirmacao from '../views/onboarding/Step6Confirmacao.vue'
 import LogsView from '../views/LogsView.vue'
+import AgendamentoView from '../views/AgendamentoView.vue'
+import ParesSyncView from '../views/ParesSyncView.vue'
 
 
 const routes = [
   { path: '/', component: HomeView },
   { path: '/dashboard', component: DashboardView },
+  { path: '/pares', component: ParesSyncView },
+  { path: '/agendamento', component: AgendamentoView },
   { path: '/onboarding/1', component: Step1Ambiente },
   { path: '/onboarding/2', component: Step2Remote },
   { path: '/onboarding/3', component: Step3Pares },

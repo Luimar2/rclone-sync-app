@@ -92,7 +92,7 @@ async function sincronizarAgora() {
             <span class="pi pi-calendar label-icon" />
             <span class="label">Sincronização agendada via systemd</span>
           </div>
-          <button class="btn-secondary" disabled title="Gestão de agendamento em breve">
+          <button class="btn-secondary" @click="router.push('/agendamento')">
             <span class="pi pi-cog" /> Gerenciar agendamento
           </button>
         </div>
