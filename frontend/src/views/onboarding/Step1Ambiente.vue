@@ -94,17 +94,17 @@ onMounted(async () => {
 .step-title {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--app-text);
+  color: var(--text-primary);
 }
 
 .step-desc {
   font-size: 0.9rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
 }
 
 .card {
-  background: var(--app-surface-card);
-  border: 1px solid var(--app-border);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1.25rem;
   display: flex;
@@ -123,23 +123,23 @@ onMounted(async () => {
   flex-shrink: 0;
 }
 
-.success { color: #86efac; }
-.danger  { color: #fca5a5; }
+.success { color: var(--success-text); }
+.danger  { color: var(--danger-text); }
 
 .check-label {
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--app-text);
+  color: var(--text-primary);
 }
 
 .check-sub {
   font-size: 0.85rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
 }
 
 .code-block {
-  background: var(--app-surface-input);
-  border: 1px solid var(--app-border);
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
   display: flex;
@@ -149,12 +149,12 @@ onMounted(async () => {
 
 .code-label {
   font-size: 0.75rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
 }
 
 code {
   font-size: 0.9rem;
-  color: #86efac;
+  color: var(--success-text);
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
@@ -170,7 +170,7 @@ code {
   gap: 0.5rem;
   padding: 0.6rem 1.1rem;
   background: #6366f1;
-  color: var(--app-text-inverse);
+  color: #fff;
   border: none;
   border-radius: 8px;
   font-size: 0.88rem;
@@ -181,8 +181,8 @@ code {
 
 .btn-primary:hover { background: #4f46e5; }
 .btn-primary:disabled {
-  background: var(--app-border);
-  color: var(--app-text-muted);
+  background: var(--nav-item-hover-bg);
+  color: var(--text-muted);
   cursor: not-allowed;
 }
 
@@ -192,8 +192,8 @@ code {
   gap: 0.5rem;
   padding: 0.6rem 1.1rem;
   background: transparent;
-  color: var(--app-text-muted-2);
-  border: 1px solid var(--app-border);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 0.88rem;
   font-weight: 500;
@@ -202,7 +202,7 @@ code {
 }
 
 .btn-secondary:hover {
-  background: var(--app-border);
-  color: var(--app-text);
+  background: var(--nav-item-hover-bg);
+  color: var(--text-primary);
 }
 </style>

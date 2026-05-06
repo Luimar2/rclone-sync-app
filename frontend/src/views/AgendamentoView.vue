@@ -175,12 +175,12 @@ async function desativarAgendamento() {
 <style scoped>
 .page { display: flex; flex-direction: column; gap: 1.5rem; }
 
-.page-title { font-size: 1.3rem; font-weight: 700; color: var(--app-text); }
-.page-desc  { font-size: 0.88rem; color: var(--app-text-muted); margin-top: -1rem; }
+.page-title { font-size: 1.3rem; font-weight: 700; color: var(--text-primary); }
+.page-desc  { font-size: 0.88rem; color: var(--text-muted); margin-top: -1rem; }
 
 .card {
-  background: var(--app-surface-card);
-  border: 1px solid var(--app-border);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -190,10 +190,10 @@ async function desativarAgendamento() {
   align-items: center;
   gap: 0.6rem;
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--app-border);
+  border-bottom: 1px solid var(--border);
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--app-text);
+  color: var(--text-primary);
 }
 
 .card-icon { color: #6366f1; }
@@ -213,59 +213,59 @@ async function desativarAgendamento() {
   justify-content: space-between;
   align-items: center;
   padding: 0.85rem 1rem;
-  border: 1px solid var(--app-border);
+  border: 1px solid var(--border);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.opcao-item:hover { background: var(--app-surface-alt); border-color: #6366f1; }
-.opcao-selected   { background: var(--app-surface-alt); border-color: #6366f1; }
+.opcao-item:hover { background: var(--bg-card-alt); border-color: var(--accent); }
+.opcao-selected   { background: var(--bg-card-alt); border-color: var(--accent); }
 
 .opcao-info { display: flex; align-items: center; gap: 0.75rem; }
 .opcao-icon { color: #6366f1; font-size: 1.1rem; width: 1.2rem; text-align: center; }
-.opcao-label { font-size: 0.9rem; font-weight: 500; color: var(--app-text); }
-.opcao-desc  { font-size: 0.78rem; color: var(--app-text-muted); line-height: 1.5; }
+.opcao-label { font-size: 0.9rem; font-weight: 500; color: var(--text-primary); }
+.opcao-desc  { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
 
 .radio {
   width: 18px; height: 18px;
-  border: 2px solid var(--app-border);
+  border: 2px solid var(--border);
   border-radius: 999px;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.opcao-selected .radio { border-color: #6366f1; }
+.opcao-selected .radio { border-color: var(--accent); }
 .radio-dot { width: 8px; height: 8px; background: #6366f1; border-radius: 999px; }
 
 .custom-block { display: flex; flex-direction: column; gap: 0.75rem; }
 
 .code-block {
-  background: var(--app-surface-input);
-  border: 1px solid var(--app-border);
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
   line-height: 2;
 }
-code { font-size: 0.82rem; color: #86efac; font-family: 'JetBrains Mono', monospace; }
-.code-comment { font-size: 0.78rem; color: var(--app-text-muted); margin-left: 0.5rem; font-family: monospace; }
+code { font-size: 0.82rem; color: var(--success-text); font-family: 'JetBrains Mono', monospace; }
+.code-comment { font-size: 0.78rem; color: var(--text-muted); margin-left: 0.5rem; font-family: monospace; }
 
 .input-group { display: flex; flex-direction: column; gap: 0.4rem; }
-.input-label { font-size: 0.8rem; color: var(--app-text-muted-2); font-weight: 500; }
+.input-label { font-size: 0.8rem; color: var(--text-secondary); font-weight: 500; }
 .input {
-  background: var(--app-surface-input);
-  border: 1px solid var(--app-border);
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.6rem 0.85rem;
-  color: var(--app-text);
+  color: var(--text-primary);
   font-size: 0.88rem;
   outline: none;
   transition: border 0.2s;
 }
-.input:focus { border-color: #6366f1; }
+.input:focus { border-color: var(--accent); }
 
 .info-card {
   display: flex; align-items: flex-start; gap: 0.75rem;
-  background: var(--app-surface-alt); border: 1px solid #3730a3;
+  background: var(--bg-card-alt); border: 1px solid var(--accent-border);
   border-radius: 10px; padding: 1rem;
 }
 .info-icon { color: #6366f1; font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
@@ -274,29 +274,29 @@ code { font-size: 0.82rem; color: #86efac; font-family: 'JetBrains Mono', monosp
 
 .btn-primary {
   display: flex; align-items: center; gap: 0.5rem;
-  padding: 0.6rem 1.1rem; background: #6366f1; color: var(--app-text-inverse);
+  padding: 0.6rem 1.1rem; background: #6366f1; color: #fff;
   border: none; border-radius: 8px; font-size: 0.88rem;
   font-weight: 500; cursor: pointer; transition: background 0.2s;
 }
 .btn-primary:hover { background: #4f46e5; }
-.btn-primary:disabled { background: var(--app-border); color: var(--app-text-muted); cursor: not-allowed; }
+.btn-primary:disabled { background: var(--nav-item-hover-bg); color: var(--text-muted); cursor: not-allowed; }
 
 .btn-danger {
   display: flex; align-items: center; gap: 0.5rem;
-  padding: 0.6rem 1.1rem; background: transparent; color: #fca5a5;
-  border: 1px solid #7f1d1d; border-radius: 8px; font-size: 0.88rem;
+  padding: 0.6rem 1.1rem; background: transparent; color: var(--danger-text);
+  border: 1px solid var(--danger-bg); border-radius: 8px; font-size: 0.88rem;
   font-weight: 500; cursor: pointer; transition: all 0.2s;
 }
-.btn-danger:hover { background: #7f1d1d; color: var(--app-text-inverse); }
+.btn-danger:hover { background: var(--danger-bg); color: #fff; }
 .btn-danger:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .badge {
   font-size: 0.75rem; font-weight: 600;
   padding: 0.25rem 0.65rem; border-radius: 999px;
 }
-.badge-success { background: #14532d; color: #86efac; }
-.badge-danger  { background: #7f1d1d; color: #fca5a5; }
+.badge-success { background: var(--success-bg); color: var(--success-text); }
+.badge-danger  { background: var(--danger-bg); color: var(--danger-text); }
 
-.erro        { font-size: 0.85rem; color: #fca5a5; display: flex; align-items: center; gap: 0.4rem; }
-.success-msg { font-size: 0.85rem; color: #86efac; display: flex; align-items: center; gap: 0.4rem; }
+.erro        { font-size: 0.85rem; color: var(--danger-text); display: flex; align-items: center; gap: 0.4rem; }
+.success-msg { font-size: 0.85rem; color: var(--success-text); display: flex; align-items: center; gap: 0.4rem; }
 </style>

@@ -10,19 +10,46 @@ html, body, #app {
   overflow: hidden;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: #f4f6f9;
-  color: #1a1a2e;
-}
-
-body.dark-mode {
-  background: #0f0f1a;
-  color: #e2e8f0;
-}
-
-/* Integração PrimeVue com nosso tema */
+/* ─── Tokens de cor — tema claro (padrão) ─────────────────────────────── */
 :root {
+  --bg-app:       #f4f6f9;
+  --bg-page:      #f4f6f9;
+  --bg-card:      #ffffff;
+  --bg-card-alt:  #f0f2f7;
+  --bg-input:     #f8f9fc;
+  --bg-sidebar:   #f0f2f7;
+  --bg-code:      #f0f2f7;
+  --bg-info:      #eef2ff;
+
+  --text-primary:  #1a1a2e;
+  --text-secondary:#4b5563;
+  --text-muted:    #6b7280;
+  --text-inverted: #e2e8f0;
+
+  --border:        #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --accent:        #6366f1;
+  --accent-hover:  #4f46e5;
+  --accent-border: #3730a3;
+
+  --success-bg:    #dcfce7;
+  --success-text:  #166534;
+  --warning-bg:    #fef3c7;
+  --warning-text:  #92400e;
+  --danger-bg:     #fee2e2;
+  --danger-text:   #991b1b;
+
+  --nav-item-text:   #4b5563;
+  --nav-item-hover-bg: #e2e6f0;
+  --nav-item-hover-text: #1a1a2e;
+  --nav-item-active-bg: #6366f1;
+  --nav-item-active-text: #ffffff;
+
+  --sidebar-header-text: #1a1a2e;
+  --sidebar-footer-border: #e2e8f0;
+
+  /* PrimeVue */
   --p-primary-color: #6366f1;
   --p-primary-contrast-color: #ffffff;
   --p-surface-card: #ffffff;
@@ -30,58 +57,58 @@ body.dark-mode {
   --p-text-color: #1a1a2e;
   --p-text-muted-color: #94a3b8;
   --p-border-color: #e2e8f0;
-
-  --app-bg: #f4f6f9;
-  --app-surface-card: #ffffff;
-  --app-surface-alt: #f8fafc;
-  --app-surface-input: #ffffff;
-  --app-border: #e2e8f0;
-  --app-text: #0f172a;
-  --app-text-muted: #475569;
-  --app-text-muted-2: #64748b;
-  --app-text-inverse: #ffffff;
-  --app-success-bg: #dcfce7;
-  --app-success-text: #166534;
-  --app-warning-bg: #fef3c7;
-  --app-warning-text: #92400e;
-  --app-danger-bg: #fee2e2;
-  --app-danger-text: #991b1b;
-
-  --app-log-line-number: #94a3b8;
-  --app-log-text: #334155;
-  --app-log-error: #b91c1c;
-  --app-log-warning: #b45309;
-  --app-log-info: #166534;
 }
 
-
+/* ─── Tokens de cor — tema escuro ─────────────────────────────────────── */
 .dark-mode {
+  --bg-app:       #0f0f1a;
+  --bg-page:      #0f0f1a;
+  --bg-card:      #1a1a2e;
+  --bg-card-alt:  #12122a;
+  --bg-input:     #0f0f1a;
+  --bg-sidebar:   #1a1a2e;
+  --bg-code:      #0f0f1a;
+  --bg-info:      #12122a;
+
+  --text-primary:  #e2e8f0;
+  --text-secondary:#94a3b8;
+  --text-muted:    #64748b;
+  --text-inverted: #1a1a2e;
+
+  --border:        #2d2d44;
+  --border-strong: #3d3d5c;
+
+  --accent:        #6366f1;
+  --accent-hover:  #4f46e5;
+  --accent-border: #3730a3;
+
+  --success-bg:    #14532d;
+  --success-text:  #86efac;
+  --warning-bg:    #78350f;
+  --warning-text:  #fcd34d;
+  --danger-bg:     #7f1d1d;
+  --danger-text:   #fca5a5;
+
+  --nav-item-text:   #94a3b8;
+  --nav-item-hover-bg: #2d2d44;
+  --nav-item-hover-text: #ffffff;
+  --nav-item-active-bg: #6366f1;
+  --nav-item-active-text: #ffffff;
+
+  --sidebar-header-text: #ffffff;
+  --sidebar-footer-border: #2d2d44;
+
+  /* PrimeVue */
   --p-surface-card: #1a1a2e;
   --p-surface-ground: #0f0f1a;
   --p-text-color: #e2e8f0;
   --p-text-muted-color: #64748b;
   --p-border-color: #2d2d44;
-
-  --app-bg: #0f0f1a;
-  --app-surface-card: #1a1a2e;
-  --app-surface-alt: #12122a;
-  --app-surface-input: #0f0f1a;
-  --app-border: #2d2d44;
-  --app-text: #e2e8f0;
-  --app-text-muted: #94a3b8;
-  --app-text-muted-2: #64748b;
-  --app-text-inverse: #ffffff;
-  --app-success-bg: #14532d;
-  --app-success-text: #86efac;
-  --app-warning-bg: #78350f;
-  --app-warning-text: #fcd34d;
-  --app-danger-bg: #7f1d1d;
-  --app-danger-text: #fca5a5;
-
-  --app-log-line-number: #475569;
-  --app-log-text: #94a3b8;
-  --app-log-error: #fca5a5;
-  --app-log-warning: #fcd34d;
-  --app-log-info: #86efac;
 }
 
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-app);
+  color: var(--text-primary);
+  transition: background 0.2s, color 0.2s;
+}

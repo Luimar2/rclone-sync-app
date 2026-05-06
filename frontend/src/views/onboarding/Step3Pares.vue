@@ -161,7 +161,7 @@ async function removerPar(id) {
   gap: 0.5rem;
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--app-text-muted-2);
+  color: var(--text-secondary);
   margin-bottom: 0.25rem;
 }
 
@@ -182,7 +182,7 @@ async function removerPar(id) {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 0;
-  border-bottom: 1px solid var(--app-border);
+  border-bottom: 1px solid var(--border);
 }
 
 .par-item:last-child {
@@ -200,12 +200,12 @@ async function removerPar(id) {
 .par-local {
   font-size: 0.88rem;
   font-weight: 500;
-  color: var(--app-text);
+  color: var(--text-primary);
 }
 
 .par-remote {
   font-size: 0.78rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
 }
 
 .btn-danger {
@@ -214,15 +214,15 @@ async function removerPar(id) {
   justify-content: center;
   padding: 0.5rem;
   background: transparent;
-  color: #fca5a5;
-  border: 1px solid #7f1d1d;
+  color: var(--danger-text);
+  border: 1px solid var(--danger-bg);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .btn-danger:hover {
-  background: #7f1d1d;
-  color: var(--app-text-inverse);
+  background: var(--danger-bg);
+  color: #fff;
 }
 </style>

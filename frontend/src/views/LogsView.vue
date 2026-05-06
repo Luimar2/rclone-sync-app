@@ -172,7 +172,7 @@ function formatarTamanho(bytes) {
 .page-title {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--app-text);
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -181,7 +181,7 @@ function formatarTamanho(bytes) {
   align-items: center;
   gap: 0.4rem;
   font-size: 0.78rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
 }
 
 .ws-dot {
@@ -199,7 +199,7 @@ function formatarTamanho(bytes) {
   align-items: center;
   gap: 0.4rem;
   font-size: 0.82rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
   cursor: pointer;
 }
 
@@ -215,8 +215,8 @@ function formatarTamanho(bytes) {
 
 /* Sidebar */
 .logs-sidebar {
-  background: var(--app-surface-card);
-  border: 1px solid var(--app-border);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1rem;
   display: flex;
@@ -231,7 +231,7 @@ function formatarTamanho(bytes) {
   gap: 0.5rem;
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
 }
 
 .accent { color: #6366f1; }
@@ -252,31 +252,31 @@ function formatarTamanho(bytes) {
 }
 
 .log-item:hover {
-  background: var(--app-surface-alt);
+  background: var(--bg-card-alt);
 }
 
 .log-selected {
-  background: var(--app-surface-alt);
-  border-color: #6366f1;
+  background: var(--bg-card-alt);
+  border-color: var(--accent);
 }
 
 .log-nome {
   font-size: 0.78rem;
-  color: var(--app-text);
+  color: var(--text-primary);
   word-break: break-all;
   line-height: 1.4;
 }
 
 .log-tamanho {
   font-size: 0.72rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
   margin-top: 0.15rem;
 }
 
 /* Viewer */
 .logs-viewer {
-  background: var(--app-surface-input);
-  border: 1px solid var(--app-border);
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
   display: flex;
@@ -300,11 +300,11 @@ function formatarTamanho(bytes) {
 }
 
 .log-linha:hover {
-  background: var(--app-surface-card);
+  background: var(--bg-card);
 }
 
 .linha-num {
-  color: var(--app-log-line-number);
+  color: var(--border);
   min-width: 2.5rem;
   text-align: right;
   user-select: none;
@@ -312,14 +312,14 @@ function formatarTamanho(bytes) {
 }
 
 .linha-texto {
-  color: var(--app-log-text);
+  color: var(--text-secondary);
   word-break: break-all;
 }
 
-.linha-erro  .linha-texto { color: var(--app-log-error); }
-.linha-aviso .linha-texto { color: var(--app-log-warning); }
-.linha-info  .linha-texto { color: var(--app-log-info); }
-.linha-normal .linha-texto { color: var(--app-log-text); }
+.linha-erro  .linha-texto { color: var(--danger-text); }
+.linha-aviso .linha-texto { color: var(--warning-text); }
+.linha-info  .linha-texto { color: var(--success-text); }
+.linha-normal .linha-texto { color: var(--text-secondary); }
 
 .logs-empty {
   display: flex;
@@ -328,7 +328,7 @@ function formatarTamanho(bytes) {
   justify-content: center;
   gap: 0.75rem;
   height: 100%;
-  color: var(--app-log-line-number);
+  color: var(--border);
   font-size: 0.9rem;
 }
 

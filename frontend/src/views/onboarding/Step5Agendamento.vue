@@ -168,7 +168,7 @@ async function instalarTimer() {
   gap: 0.5rem;
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--app-text-muted-2);
+  color: var(--text-secondary);
   margin-bottom: 0.25rem;
 }
 
@@ -184,20 +184,20 @@ async function instalarTimer() {
   justify-content: space-between;
   align-items: center;
   padding: 0.85rem 1rem;
-  border: 1px solid var(--app-border);
+  border: 1px solid var(--border);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .opcao-item:hover {
-  background: var(--app-surface-alt);
-  border-color: #6366f1;
+  background: var(--bg-card-alt);
+  border-color: var(--accent);
 }
 
 .opcao-selected {
-  background: var(--app-surface-alt);
-  border-color: #6366f1;
+  background: var(--bg-card-alt);
+  border-color: var(--accent);
 }
 
 .opcao-info {
@@ -216,12 +216,12 @@ async function instalarTimer() {
 .opcao-label {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--app-text);
+  color: var(--text-primary);
 }
 
 .opcao-desc {
   font-size: 0.78rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
   line-height: 1.5;
 }
 
@@ -229,7 +229,7 @@ async function instalarTimer() {
 .radio {
   width: 18px;
   height: 18px;
-  border: 2px solid var(--app-border);
+  border: 2px solid var(--border);
   border-radius: 999px;
   display: flex;
   align-items: center;
@@ -239,7 +239,7 @@ async function instalarTimer() {
 }
 
 .opcao-selected .radio {
-  border-color: #6366f1;
+  border-color: var(--accent);
 }
 
 .radio-dot {
@@ -251,8 +251,8 @@ async function instalarTimer() {
 
 /* Code block */
 .code-block {
-  background: var(--app-surface-input);
-  border: 1px solid var(--app-border);
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
   margin-bottom: 0.75rem;
@@ -261,13 +261,13 @@ async function instalarTimer() {
 
 code {
   font-size: 0.82rem;
-  color: #86efac;
+  color: var(--success-text);
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
 .code-comment {
   font-size: 0.78rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
   margin-left: 0.75rem;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
@@ -277,8 +277,8 @@ code {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  background: var(--app-surface-alt);
-  border: 1px solid #3730a3;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--accent-border);
   border-radius: 10px;
   padding: 1rem;
 }

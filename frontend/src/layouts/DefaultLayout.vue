@@ -6,26 +6,34 @@ const router = useRouter()
 const route = useRoute()
 
 const temaEscuro = ref(false)
-const THEME_KEY = 'rclone-sync-theme'
 
 function aplicarTema(escuro) {
   temaEscuro.value = escuro
   document.documentElement.classList.toggle('dark-mode', escuro)
-  document.body.classList.toggle('dark-mode', escuro)
+  // Remover do body — só o html precisa ser ancestral dos tokens
+  document.documentElement.setAttribute('data-theme', escuro ? 'dark' : 'light')
+  localStorage.setItem('tema', escuro ? 'dark' : 'light')
 }
 
 onMounted(() => {
-  const temaSalvo = localStorage.getItem(THEME_KEY)
-  const prefereEscuro = window.matchMedia('(prefers-color-scheme: dark)').matches
-  // Corrige inversão legada: valor salvo/OS estavam aplicando o tema oposto
-  aplicarTema(temaSalvo ? temaSalvo !== 'dark' : !prefereEscuro)
+  // Preferência salva tem prioridade; se não, usa a do sistema
+  const salvo = localStorage.getItem('tema')
+  const prefereEscuro = salvo
+    ? salvo === 'dark'
+    : window.matchMedia('(prefers-color-scheme: dark)').matches
+
+  aplicarTema(prefereEscuro)
+
+  // Acompanha mudança do sistema apenas se o usuário não salvou preferência
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('tema')) {
+      aplicarTema(e.matches)
+    }
+  })
 })
 
 function toggleTema() {
-  const novoTemaEscuro = !temaEscuro.value
-  aplicarTema(novoTemaEscuro)
-  // Persiste invertido para manter compatibilidade com instalações já invertidas
-  localStorage.setItem(THEME_KEY, novoTemaEscuro ? 'light' : 'dark')
+  aplicarTema(!temaEscuro.value)
 }
 
 const navItems = [
@@ -38,7 +46,7 @@ const navItems = [
 </script>
 
 <template>
-  <div class="app-layout" :class="{ 'dark-mode': temaEscuro }">
+  <div class="app-layout">
 
     <aside class="sidebar">
       <div class="sidebar-header" style="cursor: pointer" @click="router.push('/')">
@@ -61,8 +69,8 @@ const navItems = [
 
       <div class="sidebar-footer">
         <button class="nav-item" @click="toggleTema">
-          <span :class="temaEscuro ? 'pi pi-sun' : 'pi pi-moon'" />
-          {{ temaEscuro ? 'Tema claro' : 'Tema escuro' }}
+          <span :class="temaEscuro ? 'pi pi-moon' : 'pi pi-sun'" />
+          {{ temaEscuro ? 'Tema escuro' : 'Tema claro' }}
         </button>
       </div>
     </aside>
@@ -80,20 +88,21 @@ const navItems = [
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background: var(--app-bg);
-  color: var(--app-text);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  transition: background 0.3s, color 0.3s;
 }
 
 .sidebar {
   width: 220px;
   min-height: 100vh;
-  background: var(--app-surface-card);
-  color: var(--app-text);
+  background: var(--bg-sidebar);
   display: flex;
   flex-direction: column;
   padding: 1.5rem 1rem;
   gap: 0.5rem;
-  border-right: 1px solid var(--app-border);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  border-right: 1px solid var(--border);
 }
 
 .sidebar-header {
@@ -105,18 +114,14 @@ const navItems = [
 
 .sidebar-logo {
   font-size: 1.5rem;
-  color: #6366f1;
+  color: var(--accent);
 }
 
 .sidebar-header h1 {
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--app-text);
+  color: var(--sidebar-header-text);
   margin: 0;
-}
-
-.dark-mode .sidebar-header h1 {
-  color: var(--app-text-inverse);
 }
 
 .sidebar-nav {
@@ -134,7 +139,7 @@ const navItems = [
   border-radius: 8px;
   border: none;
   background: transparent;
-  color: #475569;
+  color: var(--nav-item-text);
   font-size: 0.9rem;
   cursor: pointer;
   text-align: left;
@@ -143,31 +148,18 @@ const navItems = [
 }
 
 .nav-item:hover {
-  background: #eef2ff;
-  color: var(--app-text);
-}
-
-.dark-mode .nav-item {
-  color: var(--app-text-muted-2);
-}
-
-.dark-mode .nav-item:hover {
-  background: var(--app-border);
-  color: var(--app-text-inverse);
+  background: var(--nav-item-hover-bg);
+  color: var(--nav-item-hover-text);
 }
 
 .nav-item.active {
-  background: #6366f1;
-  color: var(--app-text-inverse);
+  background: var(--nav-item-active-bg);
+  color: var(--nav-item-active-text);
 }
 
 .sidebar-footer {
-  border-top: 1px solid var(--app-border);
+  border-top: 1px solid var(--sidebar-footer-border);
   padding-top: 1rem;
-}
-
-.dark-mode .sidebar-footer {
-  border-top-color: var(--app-border);
 }
 
 .main-content {
@@ -175,5 +167,8 @@ const navItems = [
   padding: 2rem;
   overflow-y: auto;
   height: 100vh;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  transition: background 0.2s, color 0.2s;
 }
 </style>

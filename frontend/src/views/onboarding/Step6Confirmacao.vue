@@ -176,7 +176,7 @@ async function sincronizarAgora() {
   gap: 0.5rem;
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--app-text-muted-2);
+  color: var(--text-secondary);
   margin-bottom: 0.25rem;
 }
 
@@ -191,7 +191,7 @@ async function sincronizarAgora() {
   justify-content: space-between;
   align-items: center;
   padding: 0.85rem 0;
-  border-bottom: 1px solid var(--app-border);
+  border-bottom: 1px solid var(--border);
 }
 
 .resumo-item:last-child {
@@ -213,18 +213,18 @@ async function sincronizarAgora() {
 
 .resumo-label {
   font-size: 0.78rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
 }
 
 .resumo-value {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--app-text);
+  color: var(--text-primary);
 }
 
 .opcao-desc {
   font-size: 0.82rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 0.75rem;
 }
@@ -235,7 +235,7 @@ async function sincronizarAgora() {
   gap: 0.5rem;
   margin-top: 1rem;
   padding-top: 0.75rem;
-  border-top: 1px solid var(--app-border);
+  border-top: 1px solid var(--border);
 }
 
 .resultado-item {
@@ -246,15 +246,15 @@ async function sincronizarAgora() {
 
 .resultado-par {
   font-size: 0.82rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
 }
 
 .info-card {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  background: var(--app-surface-alt);
-  border: 1px solid #3730a3;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--accent-border);
   border-radius: 10px;
   padding: 1rem;
 }

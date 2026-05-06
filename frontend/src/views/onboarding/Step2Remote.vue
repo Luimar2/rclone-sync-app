@@ -119,12 +119,12 @@ async function usarRemote(nome) {
 .check-label {
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--app-text);
+  color: var(--text-primary);
 }
 
 .check-sub {
   font-size: 0.85rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
   line-height: 1.5;
 }
 
@@ -137,7 +137,7 @@ async function usarRemote(nome) {
 
 .empty-icon {
   font-size: 2rem;
-  color: var(--app-border);
+  color: var(--border);
 }
 
 .remotes-list {
@@ -152,7 +152,7 @@ async function usarRemote(nome) {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 0;
-  border-bottom: 1px solid var(--app-border);
+  border-bottom: 1px solid var(--border);
 }
 
 .remote-item:last-child {
@@ -171,8 +171,8 @@ async function usarRemote(nome) {
 }
 
 .code-block {
-  background: var(--app-surface-input);
-  border: 1px solid var(--app-border);
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
   width: 100%;
@@ -180,22 +180,22 @@ async function usarRemote(nome) {
 
 code {
   font-size: 0.9rem;
-  color: #86efac;
+  color: var(--success-text);
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
 .inline-code {
-  background: var(--app-surface-input);
-  border: 1px solid var(--app-border);
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   border-radius: 4px;
   padding: 0.1rem 0.4rem;
   font-size: 0.82rem;
-  color: #86efac;
+  color: var(--success-text);
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
 .info-card {
-  background: var(--app-surface-alt);
-  border-color: #3730a3;
+  background: var(--bg-card-alt);
+  border-color: var(--accent-border);
 }
 </style>

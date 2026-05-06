@@ -1,4 +1,5 @@
-/* src/assets/steps.css — estilos compartilhados entre os steps do onboarding */
+/* steps.css — estilos compartilhados entre os steps do onboarding */
+/* Todas as cores usam variáveis CSS definidas em base.css         */
 
 .step {
   display: flex;
@@ -15,7 +16,7 @@
 
 .step-number {
   font-size: 0.8rem;
-  color: #6366f1;
+  color: var(--accent);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -24,17 +25,17 @@
 .step-title {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--app-text);
+  color: var(--text-primary);
 }
 
 .step-desc {
   font-size: 0.9rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
 }
 
 .card {
-  background: var(--app-surface-card);
-  border: 1px solid var(--app-border);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1.25rem;
   display: flex;
@@ -53,8 +54,8 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.6rem 1.1rem;
-  background: #6366f1;
-  color: var(--app-text-inverse);
+  background: var(--accent);
+  color: #fff;
   border: none;
   border-radius: 8px;
   font-size: 0.88rem;
@@ -63,10 +64,10 @@
   transition: background 0.2s;
 }
 
-.btn-primary:hover { background: #4f46e5; }
+.btn-primary:hover { background: var(--accent-hover); }
 .btn-primary:disabled {
-  background: var(--app-border);
-  color: var(--app-text-muted);
+  background: var(--border);
+  color: var(--text-muted);
   cursor: not-allowed;
 }
 
@@ -76,8 +77,8 @@
   gap: 0.5rem;
   padding: 0.6rem 1.1rem;
   background: transparent;
-  color: var(--app-text-muted-2);
-  border: 1px solid var(--app-border);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 0.88rem;
   font-weight: 500;
@@ -86,8 +87,8 @@
 }
 
 .btn-secondary:hover {
-  background: var(--app-border);
-  color: var(--app-text);
+  background: var(--nav-item-hover-bg);
+  color: var(--nav-item-hover-text);
 }
 
 .badge {
@@ -97,9 +98,9 @@
   border-radius: 999px;
 }
 
-.badge-success { background: var(--app-success-bg); color: var(--app-success-text); }
-.badge-warning { background: var(--app-warning-bg); color: var(--app-warning-text); }
-.badge-danger  { background: var(--app-danger-bg); color: var(--app-danger-text); }
+.badge-success { background: var(--success-bg); color: var(--success-text); }
+.badge-warning { background: var(--warning-bg); color: var(--warning-text); }
+.badge-danger  { background: var(--danger-bg);  color: var(--danger-text);  }
 
 .input-group {
   display: flex;
@@ -110,15 +111,15 @@
 .input-label {
   font-size: 0.82rem;
   font-weight: 500;
-  color: var(--app-text-muted-2);
+  color: var(--text-secondary);
 }
 
 .input {
-  background: var(--app-surface-input);
-  border: 1px solid var(--app-border);
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.6rem 0.9rem;
-  color: var(--app-text);
+  color: var(--text-primary);
   font-size: 0.88rem;
   outline: none;
   transition: border 0.2s;
@@ -126,12 +127,12 @@
 }
 
 .input:focus {
-  border-color: #6366f1;
+  border-color: var(--accent);
 }
 
 .erro {
   font-size: 0.82rem;
-  color: #fca5a5;
+  color: var(--danger-text);
   display: flex;
   align-items: center;
   gap: 0.4rem;

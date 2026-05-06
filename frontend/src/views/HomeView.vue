@@ -116,7 +116,8 @@ onMounted(async () => {
 <style scoped>
 .home {
   min-height: 100vh;
-  background: var(--app-surface-input);
+  background: var(--bg-page);
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,8 +145,8 @@ onMounted(async () => {
 .hero-icon {
   width: 72px;
   height: 72px;
-  background: var(--app-surface-card);
-  border: 1px solid var(--app-border);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -160,14 +161,14 @@ onMounted(async () => {
 .hero-title {
   font-size: 2rem;
   font-weight: 800;
-  color: var(--app-text);
+  color: var(--text-primary);
   letter-spacing: -0.02em;
   margin: 0;
 }
 
 .hero-sub {
   font-size: 0.95rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
   line-height: 1.6;
   margin: 0;
 }
@@ -184,8 +185,8 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: var(--app-surface-card);
-  border: 1px solid var(--app-border);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1rem 1.25rem;
   text-align: left;
@@ -202,12 +203,12 @@ onMounted(async () => {
 .feature-label {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--app-text);
+  color: var(--text-primary);
 }
 
 .feature-desc {
   font-size: 0.8rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
 }
 
 /* Actions */
@@ -239,7 +240,7 @@ onMounted(async () => {
   gap: 0.6rem;
   padding: 0.85rem 1.5rem;
   background: #6366f1;
-  color: var(--app-text-inverse);
+  color: #fff;
   border: none;
   border-radius: 10px;
   font-size: 0.95rem;
@@ -258,8 +259,8 @@ onMounted(async () => {
   gap: 0.6rem;
   padding: 0.85rem 1.5rem;
   background: transparent;
-  color: var(--app-text-muted-2);
-  border: 1px solid var(--app-border);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
   border-radius: 10px;
   font-size: 0.95rem;
   font-weight: 600;
@@ -269,8 +270,8 @@ onMounted(async () => {
 }
 
 .btn-secondary:hover {
-  background: var(--app-surface-card);
-  color: var(--app-text);
+  background: var(--bg-card);
+  color: var(--text-primary);
 }
 
 /* Footer */
@@ -279,19 +280,19 @@ onMounted(async () => {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.82rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
 }
 
 .footer-link {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.footer-link:hover { color: var(--app-text); }
+.footer-link:hover { color: var(--text-primary); }
 
-.footer-sep { color: var(--app-border); }
+.footer-sep { color: var(--border); }
 </style>

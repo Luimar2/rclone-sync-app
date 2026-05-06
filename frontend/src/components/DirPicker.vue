@@ -152,25 +152,25 @@ function confirmarManual() {
 
 .input {
   flex: 1;
-  background: var(--app-surface-input);
-  border: 1px solid var(--app-border);
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.6rem 0.85rem;
-  color: var(--app-text);
+  color: var(--text-primary);
   font-size: 0.88rem;
   outline: none;
   transition: border 0.2s;
 }
-.input:focus { border-color: #6366f1; }
+.input:focus { border-color: var(--accent); }
 
 .btn-picker {
   display: flex; align-items: center; justify-content: center;
   width: 38px; height: 38px; flex-shrink: 0;
-  background: var(--app-surface-card); color: #6366f1;
-  border: 1px solid var(--app-border); border-radius: 8px;
+  background: var(--bg-card); color: #6366f1;
+  border: 1px solid var(--border); border-radius: 8px;
   cursor: pointer; transition: all 0.2s;
 }
-.btn-picker:hover { background: var(--app-border); border-color: #6366f1; }
+.btn-picker:hover { background: var(--nav-item-hover-bg); border-color: var(--accent); }
 
 /* Overlay */
 .picker-overlay {
@@ -181,8 +181,8 @@ function confirmarManual() {
 
 /* Modal */
 .picker-modal {
-  background: var(--app-surface-card);
-  border: 1px solid var(--app-border);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   width: 440px; max-width: 95vw;
   max-height: 80vh;
@@ -195,29 +195,29 @@ function confirmarManual() {
 .picker-header {
   display: flex; align-items: center; gap: 0.6rem;
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--app-border);
+  border-bottom: 1px solid var(--border);
 }
 .picker-header-icon { color: #6366f1; font-size: 1rem; }
-.picker-title { font-size: 0.95rem; font-weight: 600; color: var(--app-text); flex: 1; }
+.picker-title { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); flex: 1; }
 
 .btn-close {
   display: flex; align-items: center; justify-content: center;
   width: 28px; height: 28px;
-  background: transparent; color: var(--app-text-muted);
+  background: transparent; color: var(--text-muted);
   border: none; border-radius: 6px; cursor: pointer;
   transition: all 0.2s;
 }
-.btn-close:hover { background: var(--app-border); color: var(--app-text); }
+.btn-close:hover { background: var(--nav-item-hover-bg); color: var(--text-primary); }
 
 /* Path bar */
 .picker-path {
   display: flex; align-items: center; gap: 0.5rem;
   padding: 0.6rem 1.25rem;
-  background: var(--app-surface-input);
-  border-bottom: 1px solid var(--app-border);
+  background: var(--bg-input);
+  border-bottom: 1px solid var(--border);
 }
 .path-icon { color: #6366f1; font-size: 0.8rem; }
-.path-text { font-size: 0.78rem; color: var(--app-text-muted-2); font-family: monospace; word-break: break-all; }
+.path-text { font-size: 0.78rem; color: var(--text-secondary); font-family: monospace; word-break: break-all; }
 
 /* Body */
 .picker-body { flex: 1; overflow-y: auto; padding: 0.5rem 0; }
@@ -228,7 +228,7 @@ function confirmarManual() {
 }
 .picker-erro {
   padding: 1rem 1.25rem;
-  font-size: 0.85rem; color: #fca5a5;
+  font-size: 0.85rem; color: var(--danger-text);
   display: flex; align-items: center; gap: 0.4rem;
 }
 
@@ -241,30 +241,30 @@ function confirmarManual() {
   cursor: pointer;
   transition: background 0.15s;
 }
-.dir-item:hover { background: var(--app-surface-alt); }
+.dir-item:hover { background: var(--bg-card-alt); }
 
-.dir-item-up .dir-icon { color: var(--app-text-muted-2); }
+.dir-item-up .dir-icon { color: var(--text-secondary); }
 .dir-icon { color: #6366f1; font-size: 0.95rem; flex-shrink: 0; }
 
-.dir-name { flex: 1; font-size: 0.88rem; color: var(--app-text); }
+.dir-name { flex: 1; font-size: 0.88rem; color: var(--text-primary); }
 
-.dir-arrow { color: var(--app-border); font-size: 0.7rem; margin-left: auto; }
+.dir-arrow { color: var(--border); font-size: 0.7rem; margin-left: auto; }
 .dir-item:hover .dir-arrow { color: #6366f1; }
 
 .dir-disabled { opacity: 0.4; cursor: not-allowed; }
 .dir-disabled:hover { background: transparent; }
 
-.dir-empty { padding: 1.5rem 1.25rem; font-size: 0.85rem; color: var(--app-text-muted); text-align: center; }
+.dir-empty { padding: 1.5rem 1.25rem; font-size: 0.85rem; color: var(--text-muted); text-align: center; }
 
 /* Footer */
 .picker-footer {
   display: flex; align-items: center; gap: 0.75rem;
   padding: 0.85rem 1.25rem;
-  border-top: 1px solid var(--app-border);
-  background: var(--app-surface-input);
+  border-top: 1px solid var(--border);
+  background: var(--bg-input);
 }
 .footer-path {
-  flex: 1; font-size: 0.78rem; color: var(--app-text-muted);
+  flex: 1; font-size: 0.78rem; color: var(--text-muted);
   font-family: monospace; overflow: hidden;
   text-overflow: ellipsis; white-space: nowrap;
 }
@@ -272,7 +272,7 @@ function confirmarManual() {
 .btn-select {
   display: flex; align-items: center; gap: 0.4rem;
   padding: 0.5rem 1rem;
-  background: #6366f1; color: var(--app-text-inverse);
+  background: #6366f1; color: #fff;
   border: none; border-radius: 8px;
   font-size: 0.85rem; font-weight: 500;
   cursor: pointer; transition: background 0.2s;

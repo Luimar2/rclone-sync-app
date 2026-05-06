@@ -122,7 +122,7 @@ const filtrosComuns = [
   gap: 0.5rem;
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--app-text-muted-2);
+  color: var(--text-secondary);
   margin-bottom: 0.25rem;
 }
 
@@ -131,8 +131,8 @@ const filtrosComuns = [
   font-weight: 500;
   padding: 0.15rem 0.5rem;
   border-radius: 999px;
-  background: var(--app-border);
-  color: var(--app-text-muted);
+  background: var(--nav-item-hover-bg);
+  color: var(--text-muted);
   margin-left: 0.25rem;
 }
 
@@ -147,7 +147,7 @@ const filtrosComuns = [
   justify-content: space-between;
   align-items: center;
   padding: 0.85rem 0;
-  border-bottom: 1px solid var(--app-border);
+  border-bottom: 1px solid var(--border);
   cursor: pointer;
   transition: background 0.15s;
   border-radius: 6px;
@@ -158,7 +158,7 @@ const filtrosComuns = [
 }
 
 .filtro-item:hover {
-  background: var(--app-surface-alt);
+  background: var(--bg-card-alt);
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
@@ -179,12 +179,12 @@ const filtrosComuns = [
 .filtro-label {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--app-text);
+  color: var(--text-primary);
 }
 
 .filtro-desc {
   font-size: 0.78rem;
-  color: var(--app-text-muted);
+  color: var(--text-muted);
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
@@ -192,7 +192,7 @@ const filtrosComuns = [
 .toggle {
   width: 40px;
   height: 22px;
-  background: var(--app-border);
+  background: var(--nav-item-hover-bg);
   border-radius: 999px;
   padding: 2px;
   transition: background 0.2s;
@@ -206,7 +206,7 @@ const filtrosComuns = [
 .toggle-thumb {
   width: 18px;
   height: 18px;
-  background: var(--app-text-inverse);
+  background: #fff;
   border-radius: 999px;
   transition: transform 0.2s;
 }
@@ -216,8 +216,8 @@ const filtrosComuns = [
 }
 
 .code-block {
-  background: var(--app-surface-input);
-  border: 1px solid var(--app-border);
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
   margin-bottom: 0.5rem;
@@ -225,16 +225,16 @@ const filtrosComuns = [
 
 code {
   font-size: 0.82rem;
-  color: #86efac;
+  color: var(--success-text);
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
 .textarea {
-  background: var(--app-surface-input);
-  border: 1px solid var(--app-border);
+  background: var(--bg-input);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
-  color: var(--app-text);
+  color: var(--text-primary);
   font-size: 0.85rem;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
   outline: none;
@@ -245,6 +245,6 @@ code {
 }
 
 .textarea:focus {
-  border-color: #6366f1;
+  border-color: var(--accent);
 }
 </style>
