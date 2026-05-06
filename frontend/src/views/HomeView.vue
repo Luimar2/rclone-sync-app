@@ -106,7 +106,7 @@ onMounted(async () => {
           <span class="pi pi-github">GitHub</span>
         </a>
         <span class="footer-sep">·</span>
-        <span class="footer-version">v0.1.1</span>
+        <span class="footer-version">v0.2.0</span>
       </div>
 
     </div>

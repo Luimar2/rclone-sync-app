@@ -1,3 +1,9 @@
+"""
+services/rclone.py
+Camada de execução do rclone. Lógica específica de provider
+foi movida para services/providers/.
+"""
+
 import subprocess
 import shutil
 from pathlib import Path
@@ -20,8 +26,8 @@ def executar_comando(args: list[str]) -> dict:
         )
         return {
             "sucesso": resultado.returncode == 0,
-            "saida": resultado.stdout.strip(),
-            "erro": resultado.stderr.strip()
+            "saida":   resultado.stdout.strip(),
+            "erro":    resultado.stderr.strip()
         }
     except subprocess.TimeoutExpired:
         return {"sucesso": False, "saida": "", "erro": "Tempo limite excedido"}
@@ -29,21 +35,38 @@ def executar_comando(args: list[str]) -> dict:
         return {"sucesso": False, "saida": "", "erro": str(e)}
 
 
-def listar_remotes() -> list[str]:
+def listar_remotes_brutos() -> list[str]:
+    """Retorna todos os remotes configurados no rclone, sem filtro de provider."""
     resultado = executar_comando(["listremotes"])
     if not resultado["sucesso"] or not resultado["saida"]:
         return []
-    todos = [r.strip() for r in resultado["saida"].splitlines()]
+    return [r.strip() for r in resultado["saida"].splitlines()]
 
-    # Filtrar apenas remotes do tipo Google Drive (drive)
-    remotes_gdrive = []
-    for remote in todos:
-        nome = remote.rstrip(":")
-        check = executar_comando(["config", "show", nome])
-        if check["sucesso"] and "type = drive" in check["saida"]:
-            remotes_gdrive.append(remote)
 
-    return remotes_gdrive
+def listar_remotes_por_provider(provider_id: str) -> list[str]:
+    """
+    Retorna remotes filtrados pelo provider informado.
+    Substitui o antigo listar_remotes() — agora ciente de provider.
+    """
+    from services.providers import get_provider_disponivel
+    provider = get_provider_disponivel(provider_id)
+    todos = listar_remotes_brutos()
+    return provider.filtrar_remotes(todos, executar_comando)
+
+
+def listar_remotes(provider_id: str = "gdrive") -> list[str]:
+    """
+    Compatibilidade com código legado.
+    Chama listar_remotes_por_provider com gdrive como padrão.
+    """
+    return listar_remotes_por_provider(provider_id)
+
+
+def verificar_remote(nome: str, provider_id: str = "gdrive") -> dict:
+    """Valida o remote usando o provider correto."""
+    from services.providers import get_provider_disponivel
+    provider = get_provider_disponivel(provider_id)
+    return provider.validar_remote(nome, executar_comando)
 
 
 def criar_remote_gdrive(nome: str) -> dict:
@@ -55,15 +78,5 @@ def criar_remote_gdrive(nome: str) -> dict:
     return resultado
 
 
-def verificar_remote(nome: str) -> dict:
-    resultado = executar_comando(["about", f"{nome}:"])
-    return {
-        "sucesso": resultado["sucesso"],
-        "info": resultado["saida"],
-        "erro": resultado["erro"]
-    }
-
-
 def deletar_remote(nome: str) -> dict:
-    resultado = executar_comando(["config", "delete", nome])
-    return resultado
+    return executar_comando(["config", "delete", nome])

@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 export const useConfigStore = defineStore('config', () => {
   const remoteName = ref('')
+  const provider   = ref('gdrive')   // provider selecionado no Step2
   const pares = ref([])
   const filtros = ref({
     arquivos_temporarios: true,
@@ -19,6 +20,7 @@ export const useConfigStore = defineStore('config', () => {
 
   function resetar() {
     remoteName.value = ''
+    provider.value   = 'gdrive'
     pares.value = []
     filtros.value = {
       arquivos_temporarios: true,
@@ -31,5 +33,5 @@ export const useConfigStore = defineStore('config', () => {
     agendamento.value = { intervalo: 'daily', horario_customizado: '' }
   }
 
-  return { remoteName, pares, filtros, agendamento, resetar }
+  return { remoteName, provider, pares, filtros, agendamento, resetar }
 })

@@ -19,9 +19,18 @@ from services.event_logger import (
     log_par_editado,
     log_par_excluido
 )
+from services.providers import PROVIDERS
 import uuid
 
 router = APIRouter(prefix="/config", tags=["Configuração"])
+
+
+# --- Providers ---
+
+@router.get("/providers")
+async def listar_providers():
+    """Retorna todos os providers registrados com seus metadados."""
+    return {"providers": [p.to_dict() for p in PROVIDERS]}
 
 
 # --- Ambiente ---
@@ -34,9 +43,13 @@ async def status_rclone():
 # --- Remotes ---
 
 @router.get("/remotes")
-async def get_remotes():
-    remotes = listar_remotes()
-    return {"remotes": remotes, "total": len(remotes)}
+async def get_remotes(provider: str = "gdrive"):
+    """Lista remotes filtrados pelo provider informado."""
+    try:
+        remotes = listar_remotes(provider_id=provider)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    return {"remotes": remotes, "total": len(remotes), "provider": provider}
 
 
 @router.post("/remotes/{nome}")
@@ -48,8 +61,11 @@ async def criar_remote(nome: str):
 
 
 @router.get("/remotes/{nome}/verificar")
-async def checar_remote(nome: str):
-    resultado = verificar_remote(nome)
+async def checar_remote(nome: str, provider: str = "gdrive"):
+    try:
+        resultado = verificar_remote(nome, provider_id=provider)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
     if not resultado["sucesso"]:
         raise HTTPException(status_code=400, detail=resultado["erro"])
     return {"sucesso": True, "info": resultado["info"]}
@@ -75,6 +91,7 @@ class ParRequest(BaseModel):
     local_path: str
     remote_name: str
     remote_path: str
+    provider: str = "gdrive"
     filtros: FiltrosSinc = FiltrosSinc()
 
 
@@ -86,6 +103,7 @@ async def adicionar_par(payload: ParRequest):
         local_path=payload.local_path,
         remote_name=payload.remote_name,
         remote_path=payload.remote_path,
+        provider=payload.provider,
         filtros=payload.filtros
     )
     config.pares.append(novo_par)

@@ -21,6 +21,7 @@ class ParSincronizacao(BaseModel):
     local_path: str
     remote_name: str
     remote_path: str
+    provider: str = "gdrive"   # id do provider — padrão gdrive para retrocompatibilidade
     filtros: FiltrosSinc = FiltrosSinc()
     ativo: bool = True
 
