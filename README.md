@@ -9,9 +9,9 @@ construída com FastAPI e Vue.js.
 
 ---
 
-> ⚠️ **Para uso pessoal** — O RcloneSync é uma interface web (GUI) que utiliza
-> o rclone como motor de sincronização, com foco no Google Drive.  
-> Não é um produto oficial nem possui vínculo com os desenvolvedores do rclone.  
+> ⚠️ **Para uso pessoal** — O RcloneSync é uma interface web (GUI) que utiliza 
+> o rclone como motor de sincronização, com foco no **Google Drive**.
+> Não é um produto oficial nem possui vínculo com os desenvolvedores do rclone.
 > Ainda está em desenvolvimento e pode apresentar erros.
 
 ---
