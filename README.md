@@ -5,7 +5,7 @@ construída com FastAPI e Vue.js.
 
 ![versão](https://img.shields.io/badge/versão-0.2.1-blue)
 ![plataforma](https://img.shields.io/badge/plataforma-Linux-blue)
-![licença](https://img.shields.io/badge/licença-MIT-green)
+![licença](https://img.shields.io/badge/licença-GPL--3.0-blue)
 
 ---
 
@@ -139,4 +139,10 @@ rclone-sync-app/
 
 ## Licença
 
-MIT
+Este projeto é licenciado sob a **GNU General Public License v3.0 (GPL-3.0)**.
+
+Isso significa que você é livre para usar, estudar, modificar e distribuir
+este software, desde que qualquer trabalho derivado seja também distribuído
+sob a mesma licença, mantendo o código aberto para toda a comunidade.
+
+Veja o arquivo [LICENSE](LICENSE) para o texto completo.
